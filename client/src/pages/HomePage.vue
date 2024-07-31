@@ -1,8 +1,12 @@
 <script setup>
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 import { restaurantsService } from '../services/RestaurantsService.js';
 import Pop from '../utils/Pop.js';
+import { AppState } from '../AppState.js';
+import Restaurants from '../components/Restaurants.vue';
 
+
+const restaurants = computed(() => AppState.restaurants)
 
 onMounted(() => {
   getAllRestaurants()
@@ -54,8 +58,8 @@ async function getAllRestaurants(){
         <div class="allRestaurant">
           <h2 class="all-restaurant text-center">All Local Restaurants</h2>
         </div>
-        <div>
-          <!-- Insert ActiveRestaurantCard component here -->
+        <div v-for="restaurant in restaurants" :key="restaurant.id" class="col-md-4 ">
+          <Restaurants :restaurant="restaurant"/>
         </div>
       </div>
     </div>
