@@ -17,7 +17,7 @@ export const RestaurantSchema = new Schema({
     spotlightRestaurant: { type: Boolean, required: true, default: false},
     rating: { type: Number, min: 0, max: 5, required: false},
     yelp: { type: String, required: false}
-})
+},{timestamps: true})
 
 
 

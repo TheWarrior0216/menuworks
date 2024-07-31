@@ -10,6 +10,19 @@ export class RestaurantsController extends BaseController{
             .get('', this.getAllRestaurants)
             .use('', Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createRestaurant)
+            .delete('/:restaurantId', this.deleteRestaurant)
+    }
+
+    async deleteRestaurant(request, response, next) {
+        try {
+            const userId = request.userInfo.id
+            const restaurantId = request.params.restaurantId
+            const message = await restaurantsService.deleteRestaurant(userId, restaurantId)
+            response.send(message)
+        }
+        catch (error){
+            next(error)
+        }
     }
 
     async getAllRestaurants(request, response, next) {
