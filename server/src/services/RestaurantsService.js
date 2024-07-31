@@ -18,6 +18,7 @@ class RestaurantsService {
         restaurantToEdit.type = editData.type || restaurantToEdit.type
         restaurantToEdit.logoURL = editData.logoURL || restaurantToEdit.logoURL
         restaurantToEdit.primaryColor = editData.primaryColor || restaurantToEdit.primaryColor
+        restaurantToEdit.spotlightRestaurant = editData.spotlightRestaurant || restaurantToEdit.spotlightRestaurant
         restaurantToEdit.yelp = editData.yelp || restaurantToEdit.yelp
         await restaurantToEdit.save()
         return(restaurantToEdit)
