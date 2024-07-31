@@ -16,7 +16,7 @@ defineProps({restaurant: Restaurant})
     <div class="card-body">
         <h5 class="card-title">{{ restaurant.name }}</h5>
         <p class="card-text">{{ restaurant.location }}</p>
-        <p>{{ restaurant.hours }}</p>
+        <p>{{ restaurant.type }}</p>
     </div>
 </div>
 </RouterLink>

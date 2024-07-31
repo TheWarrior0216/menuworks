@@ -3,7 +3,8 @@ import { computed, onMounted } from 'vue';
 import { restaurantsService } from '../services/RestaurantsService.js';
 import Pop from '../utils/Pop.js';
 import { AppState } from '../AppState.js';
-import Restaurants from '../components/Restaurants.vue';
+import Restaurants from '../components/RestaurantCard.vue';
+import RestaurantCard from '../components/RestaurantCard.vue';
 
 
 const restaurants = computed(() => AppState.restaurants)
@@ -59,7 +60,7 @@ async function getAllRestaurants(){
           <h2 class="all-restaurant text-center">All Local Restaurants</h2>
         </div>
         <div v-for="restaurant in restaurants" :key="restaurant.id" class="col-md-4 ">
-          <Restaurants :restaurant="restaurant"/>
+          <RestaurantCard :restaurant="restaurant"/>
         </div>
       </div>
     </div>
