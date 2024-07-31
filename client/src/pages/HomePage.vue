@@ -21,12 +21,30 @@
   <section class="container">
     <div class="row">
       <div class="col-12 d-flex justify-content-center">
-        <div class="featuredRestaurant">
-          <h2 class="featured-restaurant">Featured Restaurant</h2>
+        <div class="spotlightRestaurant">
+          <h2 class="spotlight-restaurant">Spotlight Restaurant</h2>
+        </div>
+        <div>
+          <!-- Insert ActiveRestaurantCard component here -->
         </div>
       </div>
     </div>
   </section>
+
+  <!-- All Restaurants -->
+  <section class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="allRestaurant">
+          <h2 class="all-restaurant text-center">All Local Restaurants</h2>
+        </div>
+        <div>
+          <!-- Insert ActiveRestaurantCard component here -->
+        </div>
+      </div>
+    </div>
+  </section>
+
 </template>
 
 <style scoped lang="scss">
