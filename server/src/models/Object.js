@@ -1,6 +1,6 @@
 import { Schema } from "mongoose";
 
-export const ObjectSchema = new Schema({
+export const OrderSchema = new Schema({
   accountId: { type: Schema.ObjectId, required: true, ref: 'Account' },
   restaurantId: { type: Schema.ObjectId, required: true, ref: 'Restaurant' },
   placed: { type: Boolean, required: true, default: false },
@@ -8,19 +8,19 @@ export const ObjectSchema = new Schema({
   createdAt: { type: Date, required: true, }
 },
   { timestamps: true, toJSON: { virtuals: true } })
-ObjectSchema.virtual('profile', {
+OrderSchema.virtual('profile', {
   localField: 'accountId',
   foreignField: '_id',
   justOne: true,
   ref: 'Account'
 })
-ObjectSchema.virtual('restaurant', {
+OrderSchema.virtual('restaurant', {
   localField: 'restaurantId',
   foreignField: '_id',
   justOne: true,
   ref: 'Restaurant'
 })
-ObjectSchema.virtual('items', {
+OrderSchema.virtual('items', {
   localField: '_id',
   foreignField: 'itemId',
   ref: 'Item'
