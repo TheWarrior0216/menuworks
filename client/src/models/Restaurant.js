@@ -7,8 +7,8 @@ export class Restaurant {
         this.creatorId = data.creatorId
         this.name = data.name
         this.description = data.description
-        this.primaryPicture = data.primaryPicture
-        this.breakfastPicture = data?.breakfastPicture || null
+        this.primaryPictureURL = data.primaryPictureURL
+        this.breakfastPictureURL = data?.breakfastPictureURL || null
         this.location = data.location
         this.hours = data.hours
         this.type = data.type
