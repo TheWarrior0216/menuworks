@@ -7,10 +7,21 @@ export class RestaurantsController extends BaseController{
     constructor(){
         super('api/restaurants')
         this.router
+            .get('', this.getAllRestaurants)
             .use('', Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createRestaurant)
     }
-    
+
+    async getAllRestaurants(request, response, next) {
+        try {
+            const restaurants = await restaurantsService.getAllRestaurants()
+            response.send(restaurants)
+        }
+        catch (error){
+            next(error)
+        }
+    }
+
     async createRestaurant(request, response, next) {
         try {
             const restaurantData = request.body
