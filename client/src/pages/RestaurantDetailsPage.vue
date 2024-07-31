@@ -31,22 +31,33 @@ async function getRestaurant() {
     <h1>restaurant details page 😎</h1>
     <div class="container-fluid">
         <div class="row">
+
             <div class="col-12">
-                <img class="img-fluid"
-                    :src="restaurant?.primaryPictureURL"
-                    alt="picture">
+                <img class="img-fluid cover-img" :src="restaurant?.primaryPictureURL" alt="picture">
+                <div>
+                    <img class="logo" :src="restaurant?.logoURL" alt="logo">
+                </div>
             </div>
-            <img class="logo"
-                :src="restaurant?.logoURL"
-                alt="logo">
+
         </div>
+
     </div>
 </template>
 
 
 <style lang="scss" scoped>
 .logo {
+    // position: absolute;
     border-radius: 50%;
-    aspect-ratio: 1/1;
+    height: 10vh;
+    // top: 10%;
+    // aspect-ratio: 1/1;
+}
+
+.cover-img {
+    height: 50vh;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 </style>
