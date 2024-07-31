@@ -8,9 +8,21 @@ export class RestaurantsController extends BaseController{
         super('api/restaurants')
         this.router
             .get('', this.getAllRestaurants)
+            .get('/:restaurantId', this.getRestaurantById)
             .use('', Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createRestaurant)
             .delete('/:restaurantId', this.deleteRestaurant)
+    }
+
+    async getRestaurantById(request, response, next) {
+        try {
+            const id = request.params.restaurantId
+            const restaurant = await restaurantsService.getRestaurantById(id)
+            response.send(restaurant)
+        }
+        catch (error){
+            next(error)
+        }
     }
 
     async deleteRestaurant(request, response, next) {
