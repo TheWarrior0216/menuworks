@@ -1,6 +1,22 @@
 <script setup>
+import { onMounted } from 'vue';
+import { restaurantsService } from '../services/RestaurantsService.js';
+import Pop from '../utils/Pop.js';
 
 
+onMounted(() => {
+  getAllRestaurants()
+})
+
+
+async function getAllRestaurants(){
+  try {
+    await restaurantsService.getAllRestaurants()
+  }
+  catch (error){
+    Pop.error(error);
+  }
+}
 </script>
 
 <template>
