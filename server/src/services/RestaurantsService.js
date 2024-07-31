@@ -3,6 +3,26 @@ import { BadRequest, Forbidden } from "../utils/Errors.js"
 import { logger } from "../utils/Logger.js"
 
 class RestaurantsService {
+
+    async editRestaurant(restaurantId, editData, userId) {
+        const restaurantToEdit = await this.getRestaurantById(restaurantId)
+        if(restaurantToEdit.creatorId != userId){
+            throw new Forbidden('You cannot edit this restaurant')
+        }
+        restaurantToEdit.name = editData.name || restaurantToEdit.name
+        restaurantToEdit.description = editData.description || restaurantToEdit.description
+        restaurantToEdit.primaryPictureURL = editData.primaryPictureURL || restaurantToEdit.primaryPictureURL
+        restaurantToEdit.breakfastPictureURL = editData.breakfastPictureURL || restaurantToEdit.breakfastPictureURL
+        restaurantToEdit.location = editData.location || restaurantToEdit.location
+        restaurantToEdit.hours = editData.hours || restaurantToEdit.hours
+        restaurantToEdit.type = editData.type || restaurantToEdit.type
+        restaurantToEdit.logoURL = editData.logoURL || restaurantToEdit.logoURL
+        restaurantToEdit.primaryColor = editData.primaryColor || restaurantToEdit.primaryColor
+        restaurantToEdit.yelp = editData.yelp || restaurantToEdit.yelp
+        await restaurantToEdit.save()
+        return(restaurantToEdit)
+    }
+
     async deleteRestaurant(userId, restaurantId) {
         const restaurantToDelete =  await this.getRestaurantById(restaurantId)
         if(restaurantToDelete.creatorId != userId)
