@@ -9,4 +9,6 @@ export const AppState = reactive({
   account: null,
   /** @type Restaurant[] */
   restaurants: [],
+    /** @type Restaurant */
+  activeRestaurant: null
 })

@@ -1,6 +1,8 @@
 <script setup>
 import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+import Pop from '../utils/Pop.js';
+import { restaurantsService } from '../services/RestaurantsService.js';
 
 const route = useRoute()
 onMounted(()=>
@@ -8,8 +10,14 @@ onMounted(()=>
     getRestaurant()
 })
 
-function getRestaurant() {
-    throw new Error('Function not implemented.');
+async function getRestaurant() {
+    try {
+        const id = await route.params.restaurantId
+        restaurantsService.getRestaurantsById(id)
+    }
+    catch (error){
+        Pop.error(error);
+    }
 }
 
 </script>
