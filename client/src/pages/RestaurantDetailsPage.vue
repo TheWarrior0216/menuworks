@@ -1,7 +1,17 @@
 <script setup>
-// const props = defineProps({
+import { onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 
-// })
+const route = useRoute()
+onMounted(()=>
+{
+    getRestaurant()
+})
+
+function getRestaurant() {
+    throw new Error('Function not implemented.');
+}
+
 </script>
 
 

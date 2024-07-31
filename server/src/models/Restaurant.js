@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
 
 export const RestaurantSchema = new Schema({
-    creatorId: { type: Schema.ObjectId, required: true},
+    creatorId: { type: Schema.ObjectId, required: true },
     name: { type: String, minLength: 3, maxLength: 50, required: true },
     description: { type: String, minLength: 15, maxLength: 500, required: true },
     primaryPictureURL: { type: String, required: true },
@@ -12,12 +12,12 @@ export const RestaurantSchema = new Schema({
         type: String, enum: ["mexican", "indian", "italian", "american", "japanese", "thai", "french", "chinese", "greek", "brazilian", "spanish", "vietnamese", "korean", "african", "caribbean", "cuban", "barbarque", "other"
         ]
     },
-    logoURL: { type: String, required: true},
-    primaryColor: { type: String, required: true, minLength: 6, maxLength: 8},
-    spotlightRestaurant: { type: Boolean, required: true, default: false},
-    rating: { type: Number, min: 0, max: 5, required: false},
-    yelp: { type: String, required: false}
-},{timestamps: true})
+    logoURL: { type: String, required: true },
+    primaryColor: { type: String, required: true, minLength: 6, maxLength: 8 },
+    spotlightRestaurant: { type: Boolean, required: true, default: false },
+    rating: { type: Number, min: 0, max: 5, required: false },
+    yelp: { type: String, required: false }
+}, { timestamps: true, toJSON: { virtuals: true } })
 
 
 
