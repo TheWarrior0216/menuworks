@@ -20,7 +20,7 @@ const routes = [
   {
     path: '/restaurants/:restaurantId',
     name: 'Restaurant Details',
-    component: loadPage('RestaurantDetails')
+    component: loadPage('RestaurantDetailsPage')
   },
 ]
 
