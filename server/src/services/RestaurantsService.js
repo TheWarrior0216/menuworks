@@ -1,5 +1,5 @@
 import { dbContext } from "../db/DbContext.js"
-import { Forbidden } from "../utils/Errors.js"
+import { BadRequest, Forbidden } from "../utils/Errors.js"
 import { logger } from "../utils/Logger.js"
 
 class RestaurantsService {
@@ -16,12 +16,16 @@ class RestaurantsService {
     }
 
     async getAllRestaurants() {
-        const restaurants = await dbContext.Restaurant.find()
+        const restaurants = await dbContext.Restaurant.find()    
         return (restaurants)
     }
 
     async getRestaurantById(id) {
         const restaurant = await dbContext.Restaurant.findById(id)
+        if(restaurant == undefined)
+        {
+            throw new BadRequest(`No restaurant found with id ${id}`)
+        }
         return (restaurant)
     }
 

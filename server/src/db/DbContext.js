@@ -7,10 +7,8 @@ import { OrderSchema } from "../models/Object.js";
 class DbContext {
   Account = mongoose.model('Account', AccountSchema);
   Restaurant = mongoose.model('Restaurant', RestaurantSchema);
-  Items = mongoose.model('Item', ItemSchema),
-
+  Items = mongoose.model('Item', ItemSchema);
   Orders = mongoose.model('Order', OrderSchema)
-
 }
 
 export const dbContext = new DbContext()
