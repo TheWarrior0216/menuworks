@@ -50,8 +50,8 @@ async function getRestaurant() {
     // position: absolute;
     border-radius: 50%;
     height: 10vh;
-    // top: 10%;
-    // aspect-ratio: 1/1;
+    top: 10%;
+    aspect-ratio: 1/1;
 }
 
 .cover-img {
