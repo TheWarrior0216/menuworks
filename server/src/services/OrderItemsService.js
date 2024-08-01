@@ -1,6 +1,11 @@
 import { dbContext } from "../db/DbContext.js"
 
 class OrderItemsService {
+  async decimateOrderItem(orderData) {
+    const res = await dbContext.OrderItems.findById(orderData)
+    await res.deleteOne()
+    return 'Deleted'
+  }
   async editCount(Id, body) {
     const res = await dbContext.OrderItems.findById(Id)
     res.quantity = body.quantity
