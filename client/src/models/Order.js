@@ -6,8 +6,8 @@ export class Order{
         this.placed = data.placed
         this.completed = data.completed
         this.createdAt = data.createdAt
-        this.profile = data.profile
-        this.restaurant = data.restaurant
-        this.items = data.items
+        this.profile = data.profile || null
+        this.restaurant = data.restaurant || null
+        this.items = data.items || null
     }
 }

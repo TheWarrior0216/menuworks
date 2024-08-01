@@ -1,16 +1,20 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import Pop from '../utils/Pop.js';
 import { restaurantsService } from '../services/RestaurantsService.js';
 import { AppState } from '../AppState.js';
 import { itemsService } from '../services/ItemsService.js';
+import { ordersService } from '../services/OrdersService.js';
 
 
 const restaurant = computed(() => AppState.activeRestaurant)
 const items = computed(() => AppState.items)
 const activeItem = computed(() => AppState.activeItem)
 const quantity = computed(() => AppState.quantity)
+const account = computed(() => AppState.account)
+
+watch(account, () => ordersService.createOrder(route.params.restaurantId))
 
 const route = useRoute()
 
@@ -18,6 +22,9 @@ const timevalue = ref({ timeValue: 0 })
 
 onMounted(() => {
     getRestaurant()
+    if (account.value) {
+        ordersService.createOrder(route.params.restaurantId)
+    }
 })
 
 async function getRestaurant() {
@@ -25,6 +32,7 @@ async function getRestaurant() {
         const id = await route.params.restaurantId
         await restaurantsService.getRestaurantsById(id)
         await itemsService.getItemsByRestaurantId(id)
+
     }
     catch (error) {
         Pop.error(error);
@@ -38,7 +46,6 @@ function quantityIncrease() {
 function quantityDecrease() {
     itemsService.decrease()
 }
-
 </script>
 
 
@@ -85,7 +92,8 @@ function quantityDecrease() {
                 <div class="modal-body">
                     <img :src="activeItem.picture" alt="" class="modal-pic rounded mb-1">
                     <p class="text-center fs-5">{{ activeItem.description }}</p>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Special Instructions"></textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+                        placeholder="Special Instructions"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button v-if="quantity == 1" type="button" @click="quantityDecrease()" class="btn btn-secondary"
