@@ -23,7 +23,11 @@ class ItemsService {
     foundItem.type = itemBody.type
     await foundItem.save()
     return foundItem
-
+  }
+  async delteItem(itemId) {
+    const foundItem = await dbContext.Items.findById(itemId)
+    await foundItem.deleteOne()
+    return `You have delted ${foundItem}`
   }
 }
 export const itemsService = new ItemsService()

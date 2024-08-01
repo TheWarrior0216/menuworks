@@ -11,6 +11,7 @@ export class ItemsController extends BaseController {
       .use('', Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createItem)
       .put('/:itemId', this.changeItem)
+      .delete('/:itemId', this.deleteItem)
   }
   async getAllItems(req, res, next) {
     try {
@@ -44,6 +45,15 @@ export class ItemsController extends BaseController {
       const itemBody = req.body
       const changedItem = await itemsService.changeItem(itemId, itemBody)
       res.send(changedItem)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async deleteItem(req, res, next) {
+    try {
+      const itemId = req.params.itemId
+      const message = await itemsService.delteItem(itemId)
+      res.send(message)
     } catch (error) {
       next(error)
     }
