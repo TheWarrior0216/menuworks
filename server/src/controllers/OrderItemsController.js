@@ -11,6 +11,7 @@ export class OrderItemsController extends BaseController {
       .get('/:orderItemId', this.getOrderItemById)
       .use('', Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createOrderItems)
+      .put('/:orderItemId', this.editCount)
   }
   async getAllOrderItems(req, res, next) {
     try {
@@ -25,6 +26,16 @@ export class OrderItemsController extends BaseController {
       const orderId = req.params.orderItemId
       const orderItem = await orderItemsService.getOrderItemById(orderId)
       res.send(orderItem)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async editCount(req, res, next) {
+    try {
+      const Id = req.params.orderItemId
+      const body = req.body
+      const response = await orderItemsService.editCount(Id, body)
+      res.send(response)
     } catch (error) {
       next(error)
     }
