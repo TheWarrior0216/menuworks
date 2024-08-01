@@ -30,7 +30,7 @@ async function getRestaurant() {
 
 
 <template>
-    <div v-if="restaurant" class="bg-color">
+    <div v-if="restaurant">
         <div class="container-fluid">
             <div class="row cont-height">
                 <div class="col-12 p-0 m-0 cover-img">
