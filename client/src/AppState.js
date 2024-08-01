@@ -1,5 +1,6 @@
 import { reactive } from 'vue'
 import { Restaurant } from './models/Restaurant.js'
+import { Item } from './models/Item.js'
 
 // NOTE AppState is a reactive object to contain app level data
 export const AppState = reactive({
@@ -15,4 +16,6 @@ export const AppState = reactive({
   currentDay: "",
   /** @type Restaurant */
   spotlightRestaurant: null,
+  /** @type Item[] */
+  items: []
 })
