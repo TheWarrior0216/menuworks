@@ -10,7 +10,7 @@ export class OrdersController extends BaseController {
       .get('', this.getAllOrders)
       .get('/:orderId', this.getSpecificOrder)
       .use('', Auth0Provider.getAuthorizedUserInfo)
-
+      .put('/:orderId', this.changeOrder)
       .post('', this.createOrder)
 
   }
@@ -32,7 +32,16 @@ export class OrdersController extends BaseController {
       next(error)
     }
   }
-
+  async changeOrder(req, res, next) {
+    try {
+      const orderData = req.body
+      const orderId = req.params.orderId
+      const changedOrder = await ordersService.changeOrder(orderId, orderData)
+      res.send(changedOrder)
+    } catch (error) {
+      next(error)
+    }
+  }
   async createOrder(req, res, next) {
     try {
       const user = req.userInfo

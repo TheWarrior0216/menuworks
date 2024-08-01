@@ -1,6 +1,13 @@
 import { dbContext } from "../db/DbContext.js"
 
 class OrdersService {
+  async changeOrder(orderId, orderData) {
+    const foundOrder = await dbContext.Orders.findById(orderId)
+    foundOrder.placed = orderData.placed
+    foundOrder.completed = orderData.completed
+    await foundOrder.save()
+    return foundOrder
+  }
   async getAllOrders() {
     const orders = await dbContext.Orders.find()
     return orders
