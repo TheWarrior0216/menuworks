@@ -31,11 +31,11 @@ async function getRestaurant() {
     }
 }
 
-function quantityIncrease(){
+function quantityIncrease() {
     itemsService.increase()
 }
 
-function quantityDecrease(){
+function quantityDecrease() {
     itemsService.decrease()
 }
 
@@ -80,19 +80,22 @@ function quantityDecrease(){
         <div class="modal-dialog">
             <div v-if="activeItem" class="modal-content">
                 <div class="modal-header justify-content-center">
-                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">{{ activeItem.name }}</h1>
+                    <h1 class="modal-title fs-2 text-center" id="exampleModalLabel">{{ activeItem.name }}</h1>
                 </div>
                 <div class="modal-body">
                     <img :src="activeItem.picture" alt="" class="modal-pic rounded mb-1">
                     <p class="text-center fs-5">{{ activeItem.description }}</p>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Special Instructions"></textarea>
                 </div>
                 <div class="modal-footer">
-                    <button v-if="quantity==1" type="button" @click="quantityDecrease()" class="btn btn-secondary" disabled>-</button>
-                    <button v-else type="button" @click="quantityDecrease()" class="btn btn-secondary" >-</button>
+                    <button v-if="quantity == 1" type="button" @click="quantityDecrease()" class="btn btn-secondary"
+                        disabled>-</button>
+                    <button v-else type="button" @click="quantityDecrease()" class="btn btn-secondary">-</button>
                     <p class="fs-3">{{ quantity }}</p>
-                    <button v-if="quantity==50" type="button" @click="quantityIncrease()" class="btn btn-secondary" disabled>+</button>
-                    <button v-else type="button" @click="quantityIncrease()" class="btn btn-secondary" >+</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button v-if="quantity == 50" type="button" @click="quantityIncrease()" class="btn btn-secondary"
+                        disabled>+</button>
+                    <button v-else type="button" @click="quantityIncrease()" class="btn btn-secondary">+</button>
+                    <button type="button" class="btn btn-primary">Add to Cart <i class="mdi mdi-cart-plus"></i></button>
                 </div>
             </div>
         </div>
@@ -125,6 +128,7 @@ function quantityDecrease(){
 }
 
 .modal-pic {
+    max-height: 50vh;
     width: 100%;
     object-fit: cover;
     object-position: center;
