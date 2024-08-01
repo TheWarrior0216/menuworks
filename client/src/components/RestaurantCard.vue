@@ -31,6 +31,7 @@ defineProps({ restaurant: Restaurant })
 
 .restaurant-card {
     background-color: #ffffff;
+    color: black;
 }
 
 .card-img-top {
