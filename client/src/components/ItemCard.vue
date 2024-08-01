@@ -1,6 +1,7 @@
 <script setup>
 import { Item } from '../models/Item.js';
 import { itemsService } from '../services/ItemsService.js';
+import { orderItemsService } from '../services/OrderItem.js';
 
 
 const props = defineProps({
@@ -11,6 +12,9 @@ function setActiveItem(){
     itemsService.setActiveItem(props.itemProp)
 }
 
+function createOrderItem(){
+    orderItemsService.createOrderItem(1, props.itemProp.id)
+}
 
 </script>
 
@@ -25,7 +29,7 @@ function setActiveItem(){
                 <p class="card-text">$ {{ itemProp.price }}</p>
             </div>
         </div>
-        <button class="btn btn-primary m-3">Add To Cart</button>
+        <button @click="createOrderItem()" class="btn btn-primary m-3">Add To Cart</button>
     </div>
 </template>
 
