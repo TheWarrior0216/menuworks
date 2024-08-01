@@ -12,6 +12,7 @@ export class OrdersController extends BaseController {
       .use('', Auth0Provider.getAuthorizedUserInfo)
       .put('/:orderId', this.changeOrder)
       .post('', this.createOrder)
+      .delete('/:orderId', this.decimateOrder)
 
   }
   async getAllOrders(req, res, next) {
@@ -49,6 +50,16 @@ export class OrdersController extends BaseController {
       orderData.accountId = user.id
       const order = await ordersService.createOrder(orderData)
       res.send(order)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async decimateOrder(req, res, next) {
+    try {
+      const userId = req.userInfo.Id
+      const orderId = req.params.orderId
+      const message = await ordersService.decimateOrder(userId, orderId)
+      res.send(message)
     } catch (error) {
       next(error)
     }
