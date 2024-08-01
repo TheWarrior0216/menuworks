@@ -32,4 +32,10 @@ defineProps({ restaurant: Restaurant })
 .restaurant-card {
     background-color: #ffffff;
 }
+
+.card-img-top {
+    height: 25vh;
+    object-fit: cover;
+    object-position: center;
+}
 </style>
