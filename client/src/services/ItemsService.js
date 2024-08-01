@@ -13,6 +13,7 @@ class ItemsService{
 
     setActiveItem(itemProp) {
         AppState.activeItem = itemProp
+        AppState.quantity = 1
     }
 
     async getItemsByRestaurantId(id) {

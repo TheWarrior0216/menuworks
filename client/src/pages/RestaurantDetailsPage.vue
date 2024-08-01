@@ -87,9 +87,11 @@ function quantityDecrease(){
                     <p class="text-center fs-5">{{ activeItem.description }}</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" @click="quantityDecrease()" class="btn btn-secondary">-</button>
+                    <button v-if="quantity==1" type="button" @click="quantityDecrease()" class="btn btn-secondary" disabled>-</button>
+                    <button v-else type="button" @click="quantityDecrease()" class="btn btn-secondary" >-</button>
                     <p class="fs-3">{{ quantity }}</p>
-                    <button type="button" @click="quantityIncrease()" class="btn btn-secondary">+</button>
+                    <button v-if="quantity==50" type="button" @click="quantityIncrease()" class="btn btn-secondary" disabled>+</button>
+                    <button v-else type="button" @click="quantityIncrease()" class="btn btn-secondary" >+</button>
                     <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
