@@ -8,6 +8,7 @@ import { itemsService } from '../services/ItemsService.js';
 
 
 const restaurant = computed(() => AppState.activeRestaurant)
+const items = computed(() => AppState.items)
 
 const route = useRoute()
 
@@ -21,7 +22,7 @@ async function getRestaurant() {
     try {
         const id = await route.params.restaurantId
         await restaurantsService.getRestaurantsById(id)
-        // await itemsService.getItemsByRestaurantId(id)
+        await itemsService.getItemsByRestaurantId(id)
     }
     catch (error) {
         Pop.error(error);
@@ -43,9 +44,9 @@ async function getRestaurant() {
         </div>
         <div v-if="restaurant" class="container">
             <div class="row">
-                <div class="col-12 bg-body">
+                <div class="col-12 bg-body mb-2">
                     <div class="d-md-flex align-items-center">
-                        <h1 class="fw-bolder font-size">{{ restaurant?.name }}</h1>
+                        <h1 class="fw-bolder font-size text-md-start text-center">{{ restaurant?.name }}</h1>
                         <div v-for="hours in restaurant.hours" :key="hours.day"
                             class="px-2 pb-1 fs-3 text-md-start text-center">
                             <p v-if="hours.day == AppState.currentDay" class="m-0 p-0">{{ hours.open }} - {{ hours.close
@@ -53,9 +54,12 @@ async function getRestaurant() {
                             </p>
                         </div>
                     </div>
-                    <h5>{{ restaurant.location }}</h5>
-                    <p>{{ restaurant.description }}</p>
+                    <h5 class="text-md-start text-center">{{ restaurant.location }}</h5>
+                    <p class="text-md-start text-center">{{ restaurant.description }}</p>
 
+                </div>
+                <div v-for="item in items" :key="item.id" class="col-md-4 col-12 d-flex justify-content-center mb-2">
+                    <ItemCard :itemProp="item" />
                 </div>
 
             </div>
