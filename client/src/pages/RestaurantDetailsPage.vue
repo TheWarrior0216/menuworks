@@ -21,7 +21,7 @@ async function getRestaurant() {
     try {
         const id = await route.params.restaurantId
         await restaurantsService.getRestaurantsById(id)
-        await itemsService.getItemsByRestaurantId(id)
+        // await itemsService.getItemsByRestaurantId(id)
     }
     catch (error) {
         Pop.error(error);
