@@ -10,6 +10,7 @@ export class ItemsController extends BaseController {
       .get('/:itemId', this.getItemById)
       .use('', Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createItem)
+      .put('/:itemId', this.changeItem)
   }
   async getAllItems(req, res, next) {
     try {
@@ -33,6 +34,16 @@ export class ItemsController extends BaseController {
       const itemBody = request.body
       const newItem = await itemsService.createItem(itemBody)
       response.send(newItem)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async changeItem(req, res, next) {
+    try {
+      const itemId = req.params.itemId
+      const itemBody = req.body
+      const changedItem = await itemsService.changeItem(itemId, itemBody)
+      res.send(changedItem)
     } catch (error) {
       next(error)
     }
