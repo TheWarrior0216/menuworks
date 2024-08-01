@@ -42,6 +42,9 @@ async function getRestaurant() {
             <div class="col-12">
                 <h1 class="fw-bolder font-size">{{ restaurant?.name }}</h1>
                 <h5>{{ restaurant.description }}</h5>
+                <div v-for="hours in restaurant.hours" :key="hours.day">
+                    <p v-if="hours.day == AppState.currentDay" class="m-0 p-0">{{ hours.open }} - {{ hours.close }}</p>
+                </div>
             </div>
         </div>
 
