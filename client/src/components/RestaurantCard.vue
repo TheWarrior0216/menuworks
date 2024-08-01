@@ -12,9 +12,9 @@ defineProps({ restaurant: Restaurant })
 
 <template>
     <RouterLink :to="{ name: 'Restaurant Details', params: { restaurantId: restaurant.id } }">
-        <div class="restaurant-card">
+        <div class="restaurant-card mb-4">
             <img :src="restaurant.primaryPictureURL" class="card-img-top" :alt="restaurant.name">
-            <div class="card-body">
+            <div class="card-body p-1">
                 <h5 class="card-title">{{ restaurant.name }}</h5>
                 <p class="card-text mb-2">{{ restaurant.location }}</p>
                 <div v-for="hours in restaurant.hours" :key="hours.day" >
@@ -27,4 +27,9 @@ defineProps({ restaurant: Restaurant })
 </template>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+.restaurant-card {
+    background-color: #ffffff;
+}
+</style>

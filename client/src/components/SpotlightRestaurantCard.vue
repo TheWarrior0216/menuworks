@@ -14,13 +14,13 @@ const restaurant = computed(() => AppState.spotlightRestaurant)
      <RouterLink :to="{ name: 'Restaurant Details', params: { restaurantId: restaurant.id } }">
         <div class="spotlight-restaurant-card col-12">
             <img :src="restaurant.primaryPictureURL" class="card-img-top img-fluid" :alt="restaurant.name">
-            <div class="card-body d-flex justify-content-start p-2">
+            <div class="card-body d-block d-md-flex justify-content-start p-2">
                 <h3 class="card-title">{{ restaurant.name }}</h3>
-                <p class="card-text mb-2 fs-5 px-3">{{ restaurant.location }}</p>
+                <p class="card-text fs-5 px-md-3">{{ restaurant.location }}</p>
                 <div v-for="hours in restaurant.hours" :key="hours.day" >
-                    <p v-if="hours.day == AppState.currentDay" class="m-0 p-0 fs-5 px-3" >{{ hours.open }} - {{ hours.close }}</p>
+                    <p v-if="hours.day == AppState.currentDay" class="card-text m-0 p-0 fs-5 px-md-3" >{{ hours.open }} - {{ hours.close }}</p>
                 </div>
-                <p class="fs-5 px-3">{{ restaurant.type }}</p>
+                <p class="card-text fs-5 px-md-3">{{ restaurant.type }}</p>
             </div>
         </div>
     </RouterLink>
@@ -32,7 +32,9 @@ const restaurant = computed(() => AppState.spotlightRestaurant)
 
 .spotlight-restaurant-card {
     background-color: white;
-    padding: 1em;
+    padding-top: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 .card-img-top {

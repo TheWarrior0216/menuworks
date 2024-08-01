@@ -39,11 +39,11 @@ async function getAllRestaurants() {
     </div>
   </section>
 
-  <!-- Featured Restaurant Section -->
+  <!-- Spotlight Restaurant Restaurant Section -->
   <section class="container-fluid spotlightRestaurant">
     <div class="row">
       <div class="col-12">
-        <div class="">
+        <div>
           <h2 class="spotlight-restaurant text-center py-3 fs-1">Spotlight Restaurant</h2>
         </div>
         <div class="row" v-if="spotlightRestaurant">
@@ -57,7 +57,7 @@ async function getAllRestaurants() {
   <section class="container">
     <div class="row">
       <div class="col-12">
-        <div class="allRestaurant">
+        <div class="allRestaurant py-3">
           <h2 class="all-restaurant text-center">All Local Restaurants</h2>
         </div>
       </div>
@@ -98,4 +98,5 @@ async function getAllRestaurants() {
 .spotlightRestaurant {
   background-color: rgb(230, 230, 230);
 }
+
 </style>
