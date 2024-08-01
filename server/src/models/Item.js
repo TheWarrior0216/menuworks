@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
 
 export const ItemSchema = new Schema({
-  restaurantId: { type: Schema.ObjectId, required: true, ref: 'Restraunt' },
+  restaurantId: { type: Schema.ObjectId, required: true, ref: 'Restaurant' },
   name: { type: String, required: true, maxLength: 20, },
   picture: { type: String, required: true, maxLength: 200, },
   price: { type: Number, min: 0, max: 1000, required: true },
