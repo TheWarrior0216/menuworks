@@ -5,6 +5,10 @@ class OrderItemsService {
     const res = await dbContext.OrderItems.find().populate('item')
     return res
   }
+  async getOrderItemById(orderId) {
+    const res = await dbContext.OrderItems.findById(orderId).populate('item')
+    return res
+  }
   async createOrderItems(orderData) {
     const response = await dbContext.OrderItems.create(orderData)
     await response.populate('item')

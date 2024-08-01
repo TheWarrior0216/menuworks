@@ -8,6 +8,7 @@ export class OrderItemsController extends BaseController {
     super('api/orderItems')
     this.router
       .get('', this.getAllOrderItems)
+      .get('/:orderItemId', this.getOrderItemById)
       .use('', Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createOrderItems)
   }
@@ -15,6 +16,15 @@ export class OrderItemsController extends BaseController {
     try {
       const orderItems = await orderItemsService.getAllOrderItems()
       res.send(orderItems)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async getOrderItemById(req, res, next) {
+    try {
+      const orderId = req.params.orderItemId
+      const orderItem = await orderItemsService.getOrderItemById(orderId)
+      res.send(orderItem)
     } catch (error) {
       next(error)
     }
