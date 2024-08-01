@@ -2,6 +2,7 @@
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { accountService } from '../services/AccountService'
 import BaseController from '../utils/BaseController'
+import { ordersService } from "../services/OrdersService.js"
 // Test from Zach
 
 export class AccountController extends BaseController {
@@ -10,6 +11,7 @@ export class AccountController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
+      .get('/orders', this.getOrdersByAccountId)
       .put('', this.editUserAccount)
   }
 
@@ -21,7 +23,15 @@ export class AccountController extends BaseController {
       next(error)
     }
   }
-
+  async getOrdersByAccountId(req, res, next) {
+    try {
+      const account = req.userInfo
+      const orders = await ordersService.getOrdersByAccountId(account.id)
+      res.send(orders)
+    } catch (error) {
+      next(error)
+    }
+  }
   async editUserAccount(req, res, next) {
     try {
       const accountId = req.userInfo.id
@@ -32,5 +42,5 @@ export class AccountController extends BaseController {
       next(error)
     }
   }
-  
+
 }

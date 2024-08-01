@@ -1,6 +1,7 @@
 import { Auth0Provider } from "@bcwdev/auth0provider";
 import BaseController from "../utils/BaseController.js";
 import { ordersService } from "../services/OrdersService.js";
+import { accountService } from "../services/AccountService.js";
 
 export class OrdersController extends BaseController {
   constructor() {
@@ -9,7 +10,9 @@ export class OrdersController extends BaseController {
       .get('', this.getAllOrders)
       .get('/:orderId', this.getSpecificOrder)
       .use('', Auth0Provider.getAuthorizedUserInfo)
+
       .post('', this.createOrder)
+
   }
   async getAllOrders(req, res, next) {
     try {
@@ -21,6 +24,7 @@ export class OrdersController extends BaseController {
   }
   async getSpecificOrder(req, res, next) {
     try {
+
       const orderId = req.params.orderId
       const order = await ordersService.getSpecificOrder(orderId)
       res.send(order)
@@ -28,6 +32,7 @@ export class OrdersController extends BaseController {
       next(error)
     }
   }
+
   async createOrder(req, res, next) {
     try {
       const user = req.userInfo

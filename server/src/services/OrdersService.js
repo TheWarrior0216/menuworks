@@ -5,6 +5,10 @@ class OrdersService {
     const orders = await dbContext.Orders.find()
     return orders
   }
+  async getOrdersByAccountId(accountId) {
+    const orders = await dbContext.Orders.find({ accountId: accountId })
+    return orders
+  }
   async getSpecificOrder(orderId) {
     const order = await dbContext.Orders.findById(orderId)
     return order
