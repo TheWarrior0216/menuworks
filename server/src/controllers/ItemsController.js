@@ -7,6 +7,7 @@ export class ItemsController extends BaseController {
     super('api/items')
     this.router
       .get('', this.getAllItems)
+      .get('/:itemId', this.getItemById)
       .use('', Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createItem)
   }
@@ -14,6 +15,15 @@ export class ItemsController extends BaseController {
     try {
       const items = await itemsService.getAllItems()
       res.send(items)
+    } catch (error) {
+      next(error)
+    }
+  }
+  async getItemById(req, res, next) {
+    try {
+      const itemId = req.params.itemId
+      const item = await itemsService.getItemById(itemId)
+      res.send(item)
     } catch (error) {
       next(error)
     }
