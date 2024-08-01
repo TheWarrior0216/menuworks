@@ -3,10 +3,14 @@ import { BadRequest, Forbidden } from "../utils/Errors.js"
 import { logger } from "../utils/Logger.js"
 
 class RestaurantsService {
+    async getAllItemsByRestaurantId(itemId) {
+        const items = await dbContext.Items.find({ restaurantId: itemId })
+        return items
+    }
 
     async editRestaurant(restaurantId, editData, userId) {
         const restaurantToEdit = await this.getRestaurantById(restaurantId)
-        if(restaurantToEdit.creatorId != userId){
+        if (restaurantToEdit.creatorId != userId) {
             throw new Forbidden('You cannot edit this restaurant')
         }
         restaurantToEdit.name = editData.name || restaurantToEdit.name
@@ -21,30 +25,28 @@ class RestaurantsService {
         restaurantToEdit.spotlightRestaurant = editData.spotlightRestaurant || restaurantToEdit.spotlightRestaurant
         restaurantToEdit.yelp = editData.yelp || restaurantToEdit.yelp
         await restaurantToEdit.save()
-        return(restaurantToEdit)
+        return (restaurantToEdit)
     }
 
     async deleteRestaurant(userId, restaurantId) {
-        const restaurantToDelete =  await this.getRestaurantById(restaurantId)
-        if(restaurantToDelete.creatorId != userId)
-        {
+        const restaurantToDelete = await this.getRestaurantById(restaurantId)
+        if (restaurantToDelete.creatorId != userId) {
             logger.log("userId: ", userId)
             logger.log("restaurantCreatorId: ", restaurantToDelete.creatorId)
             throw new Forbidden()
         }
         await restaurantToDelete.deleteOne()
-        return("deleted successfully")
+        return ("deleted successfully")
     }
 
     async getAllRestaurants() {
-        const restaurants = await dbContext.Restaurant.find()    
+        const restaurants = await dbContext.Restaurant.find()
         return (restaurants)
     }
 
     async getRestaurantById(id) {
         const restaurant = await dbContext.Restaurant.findById(id)
-        if(restaurant == undefined)
-        {
+        if (restaurant == undefined) {
             throw new BadRequest(`No restaurant found with id ${id}`)
         }
         return (restaurant)
