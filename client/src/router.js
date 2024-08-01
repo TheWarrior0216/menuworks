@@ -22,6 +22,11 @@ const routes = [
     name: 'Restaurant Details',
     component: loadPage('RestaurantDetailsPage')
   },
+  {
+    path: '/restaurantManagement/:restaurantId',
+    name: 'Restaurant Management',
+    component: loadPage('RestaurantManagementPage')
+  }
 ]
 
 export const router = createRouter({

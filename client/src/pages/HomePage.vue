@@ -6,6 +6,7 @@ import { AppState } from '../AppState.js';
 import Restaurants from '../components/RestaurantCard.vue';
 import RestaurantCard from '../components/RestaurantCard.vue';
 import SpotlightRestaurantCard from '../components/SpotlightRestaurantCard.vue';
+import { RouterLink } from 'vue-router';
 
 const spotlightRestaurant = computed(() => AppState.spotlightRestaurant)
 const restaurants = computed(() => AppState.restaurants)
@@ -33,7 +34,9 @@ async function getAllRestaurants() {
         <div class="text-center">
           <h1 class="landing-title">MenuWorks</h1>
           <h2 class="landing-subtitle">Mobile Ordering Made Easy</h2>
-          <button class="btn btn-dark landing-button">Register</button>
+          <RouterLink :to="{ name: 'Restaurant Management', params: { restaurantId: 'jeremy'}}">
+            <button class="btn btn-dark landing-button">Manage Restaurant</button>
+          </RouterLink>
         </div>
       </div>
     </div>
