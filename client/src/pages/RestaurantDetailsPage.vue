@@ -28,17 +28,19 @@ async function getRestaurant() {
 
 
 <template>
-    <h1>restaurant details page 😎</h1>
     <div class="container-fluid">
         <div class="row">
-
-            <div class="col-12">
+            <div class="col-12 p-0">
                 <img class="img-fluid cover-img" :src="restaurant?.primaryPictureURL" alt="picture">
                 <div>
                     <img class="logo" :src="restaurant?.logoURL" alt="logo">
                 </div>
-            </div>
 
+            </div>
+            <div class="col-12">
+                <h1 class="fw-bolder font-size">{{ restaurant?.name }}</h1>
+                <h5>{{ restaurant.description }}</h5>
+            </div>
         </div>
 
     </div>
@@ -47,10 +49,10 @@ async function getRestaurant() {
 
 <style lang="scss" scoped>
 .logo {
-    // position: absolute;
+    margin-top: -30vh;
     border-radius: 50%;
-    height: 10vh;
-    top: 10%;
+    height: 20vh;
+    margin-left: 2%;
     aspect-ratio: 1/1;
 }
 
@@ -59,5 +61,9 @@ async function getRestaurant() {
     width: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+.font-size{
+    font-size: 4.2em;
 }
 </style>
