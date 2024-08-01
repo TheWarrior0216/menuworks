@@ -5,7 +5,6 @@ export const OrderSchema = new Schema({
   restaurantId: { type: Schema.ObjectId, required: true, ref: 'Restaurant' },
   placed: { type: Boolean, required: true, default: false },
   completed: { type: Boolean, required: true, default: false },
-  createdAt: { type: Date, required: true, }
 },
   { timestamps: true, toJSON: { virtuals: true } })
 OrderSchema.virtual('profile', {

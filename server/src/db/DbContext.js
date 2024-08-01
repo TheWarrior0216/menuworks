@@ -2,7 +2,8 @@ import mongoose from 'mongoose'
 import { AccountSchema } from '../models/Account'
 import { RestaurantSchema } from '../models/Restaurant.js';
 import { ItemSchema } from "../models/Item.js";
-import { OrderSchema } from "../models/Object.js";
+import { OrderSchema } from "../models/Order.js";
+
 
 class DbContext {
   Account = mongoose.model('Account', AccountSchema);
