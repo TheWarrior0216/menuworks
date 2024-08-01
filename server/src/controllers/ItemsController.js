@@ -6,8 +6,17 @@ export class ItemsController extends BaseController {
   constructor() {
     super('api/items')
     this.router
+      .get('', this.getAllItems)
       .use('', Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createItem)
+  }
+  async getAllItems(req, res, next) {
+    try {
+      const items = await itemsService.getAllItems()
+      res.send(items)
+    } catch (error) {
+      next(error)
+    }
   }
   async createItem(request, response, next) {
     try {
