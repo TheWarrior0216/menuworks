@@ -9,7 +9,7 @@ export const OrderItemsSchema = new Schema({
 
 OrderItemsSchema.virtual('item', {
     foreignField: '_id',
-    ref: 'order',
-    localField: 'orderId',
+    ref: 'Item',
+    localField: 'itemId',
     justOne: true
 })

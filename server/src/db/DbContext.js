@@ -3,6 +3,7 @@ import { AccountSchema } from '../models/Account'
 import { RestaurantSchema } from '../models/Restaurant.js';
 import { ItemSchema } from "../models/Item.js";
 import { OrderSchema } from "../models/Order.js";
+import { OrderItemsSchema } from "../models/OrderItem.js";
 
 
 class DbContext {
@@ -10,7 +11,8 @@ class DbContext {
   Restaurant = mongoose.model('Restaurant', RestaurantSchema);
   Items = mongoose.model('Item', ItemSchema);
 
-  Orders = mongoose.model('Order', OrderSchema)
+  Orders = mongoose.model('Order', OrderSchema);
+  OrderItems = mongoose.model('OrderItem', OrderItemsSchema)
 
 }
 
