@@ -18,7 +18,9 @@ class RestaurantsService {
     const response = await api.get('api/restaurants')
     logger.log('Getting all of the restaurants', response.data)
     const restaurants = response.data.map(restaurantData => new Restaurant(restaurantData))
+    const spotlightRestaurant = restaurants.find((restaurant) => restaurant.spotlightRestaurant == true)
     AppState.restaurants = restaurants
+    AppState.spotlightRestaurant = spotlightRestaurant
   }
 
   getDay() {

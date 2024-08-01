@@ -12,5 +12,7 @@ export const AppState = reactive({
     /** @type Restaurant */
   activeRestaurant: null,
   weekday: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-  currentDay: ""
+  currentDay: "",
+  /** @type Restaurant */
+  spotlightRestaurant: null,
 })

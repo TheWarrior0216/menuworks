@@ -5,8 +5,9 @@ import Pop from '../utils/Pop.js';
 import { AppState } from '../AppState.js';
 import Restaurants from '../components/RestaurantCard.vue';
 import RestaurantCard from '../components/RestaurantCard.vue';
+import SpotlightRestaurantCard from '../components/SpotlightRestaurantCard.vue';
 
-
+const spotlightRestaurant = computed(() => AppState.spotlightRestaurant)
 const restaurants = computed(() => AppState.restaurants)
 
 onMounted(() => {
@@ -39,14 +40,14 @@ async function getAllRestaurants() {
   </section>
 
   <!-- Featured Restaurant Section -->
-  <section class="container">
+  <section class="container-fluid spotlightRestaurant">
     <div class="row">
-      <div class="col-12 d-flex justify-content-center">
-        <div class="spotlightRestaurant">
-          <h2 class="spotlight-restaurant">Spotlight Restaurant</h2>
+      <div class="col-12">
+        <div class="">
+          <h2 class="spotlight-restaurant text-center py-3 fs-1">Spotlight Restaurant</h2>
         </div>
-        <div>
-          <!-- Insert ActiveRestaurantCard component here -->
+        <div class="row" v-if="spotlightRestaurant">
+          <SpotlightRestaurantCard />
         </div>
       </div>
     </div>
@@ -92,5 +93,9 @@ async function getAllRestaurants() {
 
 .featured-restaurant {
   font-size: 36px;
+}
+
+.spotlightRestaurant {
+  background-color: rgb(230, 230, 230);
 }
 </style>
