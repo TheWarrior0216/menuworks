@@ -1,6 +1,10 @@
 import { dbContext } from "../db/DbContext.js"
 
 class OrderItemsService {
+  async getAllOrderItems() {
+    const res = await dbContext.OrderItems.find().populate('item')
+    return res
+  }
   async createOrderItems(orderData) {
     const response = await dbContext.OrderItems.create(orderData)
     await response.populate('item')
