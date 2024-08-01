@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import Pop from '../utils/Pop.js';
 import { restaurantsService } from '../services/RestaurantsService.js';
@@ -9,6 +9,8 @@ import { AppState } from '../AppState.js';
 const restaurant = computed(() => AppState.activeRestaurant)
 
 const route = useRoute()
+
+const timevalue = ref({ timeValue: 0 })
 
 onMounted(() => {
     getRestaurant()
@@ -29,11 +31,11 @@ async function getRestaurant() {
 
 <template>
     <div class="container-fluid">
-        <div class="row">
+        <div v-if="restaurant" class="row">
             <div class="col-12 p-0">
-                <img class="img-fluid cover-img" :src="restaurant?.primaryPictureURL" alt="picture">
+                <img class="img-fluid cover-img" :src="restaurant.primaryPictureURL" alt="picture">
                 <div>
-                    <img class="logo" :src="restaurant?.logoURL" alt="logo">
+                    <img class="logo" :src="restaurant.logoURL" alt="logo">
                 </div>
 
             </div>
@@ -63,7 +65,7 @@ async function getRestaurant() {
     object-position: center;
 }
 
-.font-size{
+.font-size {
     font-size: 4.2em;
 }
 </style>

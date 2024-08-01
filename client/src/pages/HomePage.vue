@@ -14,11 +14,11 @@ onMounted(() => {
 })
 
 
-async function getAllRestaurants(){
+async function getAllRestaurants() {
   try {
     await restaurantsService.getAllRestaurants()
   }
-  catch (error){
+  catch (error) {
     Pop.error(error);
   }
 }
@@ -59,9 +59,9 @@ async function getAllRestaurants(){
         <div class="allRestaurant">
           <h2 class="all-restaurant text-center">All Local Restaurants</h2>
         </div>
-        <div v-for="restaurant in restaurants" :key="restaurant.id" class="col-md-4 ">
-          <RestaurantCard :restaurant="restaurant"/>
-        </div>
+      </div>
+      <div v-for="restaurant in restaurants" :key="restaurant.id" class="col-md-4 col-12 ">
+        <RestaurantCard :restaurant="restaurant" />
       </div>
     </div>
   </section>
@@ -69,7 +69,6 @@ async function getAllRestaurants(){
 </template>
 
 <style scoped lang="scss">
-
 .landing-card {
   padding-top: 5em;
   padding-bottom: 5em;
@@ -94,5 +93,4 @@ async function getAllRestaurants(){
 .featured-restaurant {
   font-size: 36px;
 }
-
 </style>
