@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router';
 import Pop from '../utils/Pop.js';
 import { restaurantsService } from '../services/RestaurantsService.js';
 import { AppState } from '../AppState.js';
+import { itemsService } from '../services/ItemsService.js';
 
 
 const restaurant = computed(() => AppState.activeRestaurant)
@@ -20,6 +21,7 @@ async function getRestaurant() {
     try {
         const id = await route.params.restaurantId
         await restaurantsService.getRestaurantsById(id)
+        await itemsService.getItemsByRestaurantId(id)
     }
     catch (error) {
         Pop.error(error);
@@ -51,7 +53,8 @@ async function getRestaurant() {
                             </p>
                         </div>
                     </div>
-                    <h5>{{ restaurant.description }}</h5>
+                    <h5>{{ restaurant.location }}</h5>
+                    <p>{{ restaurant.description }}</p>
 
                 </div>
 
