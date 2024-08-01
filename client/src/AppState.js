@@ -17,5 +17,8 @@ export const AppState = reactive({
   /** @type Restaurant */
   spotlightRestaurant: null,
   /** @type Item[] */
-  items: []
+  items: [],
+    /** @type Item */
+  activeItem: null,
+  quantity: 1
 })

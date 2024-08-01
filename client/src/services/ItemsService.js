@@ -4,6 +4,16 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class ItemsService{
+    decrease() {
+        AppState.quantity--
+    }
+    increase() {
+        AppState.quantity++
+    }
+
+    setActiveItem(itemProp) {
+        AppState.activeItem = itemProp
+    }
 
     async getItemsByRestaurantId(id) {
         const response = await api.get(`api/items/${id}/restaurant`)

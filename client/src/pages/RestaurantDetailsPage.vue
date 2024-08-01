@@ -9,6 +9,8 @@ import { itemsService } from '../services/ItemsService.js';
 
 const restaurant = computed(() => AppState.activeRestaurant)
 const items = computed(() => AppState.items)
+const activeItem = computed(() => AppState.activeItem)
+const quantity = computed(() => AppState.quantity)
 
 const route = useRoute()
 
@@ -27,6 +29,14 @@ async function getRestaurant() {
     catch (error) {
         Pop.error(error);
     }
+}
+
+function quantityIncrease(){
+    itemsService.increase()
+}
+
+function quantityDecrease(){
+    itemsService.decrease()
 }
 
 </script>
@@ -50,7 +60,7 @@ async function getRestaurant() {
                         <div v-for="hours in restaurant.hours" :key="hours.day"
                             class="px-2 pb-1 fs-3 text-md-start text-center">
                             <p v-if="hours.day == AppState.currentDay" class="m-0 p-0">{{ hours.open }} - {{ hours.close
-                                }}
+                                }} • {{ restaurant.type }}
                             </p>
                         </div>
                     </div>
@@ -62,6 +72,26 @@ async function getRestaurant() {
                     <ItemCard :itemProp="item" />
                 </div>
 
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="itemDetailsModal" tabindex="-1" aria-labelledby="itemDetailsModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div v-if="activeItem" class="modal-content">
+                <div class="modal-header justify-content-center">
+                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">{{ activeItem.name }}</h1>
+                </div>
+                <div class="modal-body">
+                    <img :src="activeItem.picture" alt="" class="modal-pic rounded mb-1">
+                    <p class="text-center fs-5">{{ activeItem.description }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" @click="quantityDecrease()" class="btn btn-secondary">-</button>
+                    <p class="fs-3">{{ quantity }}</p>
+                    <button type="button" @click="quantityIncrease()" class="btn btn-secondary">+</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
@@ -90,5 +120,11 @@ async function getRestaurant() {
 
 .cont-height {
     height: 55vh;
+}
+
+.modal-pic {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 </style>
