@@ -19,7 +19,7 @@ onMounted(() => {
 async function getRestaurant() {
     try {
         const id = await route.params.restaurantId
-        restaurantsService.getRestaurantsById(id)
+        await restaurantsService.getRestaurantsById(id)
     }
     catch (error) {
         Pop.error(error);
@@ -30,24 +30,33 @@ async function getRestaurant() {
 
 
 <template>
-    <div class="container-fluid">
-        <div v-if="restaurant" class="row">
-            <div class="col-12 p-0">
-                <img class="img-fluid cover-img" :src="restaurant.primaryPictureURL" alt="picture">
-                <div>
+    <div v-if="restaurant" class="bg-color">
+        <div class="container-fluid">
+            <div class="row cont-height">
+                <div class="col-12 p-0 m-0 cover-img">
+                    <img class="img-fluid cover-img" :src="restaurant.primaryPictureURL" alt="picture">
                     <img class="logo" :src="restaurant.logoURL" alt="logo">
-                </div>
-
-            </div>
-            <div class="col-12">
-                <h1 class="fw-bolder font-size">{{ restaurant?.name }}</h1>
-                <h5>{{ restaurant.description }}</h5>
-                <div v-for="hours in restaurant.hours" :key="hours.day">
-                    <p v-if="hours.day == AppState.currentDay" class="m-0 p-0">{{ hours.open }} - {{ hours.close }}</p>
                 </div>
             </div>
         </div>
+        <div v-if="restaurant" class="container">
+            <div class="row">
+                <div class="col-12 bg-body">
+                    <div class="d-md-flex align-items-center">
+                        <h1 class="fw-bolder font-size">{{ restaurant?.name }}</h1>
+                        <div v-for="hours in restaurant.hours" :key="hours.day"
+                            class="px-2 pb-1 fs-3 text-md-start text-center">
+                            <p v-if="hours.day == AppState.currentDay" class="m-0 p-0">{{ hours.open }} - {{ hours.close
+                                }}
+                            </p>
+                        </div>
+                    </div>
+                    <h5>{{ restaurant.description }}</h5>
 
+                </div>
+
+            </div>
+        </div>
     </div>
 </template>
 
@@ -62,7 +71,7 @@ async function getRestaurant() {
 }
 
 .cover-img {
-    height: 50vh;
+    height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center;
@@ -70,5 +79,9 @@ async function getRestaurant() {
 
 .font-size {
     font-size: 4.2em;
+}
+
+.cont-height {
+    height: 55vh;
 }
 </style>
