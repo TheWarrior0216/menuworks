@@ -13,7 +13,7 @@ defineProps({ restaurant: Restaurant })
 <template>
     <RouterLink :to="{ name: 'Restaurant Details', params: { restaurantId: restaurant.id } }">
         <div class="restaurant-card mb-4 shadow rounded border">
-            <img :src="restaurant.primaryPictureURL" class="card-img-top" :alt="restaurant.name">
+            <img :src="restaurant.primaryPictureURL" class="card-img-top rounded-top" :alt="restaurant.name">
             <div class="card-body p-3">
                 <h5 class="card-title">{{ restaurant.name }}</h5>
                 <p class="card-text mb-2">{{ restaurant.location }}</p>

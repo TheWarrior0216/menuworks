@@ -12,9 +12,9 @@ const restaurant = computed(() => AppState.spotlightRestaurant)
 
 <template>
      <RouterLink :to="{ name: 'Restaurant Details', params: { restaurantId: restaurant.id } }">
-        <div class="spotlight-restaurant-card row m-4">
-            <div class="col-md-8">
-                <img :src="restaurant.primaryPictureURL" class="card-img-top img-fluid" :alt="restaurant.name">
+        <div class="spotlight-restaurant-card row m-4 pb-3 rounded">
+            <div class="col-md-8 p-0">
+                <img :src="restaurant.primaryPictureURL" class="card-img-top img-fluid rounded" :alt="restaurant.name">
             </div>
             <div class=" col-md-4 card-body justify-content-center p-2">
                 <h1 class="card-title px-md-3 mb-3">{{ restaurant.name }}</h1>
