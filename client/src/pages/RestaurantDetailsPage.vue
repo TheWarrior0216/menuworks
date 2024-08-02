@@ -37,7 +37,6 @@ async function getRestaurant() {
         const id = await route.params.restaurantId
         await restaurantsService.getRestaurantsById(id)
         await itemsService.getItemsByRestaurantId(id)
-
     }
     catch (error) {
         Pop.error(error);
@@ -93,10 +92,7 @@ function submitOrder() {
                     <h5 class="text-md-start text-center">{{ restaurant.location }}</h5>
                     <p class="text-md-start text-center">{{ restaurant.description }}</p>
                     <button @click="submitOrder()" class="btn btn-primary">Submit Order</button>
-                    <button class="btn btn-primary fixed-position" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#orderOffCanvas" aria-controls="orderOffCanvas">
-                        View Order
-                    </button>
+
                 </div>
                 <div v-for="item in items" :key="item.id" class="col-md-4 col-12 d-flex justify-content-center mb-2">
                     <ItemCard :itemProp="item" />
@@ -144,6 +140,21 @@ function submitOrder() {
             </div>
         </div>
     </div>
+
+    <div class="container-fluid bg-dark">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-end text-light align-items-center py-2 position-sticky">
+                <div class="d-flex justify-content-end text-light align-items-center py-2">
+                    <h4 class="me-2">Total: ${{ items[1].price }}</h4>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#orderOffCanvas" aria-controls="orderOffCanvas">
+                        View Order
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </template>
 
 
@@ -156,13 +167,13 @@ function submitOrder() {
     aspect-ratio: 1/1;
 }
 
-// .fixed-position{
-//     position: fixed;
-//     top: 10%;
-//     left: 85%;
-//     z-index: 99999;
-//     border-color: black;
-// }
+.fixed-position {
+    position: fixed;
+    top: 10%;
+    left: 85%;
+    z-index: 99999;
+    border-color: black;
+}
 
 .cover-img {
     height: 100%;
