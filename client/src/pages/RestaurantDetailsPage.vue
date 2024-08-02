@@ -141,20 +141,15 @@ function submitOrder() {
         </div>
     </div>
 
-    <div class="container-fluid bg-dark">
-        <div class="row">
-            <div class="col-12 d-flex justify-content-end text-light align-items-center py-2 position-sticky">
-                <div class="d-flex justify-content-end text-light align-items-center py-2">
-                    <h4 class="me-2">Total: ${{ items[1].price }}</h4>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#orderOffCanvas" aria-controls="orderOffCanvas">
-                        View Order
-                    </button>
-                </div>
-            </div>
+    <div class="price-footer bg-dark pos-abso sticky-bottom">
+        <div class="d-flex justify-content-end text-light align-items-center py-2">
+            <h4 class="me-2">Total: ${{ items[1].price }}</h4>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#orderOffCanvas"
+                aria-controls="orderOffCanvas">
+                View Order
+            </button>
         </div>
     </div>
-
 </template>
 
 
@@ -196,4 +191,5 @@ function submitOrder() {
     object-fit: cover;
     object-position: center;
 }
+
 </style>
