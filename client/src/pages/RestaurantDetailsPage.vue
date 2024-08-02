@@ -126,8 +126,8 @@ function submitOrder() {
                     <button v-if="quantity == 50" type="button" @click="quantityIncrease()" class="btn btn-secondary"
                         disabled>+</button>
                     <button v-else type="button" @click="quantityIncrease()" class="btn btn-secondary">+</button>
-                    <button @click="createOrderItem()" data-bs-dismiss="modal" type="button" class="btn btn-primary">Add to Cart <i
-                            class="mdi mdi-cart-plus" ></i></button>
+                    <button @click="createOrderItem()" data-bs-dismiss="modal" type="button" class="btn btn-primary">Add
+                        to Cart <i class="mdi mdi-cart-plus"></i></button>
                 </div>
             </div>
         </div>
@@ -140,7 +140,7 @@ function submitOrder() {
         </div>
         <div class="offcanvas-body">
             <div v-for="orderItem in orderItems" :key="orderItem.id">
-                <OrderItemCard :orderItemProp="orderItem"/>
+                <OrderItemCard :orderItemProp="orderItem" />
             </div>
         </div>
     </div>
