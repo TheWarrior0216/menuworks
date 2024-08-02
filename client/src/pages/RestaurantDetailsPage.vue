@@ -90,6 +90,10 @@ function submitOrder() {
                     <h5 class="text-md-start text-center">{{ restaurant.location }}</h5>
                     <p class="text-md-start text-center">{{ restaurant.description }}</p>
                     <button @click="submitOrder()" class="btn btn-primary">Submit Order</button>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#orderOffCanvas" aria-controls="orderOffCanvas">
+                        View Order
+                    </button>
                 </div>
                 <div v-for="item in items" :key="item.id" class="col-md-4 col-12 d-flex justify-content-center mb-2">
                     <ItemCard :itemProp="item" />
@@ -122,6 +126,19 @@ function submitOrder() {
                     <button @click="createOrderItem()" type="button" class="btn btn-primary">Add to Cart <i
                             class="mdi mdi-cart-plus"></i></button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="orderOffCanvas" aria-labelledby="orderOffCanvasLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="orderOffCanvasLabel">Your Cart</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div>
+                Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images,
+                lists, etc.
             </div>
         </div>
     </div>
