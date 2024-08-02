@@ -1,4 +1,8 @@
 <script setup>
+import { useRoute } from 'vue-router';
+
+
+const route = useRoute()
 
 </script>
 
@@ -6,7 +10,7 @@
 <template>
 
 <!-- Header Section -->
-<section class="container">
+<section class="container-fluid">
     <div class="row">
         <div class="col-12 d-flex justify-content-between">
             <h1>Restaurant Name Here</h1>
@@ -15,7 +19,7 @@
     </div>
 </section>
 
-<section class="container">
+<section class="container-fluid">
     <div class="row">
         <div class="col-md-2 d-flex flex-column justify-content-around options">
                 <button class="btn btn-dark">Manage Orders</button>
@@ -25,7 +29,7 @@
                 <button class="btn btn-dark">Stop Accepting Orders</button>
                 <button class="btn btn-dark">Edit Menu</button>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10 active-view">
             <div class="row">
                 <div class="col-4">
                     <!-- Insert OrdersReceivedCard Component Here -->
@@ -42,5 +46,9 @@
 
 .options {
     height: var(--main-height);
+}
+
+.active-view {
+    background-color: #ececec;
 }
 </style>
