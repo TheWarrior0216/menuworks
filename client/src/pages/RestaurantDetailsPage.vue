@@ -16,14 +16,22 @@ const activeItem = computed(() => AppState.activeItem)
 const quantity = computed(() => AppState.quantity)
 const account = computed(() => AppState.account)
 const orderItems = computed(() => AppState.orderItems)
+const total = computed(() => {
+    let calcPrice = 0
+    orderItems.value.forEach((orderItem) => {
+        calcPrice += (orderItem.item.price * orderItem.quantity)
+    })
+    return calcPrice
+})
 
 watch(account, () => ordersService.createOrder(route.params.restaurantId))
+
 
 const specialInstructions = ref('')
 
 const route = useRoute()
 
-const timevalue = ref({ timeValue: 0 })
+
 
 onMounted(() => {
     getRestaurant()
@@ -52,7 +60,7 @@ function quantityDecrease() {
 }
 
 function createOrderItem() {
-    orderItemsService.createOrderItem(quantity.value, AppState.activeItem.id, specialInstructions.value, AppState.activeItem)
+    const newItem = orderItemsService.createOrderItem(quantity.value, AppState.activeItem.id, specialInstructions.value, AppState.activeItem)
     specialInstructions.value = ''
 }
 
@@ -141,9 +149,9 @@ function submitOrder() {
         </div>
     </div>
 
-    <div class="price-footer bg-dark pos-abso sticky-bottom">
+    <div class="price-footer bg-dark pos-abso sticky-bottom px-4">
         <div class="d-flex justify-content-end text-light align-items-center py-2">
-            <h4 class="me-2">Total: ${{ items[1].price }}</h4>
+            <h4 class="me-2">Total: ${{ total.toFixed(2) }}</h4>
             <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#orderOffCanvas"
                 aria-controls="orderOffCanvas">
                 View Order
@@ -191,5 +199,4 @@ function submitOrder() {
     object-fit: cover;
     object-position: center;
 }
-
 </style>
