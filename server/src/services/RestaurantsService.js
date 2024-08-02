@@ -57,6 +57,10 @@ class RestaurantsService {
         logger.log(restaurant)
         return (restaurant)
     }
+    async getRestaurantByAccountId(accountId) {
+        const restaurant = await dbContext.Restaurant.find({ creatorId: accountId })
+        return restaurant
+    }
 
 }
 export const restaurantsService = new RestaurantsService()
