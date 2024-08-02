@@ -99,7 +99,7 @@ function submitOrder() {
                     </div>
                     <h5 class="text-md-start text-center">{{ restaurant.location }}</h5>
                     <p class="text-md-start text-center">{{ restaurant.description }}</p>
-                    <button @click="submitOrder()" class="btn btn-primary">Submit Order</button>
+
 
                 </div>
                 <div v-for="item in items" :key="item.id" class="col-md-4 col-12 d-flex justify-content-center mb-2">
@@ -146,6 +146,10 @@ function submitOrder() {
             <div v-for="orderItem in orderItems" :key="orderItem.id">
                 <OrderItemCard :orderItemProp="orderItem" />
             </div>
+            <div class="d-flex justify-content-between">
+                <h4>Total: ${{ total }}</h4>
+            <button @click="submitOrder()" class="btn btn-primary">Submit Order</button>
+        </div>
         </div>
     </div>
 
