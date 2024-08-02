@@ -6,6 +6,7 @@ import { restaurantsService } from '../services/RestaurantsService.js';
 import { AppState } from '../AppState.js';
 import { itemsService } from '../services/ItemsService.js';
 import { ordersService } from '../services/OrdersService.js';
+import { orderItemsService } from '../services/OrderItemsService.js';
 
 
 const restaurant = computed(() => AppState.activeRestaurant)
@@ -15,6 +16,8 @@ const quantity = computed(() => AppState.quantity)
 const account = computed(() => AppState.account)
 
 watch(account, () => ordersService.createOrder(route.params.restaurantId))
+
+const specialInstructions = ref('')
 
 const route = useRoute()
 
@@ -45,6 +48,10 @@ function quantityIncrease() {
 
 function quantityDecrease() {
     itemsService.decrease()
+}
+
+function createOrderItem(){
+    orderItemsService.createOrderItem(quantity.value, AppState.activeItem.id, specialInstructions.value)
 }
 </script>
 
@@ -92,7 +99,7 @@ function quantityDecrease() {
                 <div class="modal-body">
                     <img :src="activeItem.picture" alt="" class="modal-pic rounded mb-1">
                     <p class="text-center fs-5">{{ activeItem.description }}</p>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+                    <textarea v-model="specialInstructions" class="form-control" id="exampleFormControlTextarea1" rows="5"
                         placeholder="Special Instructions"></textarea>
                 </div>
                 <div class="modal-footer">
@@ -103,7 +110,7 @@ function quantityDecrease() {
                     <button v-if="quantity == 50" type="button" @click="quantityIncrease()" class="btn btn-secondary"
                         disabled>+</button>
                     <button v-else type="button" @click="quantityIncrease()" class="btn btn-secondary">+</button>
-                    <button type="button" class="btn btn-primary">Add to Cart <i class="mdi mdi-cart-plus"></i></button>
+                    <button @click="createOrderItem()" type="button" class="btn btn-primary">Add to Cart <i class="mdi mdi-cart-plus"></i></button>
                 </div>
             </div>
         </div>

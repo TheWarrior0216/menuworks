@@ -1,7 +1,8 @@
 <script setup>
 import { Item } from '../models/Item.js';
 import { itemsService } from '../services/ItemsService.js';
-import { orderItemsService } from '../services/OrderItem.js';
+import { orderItemsService } from '../services/OrderItemsService.js';
+
 
 
 const props = defineProps({
@@ -13,7 +14,7 @@ function setActiveItem(){
 }
 
 function createOrderItem(){
-    orderItemsService.createOrderItem(1, props.itemProp.id)
+    orderItemsService.createOrderItem(1, props.itemProp.id, '')
 }
 
 </script>
