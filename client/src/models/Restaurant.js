@@ -1,8 +1,9 @@
+import { capitalize } from "vue"
 
 
 
 export class Restaurant {
-    constructor(data){
+    constructor(data) {
         this.id = data.id
         this.creatorId = data.creatorId
         this.name = data.name
@@ -11,7 +12,7 @@ export class Restaurant {
         this.breakfastPictureURL = data?.breakfastPictureURL || null
         this.location = data.location
         this.hours = data.hours
-        this.type = data.type
+        this.type = capitalize(data.type)
         this.logoURL = data.logoURL
         this.primaryColor = data.primaryColor
         this.spotlightRestaurant = data.spotlightRestaurant
