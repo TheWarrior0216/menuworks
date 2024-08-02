@@ -50,8 +50,17 @@ function quantityDecrease() {
     itemsService.decrease()
 }
 
-function createOrderItem(){
+function createOrderItem() {
     orderItemsService.createOrderItem(quantity.value, AppState.activeItem.id, specialInstructions.value)
+}
+
+function submitOrder() {
+    try {
+        ordersService.submitOrder()
+    }
+    catch (error) {
+        Pop.error(error);
+    }
 }
 </script>
 
@@ -80,7 +89,7 @@ function createOrderItem(){
                     </div>
                     <h5 class="text-md-start text-center">{{ restaurant.location }}</h5>
                     <p class="text-md-start text-center">{{ restaurant.description }}</p>
-
+                    <button @click="submitOrder()" class="btn btn-primary">Submit Order</button>
                 </div>
                 <div v-for="item in items" :key="item.id" class="col-md-4 col-12 d-flex justify-content-center mb-2">
                     <ItemCard :itemProp="item" />
@@ -99,8 +108,8 @@ function createOrderItem(){
                 <div class="modal-body">
                     <img :src="activeItem.picture" alt="" class="modal-pic rounded mb-1">
                     <p class="text-center fs-5">{{ activeItem.description }}</p>
-                    <textarea v-model="specialInstructions" class="form-control" id="exampleFormControlTextarea1" rows="5"
-                        placeholder="Special Instructions"></textarea>
+                    <textarea v-model="specialInstructions" class="form-control" id="exampleFormControlTextarea1"
+                        rows="5" placeholder="Special Instructions"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button v-if="quantity == 1" type="button" @click="quantityDecrease()" class="btn btn-secondary"
@@ -110,7 +119,8 @@ function createOrderItem(){
                     <button v-if="quantity == 50" type="button" @click="quantityIncrease()" class="btn btn-secondary"
                         disabled>+</button>
                     <button v-else type="button" @click="quantityIncrease()" class="btn btn-secondary">+</button>
-                    <button @click="createOrderItem()" type="button" class="btn btn-primary">Add to Cart <i class="mdi mdi-cart-plus"></i></button>
+                    <button @click="createOrderItem()" type="button" class="btn btn-primary">Add to Cart <i
+                            class="mdi mdi-cart-plus"></i></button>
                 </div>
             </div>
         </div>

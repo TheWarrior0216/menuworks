@@ -1,8 +1,21 @@
 import { AppState } from "../AppState.js"
 import { Order } from "../models/Order.js"
 import { logger } from "../utils/Logger.js"
+import { api } from "./AxiosService.js"
 
 class OrdersService{
+    async submitOrder() {
+        const orderData = AppState.activeOrder
+        orderData.placed = true
+        const order = await api.post('api/orders', orderData)
+        const orderItems = AppState.orderItems
+        await orderItems.forEach((item)=>{
+            item.orderId = order.data.id
+            api.post('api/orderitems', (item))
+        })
+        AppState.orderItems = []
+        logger.log('order posted')
+    }
 
     createOrder(restaurantId) {
         const orderData = {

@@ -14,7 +14,7 @@ class OrderItemsService {
         const orderItem = new OrderItem(orderItemData)
         logger.log(orderItem)
         AppState.orderItems.push(orderItem)
+        logger.log(AppState.orderItems)
     }
-
 }
 export const orderItemsService = new OrderItemsService()
