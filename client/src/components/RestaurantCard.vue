@@ -20,7 +20,7 @@ defineProps({ restaurant: Restaurant })
                 <div v-for="hours in restaurant.hours" :key="hours.day">
                     <p v-if="hours.day == AppState.currentDay" class="m-0 p-0">{{ hours.open }} - {{ hours.close }}</p>
                 </div>
-                <p>{{ restaurant.type }}</p>
+                <p class="text-info fw-bold">{{ restaurant.type }}</p>
             </div>
         </div>
     </RouterLink>
