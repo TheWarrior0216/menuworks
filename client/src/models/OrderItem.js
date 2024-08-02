@@ -1,6 +1,8 @@
+import { AppState } from "../AppState.js"
+
 export class OrderItem{
     constructor(data){
-        this.id = data._id || 1234567890
+        this.id = data._id || AppState.idNum++
         this.orderId = data.orderId
         this.itemId = data.itemId
         this.quantity = data.quantity

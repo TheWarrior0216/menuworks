@@ -7,6 +7,7 @@ import { AppState } from '../AppState.js';
 import { itemsService } from '../services/ItemsService.js';
 import { ordersService } from '../services/OrdersService.js';
 import { orderItemsService } from '../services/OrderItemsService.js';
+import OrderItemCard from '../components/OrderItemCard.vue';
 
 
 const restaurant = computed(() => AppState.activeRestaurant)
@@ -14,6 +15,7 @@ const items = computed(() => AppState.items)
 const activeItem = computed(() => AppState.activeItem)
 const quantity = computed(() => AppState.quantity)
 const account = computed(() => AppState.account)
+const orderItems = computed(() => AppState.orderItems)
 
 watch(account, () => ordersService.createOrder(route.params.restaurantId))
 
@@ -139,6 +141,9 @@ function submitOrder() {
             <div>
                 Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images,
                 lists, etc.
+            </div>
+            <div v-for="orderItem in orderItems" :key="orderItem.id">
+                <OrderItemCard :orderItemProp="orderItem"/>
             </div>
         </div>
     </div>
