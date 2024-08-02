@@ -10,7 +10,7 @@ export class Restaurant {
         this.description = data.description
         this.primaryPictureURL = data.primaryPictureURL
         this.breakfastPictureURL = data?.breakfastPictureURL || null
-        this.location = data.location
+        this.location = capitalize(data.location)
         this.hours = data.hours
         this.type = capitalize(data.type)
         this.logoURL = data.logoURL
