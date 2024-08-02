@@ -14,7 +14,7 @@ function setActiveItem(){
 }
 
 function createOrderItem(){
-    orderItemsService.createOrderItem(1, props.itemProp.id, '')
+    orderItemsService.createOrderItem(1, props.itemProp.id, '', props.itemProp)
 }
 
 </script>

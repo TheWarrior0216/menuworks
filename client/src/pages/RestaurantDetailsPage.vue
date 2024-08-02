@@ -53,7 +53,8 @@ function quantityDecrease() {
 }
 
 function createOrderItem() {
-    orderItemsService.createOrderItem(quantity.value, AppState.activeItem.id, specialInstructions.value)
+    orderItemsService.createOrderItem(quantity.value, AppState.activeItem.id, specialInstructions.value, AppState.activeItem)
+    specialInstructions.value = ''
 }
 
 function submitOrder() {
@@ -115,7 +116,7 @@ function submitOrder() {
                     <img :src="activeItem.picture" alt="" class="modal-pic rounded mb-1">
                     <p class="text-center fs-5">{{ activeItem.description }}</p>
                     <textarea v-model="specialInstructions" class="form-control" id="exampleFormControlTextarea1"
-                        rows="5" placeholder="Special Instructions"></textarea>
+                        rows="5" maxlength="80" placeholder="Special Instructions"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button v-if="quantity == 1" type="button" @click="quantityDecrease()" class="btn btn-secondary"
@@ -125,8 +126,8 @@ function submitOrder() {
                     <button v-if="quantity == 50" type="button" @click="quantityIncrease()" class="btn btn-secondary"
                         disabled>+</button>
                     <button v-else type="button" @click="quantityIncrease()" class="btn btn-secondary">+</button>
-                    <button @click="createOrderItem()" type="button" class="btn btn-primary">Add to Cart <i
-                            class="mdi mdi-cart-plus"></i></button>
+                    <button @click="createOrderItem()" data-bs-dismiss="modal" type="button" class="btn btn-primary">Add to Cart <i
+                            class="mdi mdi-cart-plus" ></i></button>
                 </div>
             </div>
         </div>
@@ -138,10 +139,6 @@ function submitOrder() {
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-            <div>
-                Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images,
-                lists, etc.
-            </div>
             <div v-for="orderItem in orderItems" :key="orderItem.id">
                 <OrderItemCard :orderItemProp="orderItem"/>
             </div>

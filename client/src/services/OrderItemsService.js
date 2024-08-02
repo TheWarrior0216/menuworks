@@ -4,12 +4,13 @@ import { logger } from "../utils/Logger.js"
 
 class OrderItemsService {
 
-    createOrderItem(quantity, id, specialInstructions) {
+    createOrderItem(quantity, id, specialInstructions, item) {
         const orderItemData = {
             itemId: id,
             orderId: AppState.activeOrder.id,
             quantity: quantity,
-            specialInstructions: specialInstructions
+            specialInstructions: specialInstructions,
+            item: item
         }
         const orderItem = new OrderItem(orderItemData)
         logger.log(orderItem)
