@@ -4,6 +4,13 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class OrdersService{
+    async completedOrder(orderId) {
+      const orderToEdit = AppState.orders.find(order => orderId == order.id)
+      const response = await api.put(`api/orders/${orderId}`, {completed: true})
+      orderToEdit.completed = true
+      logger.log('Order complete!', response.data)
+
+    }
     async submitOrder() {
         const orderData = AppState.activeOrder
         orderData.placed = true

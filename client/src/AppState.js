@@ -27,5 +27,8 @@ export const AppState = reactive({
   activeOrder: null,
   /** @type OrderItem[] */
   orderItems: [],
-  idNum: 0
+  idNum: 0,
+
+  /** @type Order[] */
+  orders: []
 })
