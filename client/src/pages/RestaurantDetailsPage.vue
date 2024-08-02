@@ -93,7 +93,7 @@ function submitOrder() {
                     <h5 class="text-md-start text-center">{{ restaurant.location }}</h5>
                     <p class="text-md-start text-center">{{ restaurant.description }}</p>
                     <button @click="submitOrder()" class="btn btn-primary">Submit Order</button>
-                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                    <button class="btn btn-primary fixed-position" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#orderOffCanvas" aria-controls="orderOffCanvas">
                         View Order
                     </button>
@@ -155,6 +155,14 @@ function submitOrder() {
     margin-left: 2%;
     aspect-ratio: 1/1;
 }
+
+// .fixed-position{
+//     position: fixed;
+//     top: 10%;
+//     left: 85%;
+//     z-index: 99999;
+//     border-color: black;
+// }
 
 .cover-img {
     height: 100%;

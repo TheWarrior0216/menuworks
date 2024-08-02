@@ -15,11 +15,9 @@ const props = defineProps({
                 <img :src="orderItemProp.item.picture" class="img-fluid rounded-start" alt="...">
             </div>
             <div class="col-md-8 d-flex flex-column justify-content-around ps-md-2 text-md-start text-center">
-
                     <h5 class="card-title">{{ orderItemProp.item.name }} x{{ orderItemProp.quantity }}</h5>
                     <p v-if="orderItemProp.specialInstructions!=''" class="m-0 p-0">{{ orderItemProp.specialInstructions }}</p>
                     <p class="card-text">{{ `$${orderItemProp.item.price * orderItemProp.quantity}` }}</p>
-
             </div>
         </div>
     </div>
