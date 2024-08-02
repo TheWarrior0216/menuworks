@@ -40,7 +40,7 @@ const restaurant = computed(() => AppState.spotlightRestaurant)
 }
 
 .card-img-top {
-    height: 35vh;
+    height: 45dvh;
     object-fit: cover;
     object-position: center;
 }
