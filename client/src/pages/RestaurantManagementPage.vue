@@ -17,13 +17,13 @@
 
 <section class="container">
     <div class="row">
-        <div class="col-md-2 flex-column justify-content-between">
-            <button class="btn btn-dark">Manage Orders</button>
-            <button class="btn btn-dark">Change Item Availability</button>
-            <button class="btn btn-dark">Order History</button>
-            <button class="btn btn-dark">Update Restaurant Info</button>
-            <button class="btn btn-dark">Stop Accepting Orders</button>
-            <button class="btn btn-dark">Edit Menu</button>
+        <div class="col-md-2 d-flex flex-column justify-content-around options">
+                <button class="btn btn-dark">Manage Orders</button>
+                <button class="btn btn-dark">Change Item Availability</button>
+                <button class="btn btn-dark">Order History</button>
+                <button class="btn btn-dark">Update Restaurant Info</button>
+                <button class="btn btn-dark">Stop Accepting Orders</button>
+                <button class="btn btn-dark">Edit Menu</button>
         </div>
         <div class="col-md-10">
             <div class="row">
@@ -40,4 +40,7 @@
 
 <style lang="scss" scoped>
 
+.options {
+    height: var(--main-height);
+}
 </style>
