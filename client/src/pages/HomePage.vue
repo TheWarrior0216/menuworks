@@ -34,7 +34,7 @@ async function getAllRestaurants() {
         <div class="text-center">
           <h1 class="landing-title">
             <div class="d-flex flex-column align-items-center">
-              <img class="ms-5 ps-5" alt="logo" src="/img/MenuWorks.png" />
+              <img class="desktop-view mobile-view" alt="logo" src="/img/MenuWorks.png" />
             </div>
           </h1>
           <h2 class="landing-subtitle text-info">Mobile Ordering Made Easy</h2>
@@ -88,6 +88,10 @@ async function getAllRestaurants() {
   background-size: cover;
   background-position: center;
 }
+.desktop-view{
+  padding-left: 1em;
+  margin-left: 1em;
+}
 
 .landing-title {
   margin-top: 1em;
@@ -117,5 +121,31 @@ background: linear-gradient(0deg, rgba(213,231,230,1) 0%, rgba(228,228,228,1) 10
 }
 .allRestaurants{
   background-color: #d5e7e6;
+  padding-left: 8em;
+  padding-right: 8em ;
+}
+@media (max-width: 576px) {
+  .allRestaurants{
+    padding-left: 1em;
+  padding-right: 1em ;
+  }
+  .landing-card {
+  height: 50dvh;
+  padding-top: 0em;
+  padding-bottom: 0em;
+  margin-left: 0;
+  margin-right: 0;
+  background-image: url(https://wallpapertag.com/wallpaper/full/4/d/7/317105-gorgerous-food-background-2990x1918-for-mobile-hd.jpg);
+  background-size: cover;
+  background-position: center;
+}
+.landing-title {
+  margin-top: 1em;
+  font-size: 0px;
+  font-weight: 600;
+}
+.mobile-view{
+  padding-left: 0;
+}
 }
 </style>
