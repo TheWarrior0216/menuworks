@@ -34,7 +34,7 @@ async function getAllRestaurants() {
         <div class="text-center">
           <h1 class="landing-title">
             <div class="d-flex flex-column align-items-center">
-              <img alt="logo" src="/img/MenuWorks.png" />
+              <img class="ms-5 ps-5" alt="logo" src="/img/MenuWorks.png" />
             </div>
           </h1>
           <h2 class="landing-subtitle text-info">Mobile Ordering Made Easy</h2>
