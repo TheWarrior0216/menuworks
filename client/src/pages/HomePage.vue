@@ -32,12 +32,14 @@ async function getAllRestaurants() {
     <div class="row">
       <div class="col-12 d-flex justify-content-center align-items-center landing-card">
         <div class="text-center">
-          <h1 class="landing-title"><div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="/img/MenuWorks.png"/>
-      </div></h1>
+          <h1 class="landing-title">
+            <div class="d-flex flex-column align-items-center">
+              <img alt="logo" src="/img/MenuWorks.png" />
+            </div>
+          </h1>
           <h2 class="landing-subtitle text-info">Mobile Ordering Made Easy</h2>
           <!-- FIXME fix the params to actually match the restaurant's id -->
-          <RouterLink :to="{ name: 'Restaurant Management', params: { restaurantId: 'jeremy'}}">
+          <RouterLink :to="{ name: 'Restaurant Management', params: { restaurantId: '66aa9cdcdf28b714b9f1a18d' } }">
             <button class="btn btn-dark landing-button">Manage Restaurant</button>
           </RouterLink>
         </div>
@@ -104,5 +106,4 @@ async function getAllRestaurants() {
 .spotlightRestaurant {
   background-color: rgb(230, 230, 230);
 }
-
 </style>
