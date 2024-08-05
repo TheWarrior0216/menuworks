@@ -23,6 +23,7 @@ const restaurant = computed(() => AppState.spotlightRestaurant)
                     <p v-if="hours.day == AppState.currentDay" class="card-text m-0 p-0 fs-4 px-md-3 mb-2" >{{ hours.open }} - {{ hours.close }}</p>
                 </div>
                 <p class="card-text fs-5 px-md-3 text-info fw-bold">{{ restaurant.type }}</p>
+                <p class="card-text fs-5 px-md-3">{{ restaurant.description }}</p>
             </div>
         </div>
     </RouterLink>

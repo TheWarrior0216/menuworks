@@ -6,8 +6,8 @@ export class Restaurant {
     constructor(data) {
         this.id = data.id
         this.creatorId = data.creatorId
-        this.name = data.name
-        this.description = data.description
+        this.name = capitalize(data.name)
+        this.description = capitalize(data.description)
         this.primaryPictureURL = data.primaryPictureURL
         this.breakfastPictureURL = data?.breakfastPictureURL || null
         this.location = capitalize(data.location)
