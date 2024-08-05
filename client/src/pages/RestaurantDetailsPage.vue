@@ -78,7 +78,7 @@ function submitOrder() {
 
 <template>
     <div v-if="restaurant">
-        <div class="container-fluid">
+        <div class="container-fluid" >
             <div class="row cont-height">
                 <div class="col-12 p-0 m-0 cover-img">
                     <img class="img-fluid cover-img" :src="restaurant.primaryPictureURL" alt="picture">
@@ -86,9 +86,9 @@ function submitOrder() {
                 </div>
             </div>
         </div>
-        <div v-if="restaurant" class="container">
-            <div class="row">
-                <div class="col-12 bg-body mb-2">
+        <div v-if="restaurant" class="container-fluid " :style="{backgroundColor: restaurant.primaryColor }">
+            <div class="row detail-fix">
+                <div class="col-12 bg-body mb-2 rounded mt-5">
                     <div class="d-md-flex align-items-center">
                         <h1 class="fw-bolder font-size text-md-start text-center">{{ restaurant?.name }}</h1>
                         <div v-for="hours in restaurant.hours" :key="hours.day"
@@ -207,5 +207,9 @@ function submitOrder() {
     width: 100%;
     object-fit: cover;
     object-position: center;
+}
+.detail-fix{
+    margin-left: 10em;
+    margin-right: 10em;
 }
 </style>
