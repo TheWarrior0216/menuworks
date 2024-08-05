@@ -28,7 +28,7 @@ async function getRestaurantOrders() {
 
 async function getRestaurant() {
     try {
-        await restaurantsService.getRestaurantById()
+        await restaurantsService.getRestaurantById(route.params.restaurantId)
     }
     catch (error) {
         Pop.error(error);
@@ -48,7 +48,7 @@ onMounted(() => {
     <section class="container-fluid">
         <div class="row">
             <div class="col-12 d-flex justify-content-between">
-                <h1>Restaurant Name Here</h1>
+                <h1>{{restaurant?.name}}</h1>
                 <h3>Your Restaurant Is Currently Open/Closed</h3>
             </div>
         </div>
