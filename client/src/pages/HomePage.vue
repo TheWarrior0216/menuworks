@@ -28,7 +28,7 @@ async function getAllRestaurants() {
 
 <template>
   <!-- Landing Section -->
-  <section class="container-fluid landing-card rounded">
+  <section class="container-fluid landing-card rounded ">
     <div class="row py-4 ">
       <div class="col-12 d-flex justify-content-start ">
         <div class="text-center">
@@ -48,11 +48,11 @@ async function getAllRestaurants() {
   </section>
 
   <!-- Spotlight Restaurant Restaurant Section -->
-  <section class="container-fluid spotlightRestaurant">
+  <section class="container-fluid spotlightRestaurant raleway">
     <div class="row">
       <div class="col-12">
         <div>
-          <h2 class="spotlight-restaurant text-start pt-3 ps-4 fs-1">Restaurant of the Week</h2>
+          <h2 class="spotlight-restaurant text-start pt-5 mb-0 ps-5 fs-1">Restaurant of the Week</h2>
         </div>
         <div class="row" v-if="spotlightRestaurant">
           <SpotlightRestaurantCard />
@@ -62,7 +62,7 @@ async function getAllRestaurants() {
   </section>
 
   <!-- All Restaurants -->
-  <section class="container-fluid allRestaurants">
+  <section class="container-fluid allRestaurants raleway">
     <div class="row">
       <div class="col-12">
         <div class=" py-3">
@@ -124,6 +124,13 @@ background: linear-gradient(0deg, rgba(213,231,230,1) 0%, rgba(228,228,228,1) 10
   padding-left: 8em;
   padding-right: 8em ;
 }
+.raleway {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
 @media (max-width: 576px) {
   .allRestaurants{
     padding-left: 1em;
