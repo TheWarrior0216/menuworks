@@ -86,7 +86,7 @@ function submitOrder() {
                 </div>
             </div>
         </div>
-        <div v-if="restaurant" class="container-fluid " :style="{backgroundColor: restaurant.primaryColor }">
+        <div v-if="restaurant" class="container-fluid ">
             <div class="row detail-fix">
                 <div class="col-12 bg-body mb-2 rounded mt-5">
                     <div class="d-md-flex align-items-center">
@@ -104,7 +104,7 @@ function submitOrder() {
 
                 </div>
                 <div v-for="item in items" :key="item.id" class="col-md-4 col-12 d-flex justify-content-center mb-2">
-                    <ItemCard :itemProp="item" :accountProp="account" :orderProp="order" />
+                    <ItemCard :itemProp="item" :accountProp="account" :orderProp="order" :restaurantColor="restaurant.primaryColor" />
                 </div>
 
             </div>

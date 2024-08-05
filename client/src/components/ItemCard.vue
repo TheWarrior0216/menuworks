@@ -10,7 +10,8 @@ import { orderItemsService } from '../services/OrderItemsService.js';
 const props = defineProps({
     itemProp: { type: Item, required: true },
     accountProp: { type: Account, required: true },
-    orderProp: { type: Order, required: true }
+    orderProp: { type: Order, required: true },
+    restaurantColor: {required:true}
 })
 
 function setActiveItem() {
@@ -25,7 +26,7 @@ function createOrderItem() {
 
 
 <template>
-    <div v-if="itemProp" class="card text-center pb-1 shadow rounded border" style="width: 18rem;">
+    <div v-if="itemProp" class="card text-center pb-1 shadow rounded borderFix" :style="{borderColor: restaurantColor}">
         <div type='button' @click="setActiveItem()" data-bs-toggle="modal" data-bs-target="#itemDetailsModal">
             <img :src="itemProp.picture" class="card-img-top" alt="...">
             <div class="card-body pb-0">
@@ -34,8 +35,8 @@ function createOrderItem() {
                 <p class="card-text">$ {{ itemProp.price }}</p>
             </div>
         </div>
-        <button v-if="accountProp && orderProp" @click="createOrderItem()" class="btn btn-primary m-3">Add To Cart</button>
-        <button v-else disabled @click="createOrderItem()" class="btn btn-primary m-3">Add To Cart</button>
+        <button v-if="accountProp && orderProp" @click="createOrderItem()" class="btn btn-primary m-3" :style="{backgroundColor: restaurantColor}">Add To Cart</button>
+        <button v-else disabled @click="createOrderItem()" class="btn btn-primary m-3" :style="{backgroundColor: restaurantColor}">Add To Cart</button>
     </div>
 </template>
 
@@ -45,6 +46,16 @@ function createOrderItem() {
     height: 30vh;
     object-fit: cover;
     object-position: center;
+}
+.borderFix{
+    border: 3px, dashed, blueviolet;
+    width: 70%;
+    object-position: center;
+    object-fit: cover;
+
+}
+.buttonColor{
+    color: restaurantColor;
 }
 
 
