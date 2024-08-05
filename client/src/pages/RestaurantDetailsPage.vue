@@ -16,6 +16,7 @@ const activeItem = computed(() => AppState.activeItem)
 const quantity = computed(() => AppState.quantity)
 const account = computed(() => AppState.account)
 const orderItems = computed(() => AppState.orderItems)
+const order = computed(()=>AppState.activeOrder)
 const total = computed(() => {
     let calcPrice = 0
     orderItems.value.forEach((orderItem) => {
@@ -103,7 +104,7 @@ function submitOrder() {
 
                 </div>
                 <div v-for="item in items" :key="item.id" class="col-md-4 col-12 d-flex justify-content-center mb-2">
-                    <ItemCard :itemProp="item" />
+                    <ItemCard :itemProp="item" :accountProp="account" :orderProp="order"/>
                 </div>
 
             </div>
@@ -122,7 +123,7 @@ function submitOrder() {
                     <textarea v-model="specialInstructions" class="form-control" id="exampleFormControlTextarea1"
                         rows="5" maxlength="80" placeholder="Special Instructions"></textarea>
                 </div>
-                <div class="modal-footer">
+                <div v-if="account && order" class="modal-footer">
                     <button v-if="quantity == 1" type="button" @click="quantityDecrease()" class="btn btn-secondary"
                         disabled>-</button>
                     <button v-else type="button" @click="quantityDecrease()" class="btn btn-secondary">-</button>
@@ -131,6 +132,10 @@ function submitOrder() {
                         disabled>+</button>
                     <button v-else type="button" @click="quantityIncrease()" class="btn btn-secondary">+</button>
                     <button @click="createOrderItem()" data-bs-dismiss="modal" type="button" class="btn btn-primary">Add
+                        to Cart <i class="mdi mdi-cart-plus"></i></button>
+                </div>
+                <div v-else class="modal-footer">
+                    <button disabled data-bs-dismiss="modal" type="button" class="btn btn-primary">Add
                         to Cart <i class="mdi mdi-cart-plus"></i></button>
                 </div>
             </div>
