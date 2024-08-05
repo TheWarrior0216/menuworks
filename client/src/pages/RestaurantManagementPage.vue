@@ -56,6 +56,7 @@ onMounted(() => {
                 </RouterLink>
 
                 <button class="btn btn-dark">Update Restaurant Info</button>
+
                 <button class="btn btn-dark w-100">Stop Accepting Orders</button>
 
                 <RouterLink :to="{ name: 'update info', params: { restaurantId: '66aa9cdcdf28b714b9f1a18d' } }">
