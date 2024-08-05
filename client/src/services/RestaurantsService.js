@@ -5,7 +5,7 @@ import { api } from "./AxiosService.js"
 
 class RestaurantsService {
 
-  async getRestaurantsById(id) {
+  async getRestaurantById(id) {
     this.getDay()
     const response = await api.get(`api/restaurants/${id}`)
     logger.log('got the restaurant', response.data)

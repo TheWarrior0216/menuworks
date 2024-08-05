@@ -16,7 +16,7 @@ const activeItem = computed(() => AppState.activeItem)
 const quantity = computed(() => AppState.quantity)
 const account = computed(() => AppState.account)
 const orderItems = computed(() => AppState.orderItems)
-const order = computed(()=>AppState.activeOrder)
+const order = computed(() => AppState.activeOrder)
 const total = computed(() => {
     let calcPrice = 0
     orderItems.value.forEach((orderItem) => {
@@ -44,7 +44,7 @@ onMounted(() => {
 async function getRestaurant() {
     try {
         const id = await route.params.restaurantId
-        await restaurantsService.getRestaurantsById(id)
+        await restaurantsService.getRestaurantById(id)
         await itemsService.getItemsByRestaurantId(id)
     }
     catch (error) {
@@ -104,7 +104,7 @@ function submitOrder() {
 
                 </div>
                 <div v-for="item in items" :key="item.id" class="col-md-4 col-12 d-flex justify-content-center mb-2">
-                    <ItemCard :itemProp="item" :accountProp="account" :orderProp="order"/>
+                    <ItemCard :itemProp="item" :accountProp="account" :orderProp="order" />
                 </div>
 
             </div>
@@ -153,8 +153,8 @@ function submitOrder() {
             </div>
             <div class="d-flex justify-content-between">
                 <h4>Total: ${{ total }}</h4>
-            <button @click="submitOrder()" class="btn btn-primary">Submit Order</button>
-        </div>
+                <button @click="submitOrder()" class="btn btn-primary">Submit Order</button>
+            </div>
         </div>
     </div>
 

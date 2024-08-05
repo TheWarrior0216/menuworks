@@ -5,11 +5,14 @@ import { computed, onMounted } from 'vue';
 import { AppState } from '../AppState.js';
 import Pop from '../utils/Pop.js';
 import { ordersService } from '../services/OrdersService.js';
+import { restaurantsService } from '../services/RestaurantsService.js';
 
 
 const route = useRoute()
 
 const orders = computed(() => AppState.orders)
+
+const restaurant = computed(() => AppState.activeRestaurant)
 
 
 
@@ -23,8 +26,18 @@ async function getRestaurantOrders() {
     }
 }
 
+async function getRestaurant() {
+    try {
+        await restaurantsService.getRestaurantById()
+    }
+    catch (error) {
+        Pop.error(error);
+    }
+}
+
 onMounted(() => {
     getRestaurantOrders()
+    getRestaurant()
 })
 </script>
 
@@ -53,18 +66,17 @@ onMounted(() => {
                     <button class="btn btn-dark">Change Item Availability</button>
                 </RouterLink>
 
+                <RouterLink :to="{ name: 'history', params: { restaurantId: '66aa9cdcdf28b714b9f1a18d' } }">
+                    <button class="btn btn-dark w-100">Order History</button>
+                </RouterLink>
 
-                        <RouterLink :to="{ name: 'history', params: { restaurantId: '66aa9cdcdf28b714b9f1a18d' } }">
-                            <button class="btn btn-dark w-100">Order History</button>
-                        </RouterLink>
+                <button class="btn btn-dark">Update Restaurant Info</button>
 
-                        <button class="btn btn-dark">Update Restaurant Info</button>
+                <button class="btn btn-dark w-100">Stop Accepting Orders</button>
 
-                        <button class="btn btn-dark w-100">Stop Accepting Orders</button>
-
-                        <RouterLink :to="{ name: 'update info', params: { restaurantId: '66aa9cdcdf28b714b9f1a18d' } }">
-                            <button class="btn btn-dark w-100">Edit Menu</button>
-                        </RouterLink>
+                <RouterLink :to="{ name: 'update info', params: { restaurantId: '66aa9cdcdf28b714b9f1a18d' } }">
+                    <button class="btn btn-dark w-100">Edit Menu</button>
+                </RouterLink>
 
             </div>
             <div class="col-md-10 active-view">
