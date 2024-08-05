@@ -25,7 +25,7 @@ function createOrderItem() {
 
 
 <template>
-    <div v-if="itemProp" class="card text-center pb-1" style="width: 18rem;">
+    <div v-if="itemProp" class="card text-center pb-1 shadow rounded border" style="width: 18rem;">
         <div type='button' @click="setActiveItem()" data-bs-toggle="modal" data-bs-target="#itemDetailsModal">
             <img :src="itemProp.picture" class="card-img-top" alt="...">
             <div class="card-body pb-0">
@@ -46,4 +46,6 @@ function createOrderItem() {
     object-fit: cover;
     object-position: center;
 }
+
+
 </style>
