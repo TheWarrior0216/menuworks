@@ -3,6 +3,12 @@ import { BadRequest, Forbidden } from "../utils/Errors.js"
 import { logger } from "../utils/Logger.js"
 
 class RestaurantsService {
+
+    async getAllOrdersByRestaurantId(id) {
+        const orders = await dbContext.Orders.find({ restaurantId: id })
+        return orders
+    }
+
     async getAllItemsByRestaurantId(itemId) {
         const items = await dbContext.Items.find({ restaurantId: itemId })
         return items

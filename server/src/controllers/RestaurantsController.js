@@ -2,17 +2,30 @@ import { Auth0Provider } from "@bcwdev/auth0provider";
 import BaseController from "../utils/BaseController.js";
 import { restaurantsService } from "../services/RestaurantsService.js";
 import { logger } from "../utils/Logger.js";
+import { ordersService } from "../services/OrdersService.js";
 
-export class RestaurantsController extends BaseController{
-    constructor(){
+export class RestaurantsController extends BaseController {
+    constructor() {
         super('api/restaurants')
         this.router
             .get('', this.getAllRestaurants)
             .get('/:restaurantId', this.getRestaurantById)
+            .get('/:restaurantId/orders', this.getRestaurantOrders)
             .use('', Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createRestaurant)
             .put('/:restaurantId', this.editRestaurant)
             .delete('/:restaurantId', this.deleteRestaurant)
+    }
+
+    async getRestaurantOrders(request, response, next) {
+        try {
+            const restaurantId = request.params.restaurantId
+            const orders = await restaurantsService.getAllOrdersByRestaurantId(restaurantId)
+            response.send(orders)
+        }
+        catch (error) {
+            next(error)
+        }
     }
 
     async editRestaurant(request, response, next) {
@@ -23,7 +36,7 @@ export class RestaurantsController extends BaseController{
             const restaurant = await restaurantsService.editRestaurant(restaurantId, editData, userId)
             response.send(restaurant)
         }
-        catch (error){
+        catch (error) {
             next(error)
         }
     }
@@ -34,7 +47,7 @@ export class RestaurantsController extends BaseController{
             const restaurant = await restaurantsService.getRestaurantById(id)
             response.send(restaurant)
         }
-        catch (error){
+        catch (error) {
             next(error)
         }
     }
@@ -46,7 +59,7 @@ export class RestaurantsController extends BaseController{
             const message = await restaurantsService.deleteRestaurant(userId, restaurantId)
             response.send(message)
         }
-        catch (error){
+        catch (error) {
             next(error)
         }
     }
@@ -56,7 +69,7 @@ export class RestaurantsController extends BaseController{
             const restaurants = await restaurantsService.getAllRestaurants()
             response.send(restaurants)
         }
-        catch (error){
+        catch (error) {
             next(error)
         }
     }
@@ -70,7 +83,7 @@ export class RestaurantsController extends BaseController{
             const restaurant = await restaurantsService.createRestaurant(restaurantData)
             response.send(restaurant)
         }
-        catch (error){
+        catch (error) {
             next(error)
         }
     }
