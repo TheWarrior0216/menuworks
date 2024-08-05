@@ -49,7 +49,7 @@ function createOrderItem() {
 }
 .borderFix{
     border: 3px, dashed, blueviolet;
-    width: 70%;
+    width: 90%;
     object-position: center;
     object-fit: cover;
 
