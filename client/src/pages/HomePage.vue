@@ -28,9 +28,9 @@ async function getAllRestaurants() {
 
 <template>
   <!-- Landing Section -->
-  <section class="container">
-    <div class="row">
-      <div class="col-12 d-flex justify-content-center align-items-center landing-card">
+  <section class="container-fluid landing-card rounded">
+    <div class="row py-4 ">
+      <div class="col-12 d-flex justify-content-start ">
         <div class="text-center">
           <h1 class="landing-title">
             <div class="d-flex flex-column align-items-center">
@@ -52,7 +52,7 @@ async function getAllRestaurants() {
     <div class="row">
       <div class="col-12">
         <div>
-          <h2 class="spotlight-restaurant text-center py-3 fs-1">Spotlight Restaurant</h2>
+          <h2 class="spotlight-restaurant text-start pt-3 ps-4 fs-1">Restaurant of the Week</h2>
         </div>
         <div class="row" v-if="spotlightRestaurant">
           <SpotlightRestaurantCard />
@@ -62,10 +62,10 @@ async function getAllRestaurants() {
   </section>
 
   <!-- All Restaurants -->
-  <section class="container">
+  <section class="container-fluid allRestaurants">
     <div class="row">
       <div class="col-12">
-        <div class="allRestaurant py-3">
+        <div class=" py-3">
           <h2 class="all-restaurant text-center">All Local Restaurants</h2>
         </div>
       </div>
@@ -79,11 +79,19 @@ async function getAllRestaurants() {
 
 <style scoped lang="scss">
 .landing-card {
+  height: 50dvh;
   padding-top: 5em;
   padding-bottom: 5em;
+  margin-left: 0;
+  margin-right: 0;
+  background-image: url(https://wallpapertag.com/wallpaper/full/4/d/7/317105-gorgerous-food-background-2990x1918-for-mobile-hd.jpg);
+  background-size: cover;
+  background-position: center;
 }
 
 .landing-title {
+  margin-top: 1em;
+  padding-right: 2em;
   font-size: 56px;
   font-weight: 600;
 }
@@ -104,6 +112,10 @@ async function getAllRestaurants() {
 }
 
 .spotlightRestaurant {
-  background-color: rgb(230, 230, 230);
+  background: rgb(213,231,230);
+background: linear-gradient(0deg, rgba(213,231,230,1) 0%, rgba(228,228,228,1) 100%);
+}
+.allRestaurants{
+  background-color: #d5e7e6;
 }
 </style>
