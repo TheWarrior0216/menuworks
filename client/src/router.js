@@ -46,6 +46,11 @@ const routes = [
         path: 'itemAvailability',
         name: 'item availability',
         component: loadPage('ChangeItemAvailabilityPage')
+      },
+      {
+        path: 'editMenu',
+        name: 'edit menu',
+        component: loadPage('EditMenuPage')
       }
     ]
   }

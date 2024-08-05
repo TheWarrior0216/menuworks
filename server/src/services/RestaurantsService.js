@@ -16,6 +16,7 @@ class RestaurantsService {
 
     async editRestaurant(restaurantId, editData, userId) {
         const restaurantToEdit = await this.getRestaurantById(restaurantId)
+        console.log(editData)
         if (restaurantToEdit.creatorId != userId) {
             throw new Forbidden('You cannot edit this restaurant')
         }
@@ -30,6 +31,7 @@ class RestaurantsService {
         restaurantToEdit.primaryColor = editData.primaryColor || restaurantToEdit.primaryColor
         restaurantToEdit.spotlightRestaurant = editData.spotlightRestaurant || restaurantToEdit.spotlightRestaurant
         restaurantToEdit.yelp = editData.yelp || restaurantToEdit.yelp
+        restaurantToEdit.isOpen = editData.isOpen || restaurantToEdit.isOpen
         await restaurantToEdit.save()
         return (restaurantToEdit)
     }

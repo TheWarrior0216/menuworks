@@ -6,6 +6,7 @@ import { AppState } from '../AppState.js';
 import Pop from '../utils/Pop.js';
 import { ordersService } from '../services/OrdersService.js';
 import { restaurantsService } from '../services/RestaurantsService.js';
+import { logger } from '../utils/Logger.js';
 
 
 const route = useRoute()
@@ -35,6 +36,17 @@ async function getRestaurant() {
     }
 }
 
+async function toggleRestaurantOpen() {
+    try {
+        const data = { isOpen: !restaurant.value.isOpen }
+        logger.log(data)
+        await restaurantsService.toggleRestaurantOpen(route.params.restaurantId, data)
+    }
+    catch (error) {
+        Pop.error(error);
+    }
+}
+
 onMounted(() => {
     getRestaurantOrders()
     getRestaurant()
@@ -48,7 +60,7 @@ onMounted(() => {
     <section class="container-fluid">
         <div class="row">
             <div class="col-12 d-flex justify-content-between">
-                <h1>{{restaurant?.name}}</h1>
+                <h1>{{ restaurant?.name }}</h1>
                 <h3 v-if="restaurant?.isOpen">Your Restaurant Is Currently Open</h3>
                 <h3 v-else>Your Restaurant Is Currently Closed</h3>
             </div>
@@ -71,11 +83,13 @@ onMounted(() => {
                     <button class="btn btn-dark w-100">Order History</button>
                 </RouterLink>
 
-                <button class="btn btn-dark">Update Restaurant Info</button>
-
-                <button class="btn btn-dark w-100">Stop Accepting Orders</button>
-
                 <RouterLink :to="{ name: 'update info', params: { restaurantId: '66aa9cdcdf28b714b9f1a18d' } }">
+                    <button class="btn btn-dark">Update Restaurant Info</button>
+                </RouterLink>
+
+                <button @click="toggleRestaurantOpen()" class="btn btn-dark w-100">Stop Accepting Orders</button>
+
+                <RouterLink :to="{ name: 'edit menu', params: { restaurantId: '66aa9cdcdf28b714b9f1a18d' } }">
                     <button class="btn btn-dark w-100">Edit Menu</button>
                 </RouterLink>
 
