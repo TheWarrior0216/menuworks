@@ -1,10 +1,30 @@
 <script setup>
 import { useRoute } from 'vue-router';
+import OrdersReceivedCard from '../components/OrdersReceivedCard.vue';
+import { computed, onMounted } from 'vue';
+import { AppState } from '../AppState.js';
+import Pop from '../utils/Pop.js';
+import { ordersService } from '../services/OrdersService.js';
 
 
 const route = useRoute()
 
+const orders = computed(() => AppState.orders)
 
+
+
+async function getAllOrders(){
+        try {
+              await ordersService.getAllOrders()
+            }
+            catch (error){
+                  Pop.error(error);
+                }
+            }
+            
+onMounted(()=> {
+    getAllOrders
+})
 </script>
 
 
@@ -32,8 +52,11 @@ const route = useRoute()
         </div>
         <div class="col-md-10 active-view">
             <div class="row">
-                <div class="col-4">
+                <div class="col-4" v-for="order in orders" :key="order.id">
                     <!-- Insert OrdersReceivedCard Component Here -->
+                    <!-- <OrdersReceivedCard :order="order"/> -->
+
+                    {{ order }}
                 </div>
             </div>
         </div>
