@@ -50,6 +50,7 @@ function createOrderItem() {
 .borderFix{
     border: 3px, dashed, blueviolet;
     width: 90%;
+    margin-top: 2em ;
     object-position: center;
     object-fit: cover;
 
