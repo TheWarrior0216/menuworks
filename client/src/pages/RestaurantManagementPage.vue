@@ -49,19 +49,22 @@ onMounted(() => {
                     <button class="btn btn-dark w-100">Manage Orders</button>
                 </RouterLink>
 
-                <button class="btn btn-dark">Change Item Availability</button>
-
-                <RouterLink :to="{ name: 'history', params: { restaurantId: '66aa9cdcdf28b714b9f1a18d' } }">
-                    <button class="btn btn-dark w-100">Order History</button>
+                <RouterLink :to="{ name: 'item availability', params: { restaurantId: '66aa9cdcdf28b714b9f1a18d' } }">
+                    <button class="btn btn-dark">Change Item Availability</button>
                 </RouterLink>
 
-                <button class="btn btn-dark">Update Restaurant Info</button>
 
-                <button class="btn btn-dark w-100">Stop Accepting Orders</button>
+                        <RouterLink :to="{ name: 'history', params: { restaurantId: '66aa9cdcdf28b714b9f1a18d' } }">
+                            <button class="btn btn-dark w-100">Order History</button>
+                        </RouterLink>
 
-                <RouterLink :to="{ name: 'update info', params: { restaurantId: '66aa9cdcdf28b714b9f1a18d' } }">
-                    <button class="btn btn-dark w-100">Edit Menu</button>
-                </RouterLink>
+                        <button class="btn btn-dark">Update Restaurant Info</button>
+
+                        <button class="btn btn-dark w-100">Stop Accepting Orders</button>
+
+                        <RouterLink :to="{ name: 'update info', params: { restaurantId: '66aa9cdcdf28b714b9f1a18d' } }">
+                            <button class="btn btn-dark w-100">Edit Menu</button>
+                        </RouterLink>
 
             </div>
             <div class="col-md-10 active-view">
