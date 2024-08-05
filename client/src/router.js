@@ -28,9 +28,19 @@ const routes = [
     component: loadPage('RestaurantManagementPage'),
     children: [
       {
-        path: '/updateInfo',
+        path: 'updateInfo',
         name: 'update info',
         component: loadPage('UpdateRestaurantInfoPage')
+      },
+      {
+        path: 'history',
+        name: 'history',
+        component: loadPage('OrderHistoryPage')
+      },
+      {
+        path: 'manageOrders',
+        name: 'manage orders',
+        component: loadPage('ManageOrdersPage')
       }
     ]
   }
