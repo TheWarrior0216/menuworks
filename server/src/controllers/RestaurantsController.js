@@ -15,6 +15,20 @@ export class RestaurantsController extends BaseController {
             .post('', this.createRestaurant)
             .put('/:restaurantId', this.editRestaurant)
             .delete('/:restaurantId', this.deleteRestaurant)
+            .put('/:restaurantId/open', this.toggleRestaurantOpen)
+    }
+
+    async toggleRestaurantOpen(request, response, next) {
+        try {
+            const restaurantId = request.params.restaurantId
+            const editData = request.body
+            const userId = request.userInfo.id
+            const orders = await restaurantsService.toggleRestaurantOpen(restaurantId, editData, userId)
+            response.send(orders)
+        }
+        catch (error) {
+            next(error)
+        }
     }
 
     async getRestaurantOrders(request, response, next) {

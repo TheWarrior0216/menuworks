@@ -61,8 +61,8 @@ onMounted(() => {
         <div class="row">
             <div class="col-12 d-flex justify-content-between">
                 <h1>{{ restaurant?.name }}</h1>
-                <h3 v-if="restaurant?.isOpen">Your Restaurant Is Currently Open</h3>
-                <h3 v-else>Your Restaurant Is Currently Closed</h3>
+                <h3 v-if="restaurant?.isOpen">Your Restaurant Is Currently Open <i class="mdi mdi-circle text-success"></i></h3>
+                <h3 v-else>Your Restaurant Is Currently Closed <i class="mdi mdi-circle text-danger"></i></h3>
             </div>
         </div>
     </section>
@@ -76,7 +76,7 @@ onMounted(() => {
                 </RouterLink>
 
                 <RouterLink :to="{ name: 'item availability', params: { restaurantId: '66aa9cdcdf28b714b9f1a18d' } }">
-                    <button class="btn btn-dark">Change Item Availability</button>
+                    <button class="btn btn-dark w-100">Change Item Availability</button>
                 </RouterLink>
 
                 <RouterLink :to="{ name: 'history', params: { restaurantId: '66aa9cdcdf28b714b9f1a18d' } }">
@@ -84,7 +84,7 @@ onMounted(() => {
                 </RouterLink>
 
                 <RouterLink :to="{ name: 'update info', params: { restaurantId: '66aa9cdcdf28b714b9f1a18d' } }">
-                    <button class="btn btn-dark">Update Restaurant Info</button>
+                    <button class="btn btn-dark w-100">Update Restaurant Info</button>
                 </RouterLink>
 
                 <button @click="toggleRestaurantOpen()" class="btn btn-dark w-100">Stop Accepting Orders</button>

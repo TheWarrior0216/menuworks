@@ -31,7 +31,6 @@ class RestaurantsService {
         restaurantToEdit.primaryColor = editData.primaryColor || restaurantToEdit.primaryColor
         restaurantToEdit.spotlightRestaurant = editData.spotlightRestaurant || restaurantToEdit.spotlightRestaurant
         restaurantToEdit.yelp = editData.yelp || restaurantToEdit.yelp
-        restaurantToEdit.isOpen = editData.isOpen || restaurantToEdit.isOpen
         await restaurantToEdit.save()
         return (restaurantToEdit)
     }
@@ -68,6 +67,17 @@ class RestaurantsService {
     async getRestaurantByAccountId(accountId) {
         const restaurant = await dbContext.Restaurant.find({ creatorId: accountId })
         return restaurant
+    }
+
+    async toggleRestaurantOpen(restaurantId, editData, userId) {
+        const restaurantToEdit = await this.getRestaurantById(restaurantId)
+        console.log(editData)
+        if (restaurantToEdit.creatorId != userId) {
+            throw new Forbidden('You cannot edit this restaurant')
+        }
+        restaurantToEdit.isOpen = editData.isOpen
+        await restaurantToEdit.save()
+        return (restaurantToEdit)
     }
 
 }

@@ -6,7 +6,7 @@ import { api } from "./AxiosService.js"
 class RestaurantsService {
 
   async toggleRestaurantOpen(restaurantId, data) {
-      const response = await api.put(`api/restaurants/${restaurantId}`, data)
+      const response = await api.put(`api/restaurants/${restaurantId}/open`, data)
       logger.log(response.data)
       AppState.activeRestaurant.isOpen = !AppState.activeRestaurant.isOpen
   }
