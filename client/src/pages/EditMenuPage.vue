@@ -4,7 +4,7 @@
 
 
 <template>
-<h1>This is the edit menu page where restaurant owners can go ads, edit, delete menu items</h1>
+<h1>This is the edit menu page where restaurant owners can go add, edit, and delete menu items</h1>
 </template>
 
 

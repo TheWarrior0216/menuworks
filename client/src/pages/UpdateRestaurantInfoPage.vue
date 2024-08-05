@@ -88,7 +88,7 @@ const types = [
         <div>
             <select class="form-select text-capitalize" name="type" id="type">
                 <option v-for="type in types" :key="type" :value="type">
-                {{ types }}
+                {{ type }}
                 </option>
             </select>
         </div>
@@ -100,9 +100,8 @@ const types = [
         <label for="restaurantName" class="form-label">Restaurant Name</label>
         <input type="text" class="form-control" id="restaurant-name">
         </div>
-        <!-- TODO Add color picker -->
         <div>
-            <label for=""></label>
+            <label for="primaryColor" class="form-label" >Primary color</label>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>    
