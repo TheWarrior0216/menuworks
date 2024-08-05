@@ -18,5 +18,6 @@ export class Restaurant {
         this.spotlightRestaurant = data.spotlightRestaurant
         this.rating = data?.rating || null
         this.yelp = data?.yelp || null
+        this.isOpen = data.isOpen || false
     }
 }

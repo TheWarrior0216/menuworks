@@ -16,7 +16,8 @@ export const RestaurantSchema = new Schema({
     primaryColor: { type: String, required: true, minLength: 6, maxLength: 8 },
     spotlightRestaurant: { type: Boolean, required: true, default: false },
     rating: { type: Number, min: 0, max: 5, required: false },
-    yelp: { type: String, required: false }
+    yelp: { type: String, required: false },
+    isOpen: { type: Boolean, required: true, default: false}
 }, { timestamps: true, toJSON: { virtuals: true } })
 
 

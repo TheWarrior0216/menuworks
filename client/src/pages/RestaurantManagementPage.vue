@@ -49,7 +49,8 @@ onMounted(() => {
         <div class="row">
             <div class="col-12 d-flex justify-content-between">
                 <h1>{{restaurant?.name}}</h1>
-                <h3>Your Restaurant Is Currently Open/Closed</h3>
+                <h3 v-if="restaurant?.isOpen">Your Restaurant Is Currently Open</h3>
+                <h3 v-else>Your Restaurant Is Currently Closed</h3>
             </div>
         </div>
     </section>
