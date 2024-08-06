@@ -4,6 +4,12 @@ import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
 class AccountService {
+  async setToOwner() {
+    const response = await api.put('account', { isOwner: true })
+    const updatedAccount = new Account(response.data)
+    AppState.account = updatedAccount
+
+  }
   async getAccount() {
     try {
       const res = await api.get('/account')

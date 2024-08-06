@@ -2,8 +2,10 @@
 import { computed } from "vue";
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
+import FooterCard from "./components/FooterCard.vue";
 
 const account = computed(()=> AppState.account)
+
 
 </script>
 <template>
@@ -13,8 +15,8 @@ const account = computed(()=> AppState.account)
   <main>
     <router-view />
   </main>
-<footer>
-  <p>If you Own a Restaurant Click Here<span class="mdi mdi-arrow-right"></span></p>
+<footer v-if="!account?.isOwner" class="d-flex justify-content-center">
+  <FooterCard/>
 </footer>
 </template>
 
@@ -27,9 +29,6 @@ const account = computed(()=> AppState.account)
 
 
 footer {
-  display: grid;
-  place-content: center;
-  height: 32px;
-
+  height: 10dvh;
 }
 </style>
