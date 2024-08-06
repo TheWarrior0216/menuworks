@@ -1,12 +1,14 @@
 <script setup>
+import { computed } from "vue";
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
 
+const account = computed(()=> AppState.account)
 
 </script>
-
+<!-- FIXME add if they are an owner -->
 <template>
-  <header class="sticky-top">
+  <header v-if="!account.isOwner" class="sticky-top">
     <Navbar />
   </header>
   <main>
