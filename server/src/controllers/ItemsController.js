@@ -44,7 +44,8 @@ export class ItemsController extends BaseController {
   async createItem(request, response, next) {
     try {
       const itemBody = request.body
-      const newItem = await itemsService.createItem(itemBody)
+      const userInfo = request.userInfo
+      const newItem = await itemsService.createItem(itemBody, userInfo.id)
       response.send(newItem)
     } catch (error) {
       next(error)
