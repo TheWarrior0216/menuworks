@@ -1,5 +1,5 @@
 <script setup>
-
+import { ref } from 'vue';
 
 
 const types = [
@@ -22,6 +22,20 @@ const types = [
     "barbeque",
     "other"
 ]
+
+const editableRestaurantData = ref({
+    name: '',
+    description: '',
+    primaryPictureURL: '',
+    breakfastPictureURL: '',
+    location: '', 
+    hours: '',
+    type: '',
+    logoURL: '',
+    primaryColor: '#000000',
+})
+
+
 </script>
 
 
@@ -29,60 +43,67 @@ const types = [
 <form class="container-fluid">
     <section class="row">
         <div class="mb-3">
-        <label for="restaurantName" class="form-label">Restaurant Name</label>
-        <input type="text" class="form-control" id="restaurant-name">
+        <label for="name" class="form-label">Restaurant Name</label>
+        <input v-model="editableRestaurantData.name" type="text" class="form-control" id="name">
         </div>
         <div class="mb-3">
         <label for="description" class="form-label">Description</label>
-        <textarea class="form-control" placeholder="Add your restaurant's description here..." id="description"></textarea>
+        <textarea v-model="editableRestaurantData.description" class="form-control" placeholder="Add your restaurant's description here..." id="description"></textarea>
         </div>
         <div class="mb-3">
         <label for="primaryPictureURL" class="form-label">Restaurant's Primary Picture</label>
-        <input type="text" class="form-control" id="restaurant-primary-picture">
+        <input v-model="editableRestaurantData.primaryPictureURL" type="text" class="form-control" id="restaurant-primary-picture">
         </div>
         <div class="mb-3">
         <label for="breakfastPictureURL" class="form-label">Restaurant's Breakfast Picture</label>
-        <input type="text" class="form-control" id="restaurant-breakfast-picture">
+        <input v-model="editableRestaurantData.breakfastPictureURL" type="text" class="form-control" id="restaurant-breakfast-picture">
         </div>
         <div class="mb-3">
         <label for="location" class="form-label">Restaurant's Location</label>
-        <input type="text" class="form-control" id="location">
+        <input v-model="editableRestaurantData.location" type="text" class="form-control" id="location">
         </div>
         <section>
             <div>
                 <input type="checkbox" class="form-check-input" id="sunday">
                 <label class="form-check-label" for="hours">Sunday</label>
+                <input type="time" id="sunday" name="sunday" min="0:00" max="23:59"/><span> - </span>
                 <input type="time" id="sunday" name="sunday" min="0:00" max="23:59"/>
             </div>
             <div>
                 <input type="checkbox" class="form-check-input" id="monday">
                 <label class="form-check-label" for="hours">Monday</label>
-                <input type="time" id="monday" name="Monday" min="0:00" max="23:59"/>
+                <input type="time" id="monday" name="monday" min="0:00" max="23:59"/><span> - </span>
+                <input type="time" id="sunday" name="monday" min="0:00" max="23:59"/>
             </div>
             <div>
                 <input type="checkbox" class="form-check-input" id="tuesday">
                 <label class="form-check-label" for="hours">Tuesday</label>
-                <input type="time" id="tuesday" name="tuesday" min="0:00" max="23:59"/>
+                <input type="time" id="tuesday" name="tuesday" min="0:00" max="23:59"/><span> - </span>
+                <input type="time" id="sunday" name="tuesday" min="0:00" max="23:59"/>
             </div>
             <div>
                 <input type="checkbox" class="form-check-input" id="wednesday">
                 <label class="form-check-label" for="hours">Wednesday</label>
-                <input type="time" id="wednesday" name="wednesday" min="0:00" max="23:59"/>
+                <input type="time" id="wednesday" name="wednesday" min="0:00" max="23:59"/><span> - </span>
+                <input type="time" id="sunday" name="wednesday" min="0:00" max="23:59"/>
             </div>
             <div>
                 <input type="checkbox" class="form-check-input" id="thursday">
                 <label class="form-check-label" for="hours">Thursday</label>
-                <input type="time" id="thursday" name="thursday" min="0:00" max="23:59"/>
+                <input type="time" id="thursday" name="thursday" min="0:00" max="23:59"/><span> - </span>
+                <input type="time" id="sunday" name="thursday" min="0:00" max="23:59"/>
             </div>
             <div>
                 <input type="checkbox" class="form-check-input" id="friday">
                 <label class="form-check-label" for="hours">Friday</label>
-                <input type="time" id="friday" name="friday" min="0:00" max="23:59"/>
+                <input type="time" id="friday" name="friday" min="0:00" max="23:59"/><span> - </span>
+                <input type="time" id="sunday" name="friday" min="0:00" max="23:59"/>
             </div>
             <div class="mb-3">
                 <input type="checkbox" class="form-check-input" id="saturday">
                 <label class="form-check-label" for="hours">Saturday</label>
-                <input type="time" id="saturday" name="saturday" min="0:00" max="23:59"/>
+                <input type="time" id="saturday" name="saturday" min="0:00" max="23:59"/><span> - </span>
+                <input type="time" id="sunday" name="saturday" min="0:00" max="23:59"/>
             </div>
         </section>
         <!-- FIXME Allow for multiselect -->
@@ -96,10 +117,6 @@ const types = [
         <div class="mb-3">
         <label for="logoURL" class="form-label">Restaurant Logo</label>
         <input type="text" class="form-control" id="logo">
-        </div>
-        <div class="mb-3">
-        <label for="restaurantName" class="form-label">Restaurant Name</label>
-        <input type="text" class="form-control" id="restaurant-name">
         </div>
         <div>
             <label for="primaryColor" class="form-label" >Primary color</label>
