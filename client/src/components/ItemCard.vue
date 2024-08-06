@@ -11,7 +11,7 @@ const props = defineProps({
     itemProp: { type: Item, required: true },
     accountProp: { type: Account, required: true },
     orderProp: { type: Order, required: true },
-    restaurantColor: {required:true}
+    restaurantColor: {type: String, required:true}
 })
 
 function setActiveItem() {
@@ -48,7 +48,7 @@ function createOrderItem() {
     object-position: center;
 }
 .borderFix{
-    border: 3px, dashed, blueviolet;
+    border: 3px, solid, blueviolet;
     width: 90%;
     margin-top: 2em ;
     object-position: center;
