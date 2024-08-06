@@ -70,7 +70,7 @@ onMounted(() => {
 
     <section class="container-fluid">
         <div class="row">
-            <div class="col-md-2 d-flex flex-column justify-content-around options">
+            <div v-if="restaurant" class="col-md-2 d-flex flex-column justify-content-around options">
 
                 <RouterLink :to="{ name: 'manage orders', params: { restaurantId: restaurant.id } }">
                     <button class="btn btn-dark w-100">Manage Orders</button>
