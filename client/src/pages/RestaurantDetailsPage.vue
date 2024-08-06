@@ -88,7 +88,7 @@ function submitOrder() {
         </div>
         <div v-if="restaurant" class="container-fluid ">
             <div class="row detail-fix">
-                <div class="col-12 bg-body mb-2 rounded mt-5">
+                <div class="col-12 bg-body mb-2 rounded mt-5 shadow">
                     <div class="d-md-flex align-items-center">
                         <h1 class="fw-bolder font-size text-md-start text-center ms-3">{{ restaurant?.name }}</h1>
                         <div v-for="hours in restaurant.hours" :key="hours.day"
