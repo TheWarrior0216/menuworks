@@ -1,18 +1,23 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { loadState, saveState } from '../utils/Store.js';
 import Login from './Login.vue';
+import { AppState } from "../AppState.js";
 
 const theme = ref(loadState('theme') || 'light')
 
 onMounted(() => {
   document.documentElement.setAttribute('data-bs-theme', theme.value)
 })
+const restaurants = computed(() => AppState.activeRestaurant)
 
 function toggleTheme() {
   theme.value = theme.value == 'light' ? 'dark' : 'light'
   document.documentElement.setAttribute('data-bs-theme', theme.value)
   saveState('theme', theme.value)
+}
+function clearRestaurant() {
+  AppState.activeRestaurant = null
 }
 
 </script>
@@ -21,7 +26,7 @@ function toggleTheme() {
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark px-3 gradient">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="/img/MenuWorks.png" height="45" />
+        <img @click="clearRestaurant()" alt="logo" src="/img/MenuWorks.png" height="45" />
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -31,7 +36,7 @@ function toggleTheme() {
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
       </ul>
-      <div>
+      <div v-if="!restaurants">
         <form>
           <div class=" m-3 me-5">
             <input type="text" class="form-control" id="Search Bar" placeholder="🔍Search for Restaurants">
