@@ -29,7 +29,7 @@ function createOrderItem() {
     <div v-if="itemProp" class="card text-center pb-1 shadow rounded borderFix" :style="{borderColor: restaurantColor}">
         <div type='button' @click="setActiveItem()" data-bs-toggle="modal" data-bs-target="#itemDetailsModal">
             <img :src="itemProp.picture" class="card-img-top" alt="...">
-            <div class="card-body pb-0">
+            <div class="card-body pb-0 ">
                 <h5 class="card-title">{{ itemProp.name }}</h5>
                 <p class="card-text">{{ itemProp.description }}</p>
                 <p class="card-text">$ {{ itemProp.price }}</p>

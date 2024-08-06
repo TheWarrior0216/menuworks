@@ -90,7 +90,7 @@ function submitOrder() {
             <div class="row detail-fix">
                 <div class="col-12 bg-body mb-2 rounded mt-5">
                     <div class="d-md-flex align-items-center">
-                        <h1 class="fw-bolder font-size text-md-start text-center">{{ restaurant?.name }}</h1>
+                        <h1 class="fw-bolder font-size text-md-start text-center ms-3">{{ restaurant?.name }}</h1>
                         <div v-for="hours in restaurant.hours" :key="hours.day"
                             class="px-2 pb-1 fs-3 text-md-start text-center">
                             <p v-if="hours.day == AppState.currentDay" class="m-0 p-0">{{ hours.open }} - {{ hours.close
@@ -98,8 +98,8 @@ function submitOrder() {
                             </p>
                         </div>
                     </div>
-                    <h5 class="text-md-start text-center">{{ restaurant.location }}</h5>
-                    <p class="text-md-start text-center">{{ restaurant.description }}</p>
+                    <h5 class="text-md-start text-center ms-3">{{ restaurant.location }}</h5>
+                    <p class="text-md-start text-center ms-3">{{ restaurant.description }}</p>
 
 
                 </div>
