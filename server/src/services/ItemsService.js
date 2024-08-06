@@ -4,7 +4,8 @@ import { restaurantsService } from "./RestaurantsService.js"
 
 class ItemsService {
   async getAllItems() {
-    const items = await dbContext.Items.find()
+    const data =  {isDeleted: false}
+    const items = await dbContext.Items.find(data)
     return items
   }
   async getItemById(itemId) {
@@ -30,10 +31,11 @@ class ItemsService {
     await foundItem.save()
     return foundItem
   }
-  async delteItem(itemId) {
+  async deleteItem(itemId) {
     const foundItem = await dbContext.Items.findById(itemId)
-    await foundItem.deleteOne()
-    return `You have delted ${foundItem}`
+    foundItem.isDeleted = true
+    await foundItem.save()
+    return `You have deleted ${foundItem}`
   }
 }
 export const itemsService = new ItemsService()

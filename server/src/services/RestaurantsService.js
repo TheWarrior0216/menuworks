@@ -10,7 +10,7 @@ class RestaurantsService {
     }
 
     async getAllItemsByRestaurantId(itemId) {
-        const items = await dbContext.Items.find({ restaurantId: itemId })
+        const items = await dbContext.Items.find({ restaurantId: itemId, isDeleted: false })
         return items
     }
 

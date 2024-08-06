@@ -8,5 +8,6 @@ export class Item{
         this.description = data.description
         this.isAvailable = data.isAvailable
         this.type = data.type
+        this.isDeleted = data.isDeleted
     }
 }
