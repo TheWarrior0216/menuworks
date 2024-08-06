@@ -79,13 +79,14 @@ const types = [
                 <label class="form-check-label" for="hours">Friday</label>
                 <input type="time" id="friday" name="friday" min="0:00" max="23:59"/>
             </div>
-            <div>
+            <div class="mb-3">
                 <input type="checkbox" class="form-check-input" id="saturday">
                 <label class="form-check-label" for="hours">Saturday</label>
                 <input type="time" id="saturday" name="saturday" min="0:00" max="23:59"/>
             </div>
         </section>
-        <div>
+        <!-- FIXME Allow for multiselect -->
+        <div class="mb-3">
             <select class="form-select text-capitalize" name="type" id="type">
                 <option v-for="type in types" :key="type" :value="type">
                 {{ type }}
@@ -102,8 +103,8 @@ const types = [
         </div>
         <div>
             <label for="primaryColor" class="form-label" >Primary color</label>
+            <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color">
         </div>
-
         <button type="submit" class="btn btn-primary">Submit</button>    
     </section>
 </form>
