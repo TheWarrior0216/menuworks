@@ -18,6 +18,7 @@ const account = computed(()=> AppState.account)
 <footer v-if="!account?.isOwner" class="d-flex justify-content-center">
   <FooterCard/>
 </footer>
+
 </template>
 
 <style lang="scss">

@@ -114,9 +114,9 @@ function submitOrder() {
             <button class="btn btn-dark landing-button">Manage Restaurant</button>
         </RouterLink>
     </div>
-
+    <!-- TODO add restraunmjiuzgyriu yg -->
     <div class="modal fade" id="itemDetailsModal" tabindex="-1" aria-labelledby="itemDetailsModal" aria-hidden="true">
-        <div class="modal-dialog">
+        <!-- <div class="modal-dialog">
             <div v-if="activeItem" class="modal-content">
                 <div class="modal-header justify-content-center">
                     <h1 class="modal-title fs-2 text-center" id="exampleModalLabel">{{ activeItem.name }}</h1>
@@ -143,7 +143,7 @@ function submitOrder() {
                         to Cart <i class="mdi mdi-cart-plus"></i></button>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div class="offcanvas offcanvas-start" tabindex="-1" id="orderOffCanvas" aria-labelledby="orderOffCanvasLabel">
@@ -217,11 +217,11 @@ function submitOrder() {
     margin-left: 10em;
     margin-right: 10em;
 }
-@media (max-width: 576px){
-.detail-fix {
-    margin-left: 0em;
-    margin-right: 0em;
-}
-}
 
+@media (max-width: 576px) {
+    .detail-fix {
+        margin-left: 0em;
+        margin-right: 0em;
+    }
+}
 </style>
