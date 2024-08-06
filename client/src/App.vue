@@ -6,15 +6,16 @@ import Navbar from './components/Navbar.vue'
 const account = computed(()=> AppState.account)
 
 </script>
-<!-- FIXME add if they are an owner -->
 <template>
-  <header v-if="!account.isOwner" class="sticky-top">
+  <header v-if="!account?.isOwner" class="sticky-top">
     <Navbar />
   </header>
   <main>
     <router-view />
   </main>
-
+<footer>
+  <p>If you Own a Restaurant Click Here<span class="mdi mdi-arrow-right"></span></p>
+</footer>
 </template>
 
 <style lang="scss">
@@ -29,5 +30,6 @@ footer {
   display: grid;
   place-content: center;
   height: 32px;
+
 }
 </style>
