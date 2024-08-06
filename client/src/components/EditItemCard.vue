@@ -13,6 +13,10 @@ async function deleteItem(){
     await itemsService.deleteItem(props.itemProp.id)
 }
 
+function setActiveItem(){
+    itemsService.setActiveItem(props.itemProp)
+}
+
 </script>
 
     <template>
@@ -24,7 +28,7 @@ async function deleteItem(){
                     <p class="card-text">{{ itemProp.description }}</p>
                     <p class="card-text">$ {{ itemProp.price }}</p>
                 </div>
-                <button class="btn btn-dark w-75 my-3">Edit Item</button>
+                <button data-bs-toggle="modal" data-bs-target="#EditItemModal" @click="setActiveItem()" class="btn btn-dark w-75 my-3">Edit Item</button>
                 <button @click="deleteItem()" class="btn btn-danger w-75">Delete Item</button>
             </div>
         </div>

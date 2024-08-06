@@ -6,6 +6,15 @@ import { api } from "./AxiosService.js"
 
 class ItemsService {
 
+    async editItem(editItemData) {
+        const response = await api.put(`api/items/${AppState.activeItem.id}`, editItemData)
+        logger.log(response.data)
+        logger.log(AppState.items)
+        const index = AppState.items.findIndex((item)=> item.id == response.data.id)
+        AppState.items[index] = response.data
+        logger.log(AppState.items)
+    }
+
     async deleteItem(id) {
         const confirm = await Pop.confirm("are you sure you want to delete this item")
         if(confirm){
@@ -15,12 +24,11 @@ class ItemsService {
     }
 
     async createItem(newItemData) {
-
         const response = await api.post(`api/items`, newItemData)
         logger.log(response.data)
         AppState.items.push(response.data)
-
     }
+
     decrease() {
         AppState.quantity--
     }

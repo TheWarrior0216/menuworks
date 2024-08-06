@@ -22,12 +22,12 @@ class ItemsService {
   }
   async changeItem(itemId, itemBody) {
     const foundItem = await dbContext.Items.findById(itemId)
-    foundItem.name = itemBody.name
-    foundItem.picture = itemBody.picture
-    foundItem.price = itemBody.price
-    foundItem.description = itemBody.description
-    foundItem.isAvailable = itemBody.isAvailable
-    foundItem.type = itemBody.type
+    foundItem.name = itemBody.name || foundItem.name
+    foundItem.picture = itemBody.picture || foundItem.picture
+    foundItem.price = itemBody.price || foundItem.price
+    foundItem.description = itemBody.description || foundItem.description
+    foundItem.isAvailable = itemBody.isAvailable || foundItem.isAvailable
+    foundItem.type = itemBody.type || foundItem.type
     await foundItem.save()
     return foundItem
   }
