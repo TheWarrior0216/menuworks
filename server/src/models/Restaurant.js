@@ -7,7 +7,13 @@ export const RestaurantSchema = new Schema({
     primaryPictureURL: { type: String, required: true },
     breakfastPictureURL: { type: String, required: false },
     location: { type: String, required: true },
-    hours: { type: [{}], required: true },
+    hours: {
+        type: [{
+            open: { type: String },
+            closed: { type: String },
+            day: { type: String },
+        }], required: true
+    },
     type: {
         type: String, enum: ["mexican", "indian", "italian", "american", "japanese", "thai", "french", "chinese", "greek", "brazilian", "spanish", "vietnamese", "korean", "african", "caribbean", "cuban", "barbarque", "other"
         ]
@@ -17,7 +23,7 @@ export const RestaurantSchema = new Schema({
     spotlightRestaurant: { type: Boolean, required: true, default: false },
     rating: { type: Number, min: 0, max: 5, required: false },
     yelp: { type: String, required: false },
-    isOpen: { type: Boolean, required: true, default: false}
+    isOpen: { type: Boolean, required: true, default: false }
 }, { timestamps: true, toJSON: { virtuals: true } })
 
 

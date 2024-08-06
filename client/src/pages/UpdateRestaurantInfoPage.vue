@@ -29,7 +29,50 @@ const editableRestaurantData = ref({
     primaryPictureURL: '',
     breakfastPictureURL: '',
     location: '', 
-    hours: '',
+    hours: [
+        {
+            open: '',
+            closed: '',
+            day: 'Sunday',
+            isOpen: false
+        },
+        {
+            open: '',
+            closed: '',
+            day: 'Monday',
+            isOpen: false
+        },
+        {
+            open: '',
+            closed: '',
+            day: 'Tuesday',
+            isOpen: false
+        },
+        {
+            open: '',
+            closed: '',
+            day: 'Wednesday',
+            isOpen: false
+        },
+        {
+            open: '',
+            closed: '',
+            day: 'Thursday',
+            isOpen: false
+        },
+        {
+            open: '',
+            closed: '',
+            day: 'Friday',
+            isOpen: false
+        },
+        {
+            open: '',
+            closed: '',
+            day: 'Saturday',
+            isOpen: false
+        },
+    ],
     type: '',
     logoURL: '',
     primaryColor: '#000000',
@@ -63,13 +106,13 @@ const editableRestaurantData = ref({
         <input v-model="editableRestaurantData.location" type="text" class="form-control" id="location">
         </div>
         <section>
-            <div>
-                <input type="checkbox" class="form-check-input" id="sunday">
-                <label class="form-check-label" for="hours">Sunday</label>
-                <input type="time" id="sunday" name="sunday" min="0:00" max="23:59"/><span> - </span>
-                <input type="time" id="sunday" name="sunday" min="0:00" max="23:59"/>
+            <div v-for="hour in editableRestaurantData.hours" :key="hour.day">
+                <input type="checkbox" class="form-check-input" :id="hour.day">
+                <label class="form-check-label" for="hours">{{ hour.day }}</label>
+                <input v-model="editableRestaurantData.hours" type="time" :id=hour.day :name="hour.day" min="0:00" max="23:59"/><span> - </span>
+                <input v-model="editableRestaurantData.hours" type="time" :id="hour.day" :name="hour.day" min="0:00" max="23:59"/>
             </div>
-            <div>
+            <!-- <div>
                 <input type="checkbox" class="form-check-input" id="monday">
                 <label class="form-check-label" for="hours">Monday</label>
                 <input type="time" id="monday" name="monday" min="0:00" max="23:59"/><span> - </span>
@@ -104,7 +147,7 @@ const editableRestaurantData = ref({
                 <label class="form-check-label" for="hours">Saturday</label>
                 <input type="time" id="saturday" name="saturday" min="0:00" max="23:59"/><span> - </span>
                 <input type="time" id="sunday" name="saturday" min="0:00" max="23:59"/>
-            </div>
+            </div> -->
         </section>
         <!-- FIXME Allow for multiselect -->
         <div class="mb-3">
