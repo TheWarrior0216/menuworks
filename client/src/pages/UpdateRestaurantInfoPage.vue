@@ -1,6 +1,13 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import { Restaurant } from '../models/Restaurant.js';
+import { AppState } from '../AppState.js';
+import Pop from '../utils/Pop.js';
+import { restaurantsService } from '../services/RestaurantsService.js';
+import { useRoute } from 'vue-router';
 
+const route = useRoute()
+const restaurant = computed(() => AppState.activeRestaurant)
 
 const types = [
     "mexican",
@@ -79,13 +86,20 @@ const editableRestaurantData = ref({
 })
 
 // TODO create an updateRestaurantDetails function
-
+async function updateRestaurantDetails(){
+    try {
+      await restaurantsService.updateRestaurantDetails(editableRestaurantData.value , route.params.restaurantId)
+    }
+    catch (error){
+      Pop.error(error);
+    }
+}
 
 </script>
 
 
 <template>
-<form class="container-fluid">
+<form class="container-fluid" @submit.prevent="updateRestaurantDetails()">
     <section class="row">
         <div class="mb-3">
         <label for="name" class="form-label">Restaurant Name</label>

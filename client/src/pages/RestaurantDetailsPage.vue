@@ -11,6 +11,17 @@ import OrderItemCard from '../components/OrderItemCard.vue';
 
 
 const restaurant = computed(() => AppState.activeRestaurant)
+
+const currentRestaurantHour = computed(()=> {
+    if(!AppState.activeRestaurant) return null
+
+    const weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+
+    const foundHour = AppState.activeRestaurant.hours.find(hour => hour.day == weekdays[new Date().getDay()])
+
+    return foundHour
+})
+
 const items = computed(() => AppState.items)
 const activeItem = computed(() => AppState.activeItem)
 const quantity = computed(() => AppState.quantity)
@@ -91,10 +102,9 @@ function submitOrder() {
                 <div class="col-12 bg-body mb-2 rounded mt-5 shadow">
                     <div class="d-md-flex align-items-center">
                         <h1 class="fw-bolder font-size text-md-start text-center ms-3">{{ restaurant?.name }}</h1>
-                        <div v-for="hours in restaurant.hours" :key="hours.day"
-                            class="px-2 pb-1 fs-3 text-md-start text-center">
-                            <p v-if="hours.day == AppState.currentDay" class="m-0 p-0">{{ hours.open }} - {{ hours.close
-                                }} • {{ restaurant.type }}
+                        <!-- REVIEW Might want to have a line of text saying that the restaurant is closed if open and close hours are not listed. -->
+                        <div v-if="currentRestaurantHour.open && currentRestaurantHour.close" class="px-2 pb-1 fs-3 text-md-start text-center">
+                            <p class="m-0 p-0">{{ currentRestaurantHour.open }} - {{ currentRestaurantHour.closed }} • {{ restaurant.type }}
                             </p>
                         </div>
                     </div>
@@ -114,7 +124,7 @@ function submitOrder() {
             <button class="btn btn-dark landing-button">Manage Restaurant</button>
         </RouterLink>
     </div>
-    <!-- TODO add restraunmjiuzgyriu yg -->
+    <!-- TODO add rest -->
     <div class="modal fade" id="itemDetailsModal" tabindex="-1" aria-labelledby="itemDetailsModal" aria-hidden="true">
         <!-- <div class="modal-dialog">
             <div v-if="activeItem" class="modal-content">
