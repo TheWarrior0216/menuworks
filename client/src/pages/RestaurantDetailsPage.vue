@@ -78,7 +78,7 @@ function submitOrder() {
 
 <template>
     <div v-if="restaurant">
-        <div class="container-fluid" >
+        <div class="container-fluid">
             <div class="row cont-height">
                 <div class="col-12 p-0 m-0 cover-img">
                     <img class="img-fluid cover-img" :src="restaurant.primaryPictureURL" alt="picture">
@@ -104,11 +104,15 @@ function submitOrder() {
 
                 </div>
                 <div v-for="item in items" :key="item.id" class="col-md-4 col-12 d-flex justify-content-center mb-2">
-                    <ItemCard :itemProp="item" :accountProp="account" :orderProp="order" :restaurantColor="restaurant.primaryColor" />
+                    <ItemCard :itemProp="item" :accountProp="account" :orderProp="order"
+                        :restaurantColor="restaurant.primaryColor" />
                 </div>
 
             </div>
         </div>
+        <RouterLink :to="{ name: 'Restaurant Management', params: { restaurantId: restaurant.id } }">
+            <button class="btn btn-dark landing-button">Manage Restaurant</button>
+        </RouterLink>
     </div>
 
     <div class="modal fade" id="itemDetailsModal" tabindex="-1" aria-labelledby="itemDetailsModal" aria-hidden="true">
@@ -208,7 +212,8 @@ function submitOrder() {
     object-fit: cover;
     object-position: center;
 }
-.detail-fix{
+
+.detail-fix {
     margin-left: 10em;
     margin-right: 10em;
 }
