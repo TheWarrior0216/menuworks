@@ -18,7 +18,7 @@ function toggleTheme() {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark px-3 ">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark px-3 gradient">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <img alt="logo" src="/img/MenuWorks.png"
@@ -58,7 +58,9 @@ a:hover {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-
+.gradient{
+  background: linear-gradient(270deg, #e3ffe7 0%, #d9e7ff 100%);
+}
 @media screen and (min-width: 576px) {
   nav {
     height: 64px;
