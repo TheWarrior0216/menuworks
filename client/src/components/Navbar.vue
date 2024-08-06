@@ -21,8 +21,7 @@ function toggleTheme() {
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark px-3 gradient">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="/img/MenuWorks.png"
-          height="45" />
+        <img alt="logo" src="/img/MenuWorks.png" height="45" />
       </div>
     </router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -33,7 +32,11 @@ function toggleTheme() {
       <ul class="navbar-nav me-auto">
       </ul>
       <div>
-
+        <form>
+          <div class=" m-3 me-5">
+            <input type="text" class="form-control" id="Search Bar" placeholder="🔍Search for Restaurants">
+          </div>
+        </form>
       </div>
       <div>
         <button class="btn text-light" @click="toggleTheme"
@@ -60,9 +63,11 @@ a:hover {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-.gradient{
+
+.gradient {
   background: linear-gradient(270deg, #e3ffe7 0%, #d9e7ff 100%);
 }
+
 @media screen and (min-width: 576px) {
   nav {
     height: 64px;
