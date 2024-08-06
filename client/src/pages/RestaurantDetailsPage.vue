@@ -217,4 +217,11 @@ function submitOrder() {
     margin-left: 10em;
     margin-right: 10em;
 }
+@media (max-width: 576px){
+.detail-fix {
+    margin-left: 0em;
+    margin-right: 0em;
+}
+}
+
 </style>

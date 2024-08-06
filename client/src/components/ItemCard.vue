@@ -53,11 +53,18 @@ function createOrderItem() {
     margin-top: 2em ;
     object-position: center;
     object-fit: cover;
-
 }
 .buttonColor{
     color: restaurantColor;
 }
-
+@media (max-width: 576px){
+.borderFix{
+    border: 3px, solid, blueviolet;
+    width: 90%;
+    margin-top: 2em ;
+    object-position: center;
+    object-fit: cover;
+}
+}
 
 </style>
