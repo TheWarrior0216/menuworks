@@ -28,7 +28,7 @@ async function getAllRestaurants() {
 
 <template>
   <!-- Landing Section -->
-  <section class="container-fluid landing-card rounded ">
+  <section class="container-fluid landing-card rounded-top ">
     <div class="row py-4 ">
       <div class="col-12 d-flex justify-content-start ">
         <div class="text-center">
@@ -39,9 +39,6 @@ async function getAllRestaurants() {
           </h1>
           <h2 class="landing-subtitle text-info">Mobile Ordering Made Easy</h2>
           <!-- FIXME fix the params to actually match the restaurant's id -->
-          <RouterLink :to="{ name: 'Restaurant Management', params: { restaurantId: '66aa9cdcdf28b714b9f1a18d' } }">
-            <button class="btn btn-dark landing-button">Manage Restaurant</button>
-          </RouterLink>
         </div>
       </div>
     </div>
