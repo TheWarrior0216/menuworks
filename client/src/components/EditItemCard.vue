@@ -1,12 +1,17 @@
 <script setup>
 import { Item } from '../models/Item.js';
 import { Restaurant } from '../models/Restaurant.js';
+import { itemsService } from '../services/ItemsService.js';
 
 
 const props = defineProps({
     restaurantProp: { type: Restaurant, required: true },
     itemProp: { type: Item, required: true }
 })
+
+async function deleteItem(){
+    await itemsService.deleteItem(props.itemProp.id)
+}
 
 </script>
 
@@ -20,7 +25,7 @@ const props = defineProps({
                     <p class="card-text">$ {{ itemProp.price }}</p>
                 </div>
                 <button class="btn btn-dark w-75 my-3">Edit Item</button>
-                <button class="btn btn-danger w-75">Delete Item</button>
+                <button @click="deleteItem()" class="btn btn-danger w-75">Delete Item</button>
             </div>
         </div>
     </template>
