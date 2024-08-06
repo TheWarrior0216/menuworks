@@ -78,6 +78,8 @@ const editableRestaurantData = ref({
     primaryColor: '#000000',
 })
 
+// TODO create an updateRestaurantDetails function
+
 
 </script>
 
@@ -87,30 +89,35 @@ const editableRestaurantData = ref({
     <section class="row">
         <div class="mb-3">
         <label for="name" class="form-label">Restaurant Name</label>
-        <input v-model="editableRestaurantData.name" type="text" class="form-control" id="name">
+        <input v-model="editableRestaurantData.name" type="text" class="form-control" id="name" name="name">
         </div>
         <div class="mb-3">
         <label for="description" class="form-label">Description</label>
-        <textarea v-model="editableRestaurantData.description" class="form-control" placeholder="Add your restaurant's description here..." id="description"></textarea>
+        <textarea v-model="editableRestaurantData.description" class="form-control" placeholder="Add your restaurant's description here..." id="description" name="description"></textarea>
         </div>
         <div class="mb-3">
         <label for="primaryPictureURL" class="form-label">Restaurant's Primary Picture</label>
-        <input v-model="editableRestaurantData.primaryPictureURL" type="text" class="form-control" id="restaurant-primary-picture">
+        <input v-model="editableRestaurantData.primaryPictureURL" type="text" class="form-control" id="primaryPictureURL" name="primaryPictureURL">
         </div>
         <div class="mb-3">
         <label for="breakfastPictureURL" class="form-label">Restaurant's Breakfast Picture</label>
-        <input v-model="editableRestaurantData.breakfastPictureURL" type="text" class="form-control" id="restaurant-breakfast-picture">
+        <input v-model="editableRestaurantData.breakfastPictureURL" type="text" class="form-control" id="breakfastPictureURL" name="breakfastPictureURL">
         </div>
         <div class="mb-3">
         <label for="location" class="form-label">Restaurant's Location</label>
-        <input v-model="editableRestaurantData.location" type="text" class="form-control" id="location">
+        <input v-model="editableRestaurantData.location" type="text" class="form-control" id="location" name="location">
         </div>
-        <section>
-            <div v-for="hour in editableRestaurantData.hours" :key="hour.day">
-                <input type="checkbox" class="form-check-input" :id="hour.day">
-                <label class="form-check-label" for="hours">{{ hour.day }}</label>
-                <input v-model="editableRestaurantData.hours" type="time" :id=hour.day :name="hour.day" min="0:00" max="23:59"/><span> - </span>
-                <input v-model="editableRestaurantData.hours" type="time" :id="hour.day" :name="hour.day" min="0:00" max="23:59"/>
+        <section class="col-md-4">
+            <label for="hours" class="mb-2">Restaurant's Hours of Operation</label>
+            <div class="row" v-for="businessDay in editableRestaurantData.hours" :key="businessDay.day">
+                <div class="col-md-4">
+                    <input type="checkbox" class="form-check-input mx-1" :id="businessDay.day" :name="businessDay.day">
+                    <label class="form-check-label mx-1" for="hours">{{ businessDay.day }}</label>
+                </div>
+                <div class="col-md-8">
+                    <input v-model="businessDay.open" type="time" :id=businessDay.day :name="businessDay.day" min="0:00" max="23:59"/><span> - </span>
+                    <input v-model="businessDay.closed" type="time" :id="businessDay.day" :name="businessDay.day" min="0:00" max="23:59"/>
+                </div>
             </div>
             <!-- <div>
                 <input type="checkbox" class="form-check-input" id="monday">
@@ -150,7 +157,8 @@ const editableRestaurantData = ref({
             </div> -->
         </section>
         <!-- FIXME Allow for multiselect -->
-        <div class="mb-3">
+        <div class="mb-3 mt-3">
+            <label for="type" class="form-label">Restaurant Type</label>
             <select class="form-select text-capitalize" name="type" id="type">
                 <option v-for="type in types" :key="type" :value="type">
                 {{ type }}
@@ -159,11 +167,11 @@ const editableRestaurantData = ref({
         </div>
         <div class="mb-3">
         <label for="logoURL" class="form-label">Restaurant Logo</label>
-        <input type="text" class="form-control" id="logo">
+        <input v-model="editableRestaurantData.logoURL" type="text" class="form-control" id="logo" name="logoURL">
         </div>
-        <div>
+        <div class="mb-3">
             <label for="primaryColor" class="form-label" >Primary color</label>
-            <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color">
+            <input v-model="editableRestaurantData.primaryColor" type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color" name="primaryColor">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>    
     </section>
