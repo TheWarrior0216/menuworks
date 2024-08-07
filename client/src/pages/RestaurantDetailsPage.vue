@@ -38,7 +38,7 @@ const total = computed(() => {
 
 watch(account, () => ordersService.createOrder(route.params.restaurantId))
 
-watch(restaurant, () => {if(account.value){ordersService.createOrder(route.params.restaurantId);orderItemsService.clear()}})
+watch(restaurant, () => { if (account.value) { ordersService.createOrder(route.params.restaurantId); orderItemsService.clear() } })
 
 
 const specialInstructions = ref('')
@@ -55,7 +55,7 @@ onMounted(() => {
     }
 })
 
-function clearOrderItems(){
+function clearOrderItems() {
     orderItemsService.clear()
 }
 
@@ -110,9 +110,9 @@ function submitOrder() {
                     <div class="d-md-flex align-items-center">
                         <h1 class="fw-bolder font-size text-md-start text-center ms-3">{{ restaurant?.name }}</h1>
                         <!-- REVIEW Might want to have a line of text saying that the restaurant is closed if open and close hours are not listed. -->
-                        <div v-if="currentRestaurantHour.open && currentRestaurantHour.close"
+                        <div v-if="currentRestaurantHour?.open && currentRestaurantHour?.close"
                             class="px-2 pb-1 fs-3 text-md-start text-center">
-                            <p class="m-0 p-0">{{ currentRestaurantHour.open }} - {{ currentRestaurantHour.closed }} •
+                            <p class="m-0 p-0">{{ currentRestaurantHour?.open }} - {{ currentRestaurantHour?.closed }} •
                                 {{ restaurant.type }}
                             </p>
                         </div>
