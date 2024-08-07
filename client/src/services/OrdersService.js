@@ -11,6 +11,10 @@ class OrdersService {
         AppState.orders = orders
     }
 
+    async getPendingRestaurantOrders(orderId) {
+        
+    }
+
     async getAllOrders() {
         const response = await api.get('api/orders')
         logger.log('Getting all orders', response.data)
