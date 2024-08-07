@@ -12,15 +12,15 @@ export const AppState = reactive({
   account: null,
   /** @type Restaurant[] */
   restaurants: [],
-    /** @type Restaurant */
+  /** @type Restaurant */
   activeRestaurant: null,
-  weekday: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+  weekday: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
   currentDay: "",
   /** @type Restaurant */
   spotlightRestaurant: null,
   /** @type Item[] */
   items: [],
-    /** @type Item */
+  /** @type Item */
   activeItem: null,
   quantity: 1,
   /** @type Order */
@@ -30,5 +30,6 @@ export const AppState = reactive({
   idNum: 0,
 
   /** @type Order[] */
-  orders: []
+  orders: [],
+  search: ''
 })

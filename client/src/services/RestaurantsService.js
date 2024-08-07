@@ -4,9 +4,14 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class RestaurantsService {
-  async updateRestaurantDetails(editableRestaurantData ,restaurantId) {
-      const response = await api.put(`api/restaurants/${restaurantId}`, editableRestaurantData)
-      logger.log('Updating the restaurant details', response.data)
+  updateSearch(search) {
+    AppState.restaurants = null
+    AppState.search = search
+    this.getAllRestaurants()
+  }
+  async updateRestaurantDetails(editableRestaurantData, restaurantId) {
+    const response = await api.put(`api/restaurants/${restaurantId}`, editableRestaurantData)
+    logger.log('Updating the restaurant details', response.data)
   }
 
   async toggleRestaurantOpen(restaurantId, data) {
@@ -26,7 +31,7 @@ class RestaurantsService {
 
   async getAllRestaurants() {
     this.getDay()
-    const response = await api.get('api/restaurants')
+    const response = await api.get(`api/restaurants?query=${AppState.search}`)
     logger.log('Getting all of the restaurants', response.data)
     const restaurants = response.data.map(restaurantData => new Restaurant(restaurantData))
     const spotlightRestaurant = restaurants.find((restaurant) => restaurant.spotlightRestaurant == true)

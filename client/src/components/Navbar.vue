@@ -3,6 +3,7 @@ import { computed, onMounted, ref } from 'vue';
 import { loadState, saveState } from '../utils/Store.js';
 import Login from './Login.vue';
 import { AppState } from "../AppState.js";
+import SearchBar from "./SearchBar.vue";
 
 const theme = ref(loadState('theme') || 'light')
 
@@ -37,11 +38,7 @@ function clearRestaurant() {
       <ul class="navbar-nav me-auto">
       </ul>
       <div v-if="!restaurants">
-        <form>
-          <div class=" m-3 me-5">
-            <input type="text" class="form-control" id="Search Bar" placeholder="🔍Search for Restaurants">
-          </div>
-        </form>
+        <SearchBar />
       </div>
       <div>
         <button class="btn text-light" @click="toggleTheme"
