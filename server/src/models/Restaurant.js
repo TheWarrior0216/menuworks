@@ -12,6 +12,7 @@ export const RestaurantSchema = new Schema({
             open: { type: String },
             closed: { type: String },
             day: { type: String },
+            isOpen: {type: Boolean},
         }], required: true
     },
     type: {

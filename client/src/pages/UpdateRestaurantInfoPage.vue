@@ -175,7 +175,7 @@ watchEffect(() => { editableRestaurantData.value = {...AppState.activeRestaurant
         <!-- FIXME Allow for multiselect -->
         <div class="mb-3 mt-3">
             <label for="type" class="form-label">Restaurant Type</label>
-            <select class="form-select text-capitalize" name="type" id="type">
+            <select v-model="editableRestaurantData.type" class="form-select text-capitalize" name="type" id="type">
                 <option v-for="type in types" :key="type" :value="type">
                 {{ type }}
                 </option>
