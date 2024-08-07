@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref, watchEffect } from 'vue';
 import { Restaurant } from '../models/Restaurant.js';
 import { AppState } from '../AppState.js';
 import Pop from '../utils/Pop.js';
@@ -85,15 +85,17 @@ const editableRestaurantData = ref({
     primaryColor: '#000000',
 })
 
-// TODO create an updateRestaurantDetails function
 async function updateRestaurantDetails(){
     try {
       await restaurantsService.updateRestaurantDetails(editableRestaurantData.value , route.params.restaurantId)
+      Pop.success("Successfully updated restaurant info")
     }
     catch (error){
       Pop.error(error);
     }
 }
+
+watchEffect(() => { editableRestaurantData.value = {...AppState.activeRestaurant} })
 
 </script>
 
@@ -125,7 +127,7 @@ async function updateRestaurantDetails(){
             <label for="hours" class="mb-2">Restaurant's Hours of Operation</label>
             <div class="row" v-for="businessDay in editableRestaurantData.hours" :key="businessDay.day">
                 <div class="col-md-4">
-                    <input type="checkbox" class="form-check-input mx-1" :id="businessDay.day" :name="businessDay.day">
+                    <input v-model="businessDay.isOpen" type="checkbox" class="form-check-input mx-1" :id="businessDay.day" :name="businessDay.day">
                     <label class="form-check-label mx-1" for="hours">{{ businessDay.day }}</label>
                 </div>
                 <div class="col-md-8">

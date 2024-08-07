@@ -16,7 +16,7 @@ export const RestaurantSchema = new Schema({
     },
     type: {
         type: String, enum: ["mexican", "indian", "italian", "american", "japanese", "thai", "french", "chinese", "greek", "brazilian", "spanish", "vietnamese", "korean", "african", "caribbean", "cuban", "barbarque", "other"
-        ]
+        ], lowercase: true
     },
     logoURL: { type: String, required: true },
     primaryColor: { type: String, required: true, minLength: 6, maxLength: 8 },
