@@ -17,11 +17,10 @@ import Pop from "../utils/Pop.js";
 <template>
   <button style="color: darkturquoise;" class="text-center py-4 btn text-center">If you Own a Restaurant Click
     Here!</button>
-
-  <div class="modal fade" id="createRestaurantModal" tabindex="-1" aria-labelledby="createRestaurantModal"
+  <!-- TODO add restraunmjiuzgyriu yg -->
+  <div class="modal fade" id="createRestaurantModal" tabindex="1" aria-labelledby="createRestaurantModal"
     aria-hidden="true">
-
-    <div class="modal-dialog">
+    <!-- <div class="modal-dialog">
       <div v-if="activeItem" class="modal-content">
         <div class="modal-header justify-content-center">
           <h1 class="modal-title fs-2 text-center" id="exampleModalLabel">{{ activeItem.name }}</h1>
@@ -47,12 +46,8 @@ import Pop from "../utils/Pop.js";
           <button disabled data-bs-dismiss="modal" type="button" class="btn btn-primary">Add
             to Cart <i class="mdi mdi-cart-plus"></i></button>
         </div>
-        <!-- </div>
-        </div>
-    </div> -->
-
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 

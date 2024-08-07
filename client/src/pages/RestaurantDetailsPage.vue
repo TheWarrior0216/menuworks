@@ -12,10 +12,10 @@ import OrderItemCard from '../components/OrderItemCard.vue';
 
 const restaurant = computed(() => AppState.activeRestaurant)
 
-const currentRestaurantHour = computed(()=> {
-    if(!AppState.activeRestaurant) return null
+const currentRestaurantHour = computed(() => {
+    if (!AppState.activeRestaurant) return null
 
-    const weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+    const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
     const foundHour = AppState.activeRestaurant.hours.find(hour => hour.day == weekdays[new Date().getDay()])
 
@@ -103,8 +103,10 @@ function submitOrder() {
                     <div class="d-md-flex align-items-center">
                         <h1 class="fw-bolder font-size text-md-start text-center ms-3">{{ restaurant?.name }}</h1>
                         <!-- REVIEW Might want to have a line of text saying that the restaurant is closed if open and close hours are not listed. -->
-                        <div v-if="currentRestaurantHour.open && currentRestaurantHour.close" class="px-2 pb-1 fs-3 text-md-start text-center">
-                            <p class="m-0 p-0">{{ currentRestaurantHour.open }} - {{ currentRestaurantHour.closed }} • {{ restaurant.type }}
+                        <div v-if="currentRestaurantHour.open && currentRestaurantHour.close"
+                            class="px-2 pb-1 fs-3 text-md-start text-center">
+                            <p class="m-0 p-0">{{ currentRestaurantHour.open }} - {{ currentRestaurantHour.closed }} •
+                                {{ restaurant.type }}
                             </p>
                         </div>
                     </div>
@@ -124,9 +126,9 @@ function submitOrder() {
             <button class="btn btn-dark landing-button">Manage Restaurant</button>
         </RouterLink>
     </div>
-    <!-- TODO add rest -->
+
     <div class="modal fade" id="itemDetailsModal" tabindex="-1" aria-labelledby="itemDetailsModal" aria-hidden="true">
-        <!-- <div class="modal-dialog">
+        <div class="modal-dialog">
             <div v-if="activeItem" class="modal-content">
                 <div class="modal-header justify-content-center">
                     <h1 class="modal-title fs-2 text-center" id="exampleModalLabel">{{ activeItem.name }}</h1>
@@ -153,7 +155,7 @@ function submitOrder() {
                         to Cart <i class="mdi mdi-cart-plus"></i></button>
                 </div>
             </div>
-        </div> -->
+        </div>
     </div>
 
     <div class="offcanvas offcanvas-start" tabindex="-1" id="orderOffCanvas" aria-labelledby="orderOffCanvasLabel">
