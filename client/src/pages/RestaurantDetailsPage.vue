@@ -38,6 +38,8 @@ const total = computed(() => {
 
 watch(account, () => ordersService.createOrder(route.params.restaurantId))
 
+watch(restaurant, () => {if(account.value){ordersService.createOrder(route.params.restaurantId);orderItemsService.clear()}})
+
 
 const specialInstructions = ref('')
 
@@ -49,8 +51,13 @@ onMounted(() => {
     getRestaurant()
     if (account.value) {
         ordersService.createOrder(route.params.restaurantId)
+        clearOrderItems()
     }
 })
+
+function clearOrderItems(){
+    orderItemsService.clear()
+}
 
 async function getRestaurant() {
     try {

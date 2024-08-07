@@ -3,6 +3,9 @@ import { OrderItem } from "../models/OrderItem.js"
 import { logger } from "../utils/Logger.js"
 
 class OrderItemsService {
+    clear() {
+        AppState.orderItems = []
+    }
 
     createOrderItem(quantity, id, specialInstructions, item) {
         const orderItemData = {
