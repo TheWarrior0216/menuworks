@@ -1,0 +1,9 @@
+version: '3'
+services:
+  app:
+    image: porteryoung/MenuWorks:latest 
+    restart: unless-stopped
+    env_file:
+      - MenuWorks.env # Optional: reference an environment file
+    ports:
+      - "7045:80" # ec2-port:app-port verify the port mapping
