@@ -22,6 +22,6 @@ OrderSchema.virtual('restaurant', {
 })
 OrderSchema.virtual('orderItem', {
   localField: '_id',
-  foreignField: 'orderItemId',
-  ref: 'Order-Item'
+  foreignField: 'orderId',
+  ref: 'OrderItem'
 })

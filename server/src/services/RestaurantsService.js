@@ -5,7 +5,7 @@ import { logger } from "../utils/Logger.js"
 class RestaurantsService {
 
     async getAllOrdersByRestaurantId(id) {
-        const orders = await dbContext.Orders.find({ restaurantId: id })
+        const orders = await dbContext.Orders.find({ restaurantId: id }).populate('profile orderItem')
         return orders
     }
 

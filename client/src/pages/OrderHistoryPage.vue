@@ -4,12 +4,15 @@ import { ordersService } from '../services/OrdersService.js';
 import { useRoute } from 'vue-router';
 import Pop from '../utils/Pop.js';
 import { AppState } from '../AppState.js';
+import { itemsService } from '../services/ItemsService.js';
 
 const route = useRoute()
 
-const orders = computed(()=>AppState.orders)
+const orders = computed(() => AppState.orders)
+const items = computed(()=> AppState.items)
 
 onMounted(() => {
+    getItems()
     getOrders()
 })
 
@@ -23,14 +26,29 @@ async function getOrders() {
 
 }
 
+async function getItems() {
+    try {
+        await itemsService.getItemsByRestaurantId(route.params.restaurantId)
+    }
+    catch (error) {
+        Pop.error(error);
+    }
+
+}
+
 </script>
 
 
 <template>
 
     <h1>This page will show all of the order history for the restaurant's online orders</h1>
-    <h2>{{ orders }}</h2>
-
+    <div class="container">
+        <div class="row">
+            <div class="col-4" v-for="order in orders" :key="order.id">
+                <OrderHistoryCard :orderProp="order" :itemsProp="items"/>
+            </div>
+        </div>
+    </div>
 </template>
 
 

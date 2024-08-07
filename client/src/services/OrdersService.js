@@ -7,7 +7,8 @@ class OrdersService {
     async getRestaurantOrders(id) {
         const response = await api.get(`api/restaurants/${id}/orders`)
         logger.log(response.data)
-        AppState.orders = response.data
+        const orders = response.data.map((data)=>new Order(data))
+        AppState.orders = orders
     }
 
     async getAllOrders() {
