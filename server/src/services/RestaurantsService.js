@@ -50,6 +50,15 @@ class RestaurantsService {
         const restaurants = await dbContext.Restaurant.find()
         return (restaurants)
     }
+    async searchRestaurants(name = '') {
+        const filter = new RegExp(name, 'ig')
+        return await dbContext.Restaurant
+            .aggregate([{
+                $match: { name: filter }
+            }])
+            .collation({ locale: 'en_US', strength: 1 })
+            .exec()
+    }
 
     async getRestaurantById(id) {
         const restaurant = await dbContext.Restaurant.findById(id)

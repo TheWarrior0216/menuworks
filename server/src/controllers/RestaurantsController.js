@@ -9,6 +9,7 @@ export class RestaurantsController extends BaseController {
         super('api/restaurants')
         this.router
             .get('', this.getAllRestaurants)
+            .get('/search', this.searchRestaurants)
             .get('/:restaurantId', this.getRestaurantById)
             .get('/:restaurantId/orders', this.getRestaurantOrders)
             .use('', Auth0Provider.getAuthorizedUserInfo)
@@ -81,6 +82,17 @@ export class RestaurantsController extends BaseController {
     async getAllRestaurants(request, response, next) {
         try {
             const restaurants = await restaurantsService.getAllRestaurants()
+            response.send(restaurants)
+        }
+        catch (error) {
+            next(error)
+        }
+    }
+    async searchRestaurants(request, response, next) {
+        try {
+            const searchQuery = request.query
+            // logger.log(searchQuery)
+            const restaurants = await restaurantsService.searchRestaurants(searchQuery.name)
             response.send(restaurants)
         }
         catch (error) {

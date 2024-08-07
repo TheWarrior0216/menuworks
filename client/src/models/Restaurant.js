@@ -4,7 +4,7 @@ import { capitalize } from "vue"
 
 export class Restaurant {
     constructor(data) {
-        this.id = data.id
+        this.id = data._id
         this.creatorId = data.creatorId
         this.name = capitalize(data.name)
         this.description = capitalize(data.description)

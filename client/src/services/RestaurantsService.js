@@ -7,13 +7,18 @@ class RestaurantsService {
   updateSearch(search) {
     AppState.restaurants = null
     AppState.search = search
-    this.getAllRestaurants()
+    this.searchRestaurants()
   }
   async updateRestaurantDetails(editableRestaurantData, restaurantId) {
     const response = await api.put(`api/restaurants/${restaurantId}`, editableRestaurantData)
     logger.log('Updating the restaurant details', response.data)
   }
+  async searchRestaurants() {
+    const response = await api.get(`api/restaurants/search?name=${AppState.search}`)
+    const gotem = response.data.map(pojo => new Restaurant(pojo))
+    AppState.restaurants = gotem
 
+  }
   async toggleRestaurantOpen(restaurantId, data) {
     const response = await api.put(`api/restaurants/${restaurantId}/open`, data)
     logger.log(response.data)

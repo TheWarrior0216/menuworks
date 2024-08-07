@@ -8,6 +8,7 @@ const editableSearch = ref({
 })
 
 async function updateSearch() {
+  debugger
   restaurantsService.updateSearch(editableSearch.value.search)
 }
 </script>
