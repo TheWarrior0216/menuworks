@@ -31,5 +31,6 @@ export const AppState = reactive({
 
   /** @type Order[] */
   orders: [],
-  search: ''
+  search: '',
+  center: null
 })

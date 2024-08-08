@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { restaurantsService } from '../services/RestaurantsService.js';
 import Pop from '../utils/Pop.js';
 import { AppState } from '../AppState.js';
@@ -7,6 +7,7 @@ import Restaurants from '../components/RestaurantCard.vue';
 import RestaurantCard from '../components/RestaurantCard.vue';
 import SpotlightRestaurantCard from '../components/SpotlightRestaurantCard.vue';
 import { RouterLink } from 'vue-router';
+
 
 const spotlightRestaurant = computed(() => AppState.spotlightRestaurant)
 const restaurants = computed(() => AppState.restaurants)
@@ -24,6 +25,7 @@ async function getAllRestaurants() {
     Pop.error(error);
   }
 }
+
 </script>
 
 <template>
@@ -43,7 +45,6 @@ async function getAllRestaurants() {
       </div>
     </div>
   </section>
-
   <!-- Spotlight Restaurant Restaurant Section -->
   <section class="container-fluid spotlightRestaurant raleway">
     <div class="row">
@@ -85,7 +86,8 @@ async function getAllRestaurants() {
   background-size: cover;
   background-position: center;
 }
-.desktop-view{
+
+.desktop-view {
   padding-left: 1em;
   margin-left: 1em;
 }
@@ -113,14 +115,16 @@ async function getAllRestaurants() {
 }
 
 .spotlightRestaurant {
-  background: rgb(213,231,230);
-background: linear-gradient(0deg, rgba(213,231,230,1) 0%, rgba(228,228,228,1) 100%);
+  background: rgb(213, 231, 230);
+  background: linear-gradient(0deg, rgba(213, 231, 230, 1) 0%, rgba(228, 228, 228, 1) 100%);
 }
-.allRestaurants{
+
+.allRestaurants {
   background-color: #d5e7e6;
   padding-left: 8em;
-  padding-right: 8em ;
+  padding-right: 8em;
 }
+
 .raleway {
   font-family: "Raleway", sans-serif;
   font-optical-sizing: auto;
@@ -129,27 +133,30 @@ background: linear-gradient(0deg, rgba(213,231,230,1) 0%, rgba(228,228,228,1) 10
 }
 
 @media (max-width: 576px) {
-  .allRestaurants{
+  .allRestaurants {
     padding-left: 1em;
-  padding-right: 1em ;
+    padding-right: 1em;
   }
+
   .landing-card {
-  height: 50dvh;
-  padding-top: 0em;
-  padding-bottom: 0em;
-  margin-left: 0;
-  margin-right: 0;
-  background-image: url(https://wallpapertag.com/wallpaper/full/4/d/7/317105-gorgerous-food-background-2990x1918-for-mobile-hd.jpg);
-  background-size: cover;
-  background-position: center;
-}
-.landing-title {
-  margin-top: 1em;
-  font-size: 0px;
-  font-weight: 600;
-}
-.mobile-view{
-  padding-left: 0;
-}
+    height: 50dvh;
+    padding-top: 0em;
+    padding-bottom: 0em;
+    margin-left: 0;
+    margin-right: 0;
+    background-image: url(https://wallpapertag.com/wallpaper/full/4/d/7/317105-gorgerous-food-background-2990x1918-for-mobile-hd.jpg);
+    background-size: cover;
+    background-position: center;
+  }
+
+  .landing-title {
+    margin-top: 1em;
+    font-size: 0px;
+    font-weight: 600;
+  }
+
+  .mobile-view {
+    padding-left: 0;
+  }
 }
 </style>

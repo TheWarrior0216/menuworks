@@ -13,7 +13,6 @@ const account = computed(() => AppState.account)
     <Navbar />
   </header>
   <main>
-    SETH I NEED OWNER PERMISSIONS ON THE GITHUB SO I CAN HOST THE SITE - porter
     <router-view />
   </main>
   <footer v-if="!account?.isOwner" class="d-flex justify-content-center">

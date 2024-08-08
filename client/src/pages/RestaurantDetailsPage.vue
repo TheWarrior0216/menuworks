@@ -8,6 +8,10 @@ import { itemsService } from '../services/ItemsService.js';
 import { ordersService } from '../services/OrdersService.js';
 import { orderItemsService } from '../services/OrderItemsService.js';
 import OrderItemCard from '../components/OrderItemCard.vue';
+import axios from 'axios';
+import { maps } from '../services/AxiosService.js';
+import { logger } from '../utils/Logger.js';
+import { mapsService } from '../services/MapsService.js';
 
 
 const restaurant = computed(() => AppState.activeRestaurant)
@@ -35,6 +39,7 @@ const total = computed(() => {
     })
     return calcPrice
 })
+const center = computed(() => AppState.center)
 
 watch(account, () => ordersService.createOrder(route.params.restaurantId))
 
@@ -42,8 +47,8 @@ watch(restaurant, () => { if (account.value) { ordersService.createOrder(route.p
 
 
 const specialInstructions = ref('')
-
 const route = useRoute()
+const options = { disableDefaultUI: true }
 
 
 
@@ -53,6 +58,7 @@ onMounted(() => {
         ordersService.createOrder(route.params.restaurantId)
         clearOrderItems()
     }
+
 })
 
 function clearOrderItems() {
@@ -64,6 +70,7 @@ async function getRestaurant() {
         const id = await route.params.restaurantId
         await restaurantsService.getRestaurantById(id)
         await itemsService.getItemsByRestaurantId(id)
+        getCoordinates(restaurant.value.location)
     }
     catch (error) {
         Pop.error(error);
@@ -72,6 +79,15 @@ async function getRestaurant() {
 
 function quantityIncrease() {
     itemsService.increase()
+}
+
+async function getCoordinates(location) {
+    try {
+        await mapsService.getCoordinates(location)
+    }
+    catch (error) {
+        Pop.error(error);
+    }
 }
 
 function quantityDecrease() {
@@ -104,9 +120,11 @@ function submitOrder() {
                 </div>
             </div>
         </div>
+
         <div v-if="restaurant" class="container-fluid ">
             <div class="row detail-fix">
                 <div class="col-12 bg-body mb-2 rounded mt-5 shadow">
+
                     <div class="d-md-flex align-items-center">
                         <h1 class="fw-bolder font-size text-md-start text-center ms-3">{{ restaurant?.name }}</h1>
                         <!-- REVIEW Might want to have a line of text saying that the restaurant is closed if open and close hours are not listed. -->
@@ -119,9 +137,11 @@ function submitOrder() {
                     </div>
                     <h5 class="text-md-start text-center ms-3">{{ restaurant.location }}</h5>
                     <p class="text-md-start text-center ms-3">{{ restaurant.description }}</p>
-
-
+                    <GMapMap v-if="center" :center="center" :zoom="16" map-type-id="terrain"
+                        style="width: 100%; height: 35vh" :options=options>
+                    </GMapMap>
                 </div>
+
                 <div v-for="item in items" :key="item.id" class="col-md-4 col-12 d-flex justify-content-center mb-2">
                     <ItemCard :itemProp="item" :accountProp="account" :orderProp="order"
                         :restaurantColor="restaurant.primaryColor" />
