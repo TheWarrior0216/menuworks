@@ -132,7 +132,7 @@ function submitOrder() {
             </div>
         </div>
 
-        <div v-if="restaurant" class="container-fluid ">
+        <div v-if="restaurant" class="container-fluid">
             <div class="row detail-fix">
                 <div class="col-12 bg-body mb-2 rounded mt-5 shadow">
 
@@ -150,11 +150,11 @@ function submitOrder() {
                     <p class="text-md-start text-center ms-3">{{ restaurant.description }}</p>
                     <GMapMap v-if="center" :center="center" :zoom="16" map-type-id="terrain"
                         style="width: 100%; height: 35vh" :options=options :markers=marker>
-                        <GMapMarker :position="center" />
+                        <GMapMarker :position="center" class="mb-2" />
                     </GMapMap>
                 </div>
 
-                <div v-for="item in items" :key="item.id" class="col-md-4 col-12 d-flex justify-content-center mb-2">
+                <div v-for="item in items" :key="item.id" class="col-md-4 px-0 col-12 d-flex justify-content-center mb-2">
                     <ItemCard :itemProp="item" :accountProp="account" :orderProp="order"
                         :restaurantColor="restaurant.primaryColor" />
                 </div>
@@ -265,8 +265,8 @@ function submitOrder() {
 }
 
 .detail-fix {
-    margin-left: 10em;
-    margin-right: 10em;
+    margin-left: 7.5vw;
+    margin-right: 7.5vw;
 }
 
 @media (max-width: 576px) {
