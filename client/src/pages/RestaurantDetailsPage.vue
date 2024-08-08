@@ -39,7 +39,16 @@ const total = computed(() => {
     })
     return calcPrice
 })
-const center = computed(() => AppState.center)
+
+const marker = ref({
+    id: 'user-marker',
+    location: AppState.center
+})
+
+const center = computed(() => {
+    // marker.value.location = AppState.center
+    return (AppState.center)
+})
 
 watch(account, () => ordersService.createOrder(route.params.restaurantId))
 
@@ -49,6 +58,8 @@ watch(restaurant, () => { if (account.value) { ordersService.createOrder(route.p
 const specialInstructions = ref('')
 const route = useRoute()
 const options = { disableDefaultUI: true }
+
+
 
 
 
@@ -138,7 +149,8 @@ function submitOrder() {
                     <h5 class="text-md-start text-center ms-3">{{ restaurant.location }}</h5>
                     <p class="text-md-start text-center ms-3">{{ restaurant.description }}</p>
                     <GMapMap v-if="center" :center="center" :zoom="16" map-type-id="terrain"
-                        style="width: 100%; height: 35vh" :options=options>
+                        style="width: 100%; height: 35vh" :options=options :markers=marker>
+                        <GMapMarker :position="center" />
                     </GMapMap>
                 </div>
 
