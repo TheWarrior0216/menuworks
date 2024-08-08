@@ -18,6 +18,17 @@ async function completedOrder(orderId){
     }
 }
 
+async function cancelOrder(orderId) {
+    try {
+      const wantsToCancel = await Pop.confirm('Are you sure you want to cancel this order?')
+      if (!wantsToCancel) return
+      await ordersService.cancelOrder(orderId)
+    }
+    catch (error){
+      Pop.error(error);
+    }
+}
+
 </script>
 
 
@@ -35,7 +46,7 @@ async function completedOrder(orderId){
             <button @click="completedOrder(orderProp.id)" class="btn btn-success pending-order-buttons">Complete Order</button>
         </div>
         <div class="mt-3 text-center">
-            <button class="btn btn-danger pending-order-buttons">Cancel Order</button>
+            <button @click="cancelOrder(orderProp.id)" class="btn btn-danger pending-order-buttons">Cancel Order</button>
         </div>
     </div>
 </template>

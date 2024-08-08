@@ -4,6 +4,13 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class OrdersService {
+    async cancelOrder(orderId) {
+       const response = await api.delete(`api/orders/${orderId}`)
+       logger.log('Cancelling order', response.data) 
+       const orderIndex = AppState.orders.findIndex(order => order.id == orderId)
+       if (orderIndex == -1) throw new Error("Unable to find orderIndex")
+        AppState.orders.splice(orderIndex, 1)
+    }
     async getRestaurantOrders(id) {
         const response = await api.get(`api/restaurants/${id}/orders`)
         logger.log(response.data)
