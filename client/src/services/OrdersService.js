@@ -11,10 +11,6 @@ class OrdersService {
         AppState.orders = orders
     }
 
-    async getPendingRestaurantOrders(orderId) {
-        
-    }
-
     async getAllOrders() {
         const response = await api.get('api/orders')
         logger.log('Getting all orders', response.data)
@@ -27,7 +23,6 @@ class OrdersService {
         const response = await api.put(`api/orders/${orderId}`, { completed: true })
         orderToEdit.completed = true
         logger.log('Order complete!', response.data)
-
     }
 
     async submitOrder() {

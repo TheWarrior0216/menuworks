@@ -32,7 +32,7 @@ async function completedOrder(orderId){
             </li>
         </div>
         <div class="mt-4 text-center">
-            <button class="btn btn-success pending-order-buttons">Complete Order</button>
+            <button @click="completedOrder(orderProp.id)" class="btn btn-success pending-order-buttons">Complete Order</button>
         </div>
         <div class="mt-3 text-center">
             <button class="btn btn-danger pending-order-buttons">Cancel Order</button>

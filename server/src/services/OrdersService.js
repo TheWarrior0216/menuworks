@@ -11,8 +11,8 @@ class OrdersService {
   }
   async changeOrder(orderId, orderData) {
     const foundOrder = await dbContext.Orders.findById(orderId)
-    foundOrder.placed = orderData.placed
-    foundOrder.completed = orderData.completed
+    foundOrder.placed = orderData.placed || foundOrder.placed
+    foundOrder.completed = orderData.completed || foundOrder.completed
     await foundOrder.save()
     return foundOrder
   }
