@@ -40,8 +40,6 @@ async function getItems() {
 
 
 <template>
-
-    <h1>This page will show all of the order history for the restaurant's online orders</h1>
     <div class="container">
         <div class="row">
             <div class="col-4" v-for="order in orders" :key="order.id">

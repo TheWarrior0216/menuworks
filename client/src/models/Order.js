@@ -9,5 +9,6 @@ export class Order{
         this.profile = data.profile || null
         this.restaurant = data.restaurant || null
         this.items = data.orderItem || null
+        this.isCancelled = data.isCancelled || false
     }
 }
