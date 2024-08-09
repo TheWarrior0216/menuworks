@@ -15,7 +15,7 @@ export const AuthService = initialize({
   }
 })
 
-AuthService.on(AUTH_EVENTS.AUTHENTICATED, async function() {
+AuthService.on(AUTH_EVENTS.AUTHENTICATED, async function () {
   api.defaults.headers.authorization = AuthService.bearer
   api.interceptors.request.use(refreshAuthToken)
   AppState.identity = AuthService.identity
@@ -32,7 +32,7 @@ async function refreshAuthToken(config) {
   if (expired) {
     await AuthService.loginWithPopup()
   } else if (needsRefresh) {
-    await AuthService.getTokenSilently()
+    await AuthService.getTokenSilently({ redirect_uri: window.location.origin })
     api.defaults.headers.authorization = AuthService.bearer
     socketService.authenticate(AuthService.bearer)
   }
