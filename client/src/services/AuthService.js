@@ -32,7 +32,7 @@ async function refreshAuthToken(config) {
   if (expired) {
     await AuthService.loginWithPopup()
   } else if (needsRefresh) {
-    await AuthService.getTokenSilently({ redirect_uri: window.location.origin })
+    await AuthService.getTokenSilently({ authorizationParams: { redirect_uri: window.location.origin } })
     api.defaults.headers.authorization = AuthService.bearer
     socketService.authenticate(AuthService.bearer)
   }
