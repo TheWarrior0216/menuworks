@@ -5,15 +5,15 @@ import { accountService } from './AccountService'
 import { api } from './AxiosService'
 import { socketService } from './SocketService'
 
-const authOptoins = {
+
+export const AuthService = initialize({
   domain,
   clientId,
   authorizationParams: {
     audience,
     redirect_uri: window.location.origin,
   }
-}
-export const AuthService = initialize(authOptoins)
+})
 
 AuthService.on(AUTH_EVENTS.AUTHENTICATED, async function () {
   api.defaults.headers.authorization = AuthService.bearer
@@ -32,7 +32,7 @@ async function refreshAuthToken(config) {
   if (expired) {
     await AuthService.loginWithPopup()
   } else if (needsRefresh) {
-    await AuthService.getTokenSilently(authOptoins)
+    await AuthService.getTokenSilently()
     api.defaults.headers.authorization = AuthService.bearer
     socketService.authenticate(AuthService.bearer)
   }
