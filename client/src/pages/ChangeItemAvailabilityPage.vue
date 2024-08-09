@@ -16,9 +16,11 @@ const items = computed(() => AppState.items)
 
 <div class="container">
     <div class="row">
-        <div class="col-12 d-flex justify-content-start">
-            <div v-for="item in items" :key="item.id" class="col-3 mx-4">
-                <ToggleAvailabilityCard :restaurantProp="restaurant" :itemProp="item" />
+        <div class="col-12 d-flex">
+            <div class="row justify-content-center">
+                <div v-for="item in items" :key="item.id" class="col-3 mx-5 my-1">
+                    <ToggleAvailabilityCard :restaurantProp="restaurant" :itemProp="item" />
+                </div>
             </div>
         </div>
     </div>
