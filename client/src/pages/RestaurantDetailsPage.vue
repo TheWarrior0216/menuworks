@@ -161,9 +161,6 @@ function submitOrder() {
 
             </div>
         </div>
-        <RouterLink :to="{ name: 'Restaurant Management', params: { restaurantId: restaurant.id } }">
-            <button class="btn btn-dark landing-button">Manage Restaurant</button>
-        </RouterLink>
     </div>
 
     <div class="modal fade" id="itemDetailsModal" tabindex="-1" aria-labelledby="itemDetailsModal" aria-hidden="true">
