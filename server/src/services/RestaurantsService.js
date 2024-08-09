@@ -4,12 +4,17 @@ import { logger } from "../utils/Logger.js"
 
 class RestaurantsService {
 
+    async getAllItemsByRestaurantId(itemId) {
+        const items = await dbContext.Items.find({ restaurantId: itemId })
+        return items
+    }
+
     async getAllOrdersByRestaurantId(id) {
         const orders = await dbContext.Orders.find({ restaurantId: id }).populate('profile orderItem')
         return orders
     }
 
-    async getAllItemsByRestaurantId(itemId) {
+    async getItemsByRestaurantId(itemId) {
         const items = await dbContext.Items.find({ restaurantId: itemId, isDeleted: false })
         return items
     }

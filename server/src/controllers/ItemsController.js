@@ -9,12 +9,18 @@ export class ItemsController extends BaseController {
     this.router
       .get('', this.getAllItems)
       .get('/:itemId', this.getItemById)
-      .get('/:restrauntId/restaurant', this.getAllItemsByRestaurantId)
+      .get('/:restaurantId/restaurant', this.getItemsByRestaurantId)
+      .get('/:restaurantId/restaurant/all', this.getAllItemsByRestaurantId)
       .use('', Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createItem)
       .put('/:itemId', this.changeItem)
       .delete('/:itemId', this.deleteItem)
   }
+
+  getAllItemsByRestaurantId(arg0, getAllItemsByRestaurantId) {
+    throw new Error("Method not implemented.");
+  }
+
   async getAllItems(req, res, next) {
     try {
       const items = await itemsService.getAllItems()
@@ -32,10 +38,19 @@ export class ItemsController extends BaseController {
       next(error)
     }
   }
+  async getItemsByRestaurantId(req, res, next) {
+    try {
+      const restaurantId = req.params.restaurantId
+      const item = await restaurantsService.getItemsByRestaurantId(restaurantId)
+      res.send(item)
+    } catch (error) {
+      next(error)
+    }
+  }
   async getAllItemsByRestaurantId(req, res, next) {
     try {
-      const restrauntId = req.params.restrauntId
-      const item = await restaurantsService.getAllItemsByRestaurantId(restrauntId)
+      const restaurantId = req.params.restaurantId
+      const item = await restaurantsService.getAllItemsByRestaurantId(restaurantId)
       res.send(item)
     } catch (error) {
       next(error)

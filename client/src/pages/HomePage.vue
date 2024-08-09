@@ -1,19 +1,33 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { restaurantsService } from '../services/RestaurantsService.js';
 import Pop from '../utils/Pop.js';
 import { AppState } from '../AppState.js';
 import Restaurants from '../components/RestaurantCard.vue';
 import RestaurantCard from '../components/RestaurantCard.vue';
 import SpotlightRestaurantCard from '../components/SpotlightRestaurantCard.vue';
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRoute, useRouter } from 'vue-router';
 
 //test of change origin
 const spotlightRestaurant = computed(() => AppState.spotlightRestaurant)
 const restaurants = computed(() => AppState.restaurants)
+const account = computed(()=> AppState.account)
+
+const route = useRoute()
+const router = useRouter()
 
 onMounted(() => {
   getAllRestaurants()
+})
+
+watch(account, () => {
+  if(account.value.isOwner){
+    for(const restaurant of restaurants.value){
+      if(restaurant.creatorId == account.value.id){
+        router.push({name: 'Restaurant Management', params: {restaurantId: restaurant.id}})
+      }
+    }
+  }
 })
 
 
