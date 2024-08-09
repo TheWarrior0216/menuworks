@@ -8,7 +8,7 @@ import RestaurantCard from '../components/RestaurantCard.vue';
 import SpotlightRestaurantCard from '../components/SpotlightRestaurantCard.vue';
 import { RouterLink } from 'vue-router';
 
-
+//test of change origin
 const spotlightRestaurant = computed(() => AppState.spotlightRestaurant)
 const restaurants = computed(() => AppState.restaurants)
 
