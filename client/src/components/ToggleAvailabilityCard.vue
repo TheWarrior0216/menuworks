@@ -10,8 +10,8 @@ const props = defineProps({
 })
 
 async function toggleAvailability(){
-    const flip = {isAvailable: !props.itemProp.isAvailable}
-    await itemsService.setActiveItem(props.itemProp)
+    const flip = {...props.itemProp, isAvailable: !props.itemProp.isAvailable}
+    await itemsService.setActiveItem(flip)
     await itemsService.editItem(flip)
 
 }
