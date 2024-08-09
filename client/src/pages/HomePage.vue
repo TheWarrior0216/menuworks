@@ -40,7 +40,6 @@ async function getAllRestaurants() {
             </div>
           </h1>
           <h2 class="landing-subtitle text-info">Mobile Ordering Made Easy</h2>
-          <!-- FIXME fix the params to actually match the restaurant's id -->
         </div>
       </div>
     </div>
@@ -72,7 +71,6 @@ async function getAllRestaurants() {
       </div>
     </div>
   </section>
-
 </template>
 
 <style scoped lang="scss">

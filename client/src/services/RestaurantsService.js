@@ -4,6 +4,13 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class RestaurantsService {
+  async createRestaurant(Data) {
+    logger.log(Data)
+    const response = await api.post(`api/restaurants`, Data)
+    const restaurant = new Restaurant(response.data)
+    AppState.restaurants.push(restaurant)
+  }
+
   updateSearch(search) {
     AppState.restaurants = null
     AppState.search = search
