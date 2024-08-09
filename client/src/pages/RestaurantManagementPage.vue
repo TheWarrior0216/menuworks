@@ -10,7 +10,6 @@ import { logger } from '../utils/Logger.js';
 
 
 const route = useRoute()
-const router = useRouter()
 
 const orders = computed(() => AppState.orders)
 
