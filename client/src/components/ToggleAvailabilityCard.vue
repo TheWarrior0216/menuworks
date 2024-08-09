@@ -20,8 +20,8 @@ async function toggleAvailability(){
 
     <template>
         <div v-if="itemProp" class="card text-center mt-3 pb-1 shadow rounded borderFix">
-                <p v-if="itemProp.isAvailable" class="fs-3">Available</p>
-                <p v-else class="fs-3">Unavailable</p>
+                <p v-if="itemProp.isAvailable" class="fs-3 available fw-bold">Available</p>
+                <p v-else class="fs-3 unavailable fw-bold">Unavailable</p>
                 <img :src="itemProp.picture" class="card-img-top" alt="...">
                 <div class="card-body pb-0">
                     <p class="fs-4 card-title">{{ itemProp.name }}</p>
@@ -37,4 +37,12 @@ async function toggleAvailability(){
     height: 25vh;
     object-fit: cover;
     object-position: center;
-}</style>
+}
+.available {
+    color: #02a302;
+}
+
+.unavailable {
+    color: #e00404;
+}
+</style>

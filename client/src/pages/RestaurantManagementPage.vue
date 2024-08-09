@@ -1,5 +1,5 @@
 <script setup>
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import OrdersReceivedCard from '../components/OrdersReceivedCard.vue';
 import { computed, onMounted } from 'vue';
 import { AppState } from '../AppState.js';
@@ -10,6 +10,7 @@ import { logger } from '../utils/Logger.js';
 
 
 const route = useRoute()
+const router = useRouter()
 
 const orders = computed(() => AppState.orders)
 
