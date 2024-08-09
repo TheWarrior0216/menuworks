@@ -16,7 +16,7 @@ const props = defineProps({
         <h5>Order #{{ orderProp.id }}</h5>
         <h3>{{ orderProp.profile.name }}</h3>
         <div v-for="orderItem in orderProp.items" :key="orderItem.id">
-            {{ orderItem.quantity }}x {{ itemsProp.find((item) => item.id == orderItem.itemId).name }}
+            {{orderItem.quantity}}x {{ itemsProp.find((item)=> item.id == orderItem.itemId )?.name }}
         </div>
         <!-- FIXME figure out why canceled doesn't show on these dang nonButtons -->
         <p v-if="orderProp.isCancelled" class="bg-danger rounded border-primary text-center p-2 text-white mt-3 mb-0 ">Canceled</p>

@@ -39,7 +39,7 @@ async function cancelOrder(orderId) {
         <div v-for="orderItem in orderProp.items" :key="orderItem.id">
 <!-- FIXME show to quantity of an item instead of listing out the same item multiple times -->
             <li class="order-items">
-                {{orderItem.quantity}}x {{ itemsProp.find((item)=> item.id == orderItem.itemId ).name }}
+                {{orderItem.quantity}}x {{ itemsProp.find((item)=> item.id == orderItem.itemId )?.name }}
             </li>
         </div>
         <div class="mt-4 text-center">
