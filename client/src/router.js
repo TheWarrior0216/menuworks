@@ -38,7 +38,7 @@ const routes = [
         component: loadPage('OrderHistoryPage')
       },
       {
-        path: 'manageOrders',
+        path: '',
         name: 'manage orders',
         component: loadPage('ManageOrdersPage')
       },
