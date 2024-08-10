@@ -28,7 +28,7 @@ async function getOrders() {
 
 async function getItems() {
     try {
-        await itemsService.getItemsByRestaurantId(route.params.restaurantId)
+        await itemsService.getAllItemsByRestaurantId(route.params.restaurantId)
     }
     catch (error) {
         Pop.error(error);

@@ -48,6 +48,7 @@ function getItems() {
 async function createItem() {
     try {
         await itemsService.createItem(newItemData.value)
+        Modal.getOrCreateInstance('#AddItemModal').hide()
     }
     catch (error) {
         Pop.error(error);

@@ -1,20 +1,22 @@
 import { AppState } from "../AppState.js"
 import { Order } from "../models/Order.js"
+import { Restaurant } from "../models/Restaurant.js"
 import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
+import { orderItemsService } from "./OrderItemsService.js"
 
 class OrdersService {
     async cancelOrder(orderId) {
-       const response = await api.delete(`api/orders/${orderId}`)
-       logger.log('Cancelling order', response.data) 
-       const orderIndex = AppState.orders.findIndex(order => order.id == orderId)
-       if (orderIndex == -1) throw new Error("Unable to find orderIndex")
+        const response = await api.delete(`api/orders/${orderId}`)
+        logger.log('Cancelling order', response.data)
+        const orderIndex = AppState.orders.findIndex(order => order.id == orderId)
+        if (orderIndex == -1) throw new Error("Unable to find orderIndex")
         AppState.orders.splice(orderIndex, 1)
     }
     async getRestaurantOrders(id) {
         const response = await api.get(`api/restaurants/${id}/orders`)
         logger.log(response.data)
-        const orders = response.data.map((data)=>new Order(data))
+        const orders = response.data.map((data) => new Order(data))
         AppState.orders = orders
     }
 
@@ -37,10 +39,20 @@ class OrdersService {
         orderData.placed = true
         const order = await api.post('api/orders', orderData)
         const orderItems = AppState.orderItems
-        await orderItems.forEach((item) => {
+        const promises = []
+        orderItems.forEach((item) => {
             item.orderId = order.data.id
-            api.post('api/orderitems', (item))
+            promises.push(api.post('api/orderitems', (item)))
         })
+        try {
+            await Promise.all(promises)
+        }
+        catch (error) {
+            const newOrder = await this.getOrderById(order.data.id)
+            api.delete(`api/orders/${newOrder.id}/delete`)
+            throw new Error(error.message)
+        }
+
         AppState.orderItems = []
         logger.log('order posted')
     }
@@ -57,6 +69,12 @@ class OrdersService {
         const order = new Order(orderData)
         logger.log(order)
         AppState.activeOrder = order
+    }
+
+    async getOrderById(id){
+        const response = await api.get(`api/orders/${id}`)
+        const restaurant = new Order(response.data)
+        return(restaurant)
     }
 
 }

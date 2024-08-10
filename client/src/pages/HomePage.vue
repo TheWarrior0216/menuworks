@@ -1,19 +1,38 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { restaurantsService } from '../services/RestaurantsService.js';
 import Pop from '../utils/Pop.js';
 import { AppState } from '../AppState.js';
 import Restaurants from '../components/RestaurantCard.vue';
 import RestaurantCard from '../components/RestaurantCard.vue';
 import SpotlightRestaurantCard from '../components/SpotlightRestaurantCard.vue';
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRoute, useRouter } from 'vue-router';
 
-
+//test of change origin
 const spotlightRestaurant = computed(() => AppState.spotlightRestaurant)
 const restaurants = computed(() => AppState.restaurants)
+const account = computed(() => AppState.account)
+const hasBeenPushed = computed(() => AppState.isPushed)
+
+const route = useRoute()
+const router = useRouter()
 
 onMounted(() => {
   getAllRestaurants()
+})
+
+watch(account, () => {
+  if (account.value.isOwner) {
+    for (const restaurant of restaurants.value) {
+      if (restaurant.creatorId == account.value.id) {
+        if (!hasBeenPushed.value) {
+          router.push({ name: 'Restaurant Management', params: { restaurantId: restaurant.id } })
+          isPushed()
+        }
+
+      }
+    }
+  }
 })
 
 
@@ -26,6 +45,10 @@ async function getAllRestaurants() {
   }
 }
 
+
+function isPushed() {
+  restaurantsService.isPushed()
+}
 </script>
 
 <template>
@@ -40,7 +63,6 @@ async function getAllRestaurants() {
             </div>
           </h1>
           <h2 class="landing-subtitle text-info">Mobile Ordering Made Easy</h2>
-          <!-- FIXME fix the params to actually match the restaurant's id -->
         </div>
       </div>
     </div>
@@ -72,7 +94,6 @@ async function getAllRestaurants() {
       </div>
     </div>
   </section>
-
 </template>
 
 <style scoped lang="scss">

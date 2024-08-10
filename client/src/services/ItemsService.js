@@ -6,6 +6,13 @@ import { api } from "./AxiosService.js"
 
 class ItemsService {
 
+    async getAllItemsByRestaurantId(id) {
+        const response = await api.get(`api/items/${id}/restaurant/all`)
+        const items = response.data.map((itemData) => new Item(itemData))
+        AppState.items = items
+        logger.log(items)
+    }
+
     async editItem(editItemData) {
         const response = await api.put(`api/items/${AppState.activeItem.id}`, editItemData)
         logger.log(response.data)

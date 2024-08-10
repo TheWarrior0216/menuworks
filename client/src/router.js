@@ -38,7 +38,7 @@ const routes = [
         component: loadPage('OrderHistoryPage')
       },
       {
-        path: 'manageOrders',
+        path: '',
         name: 'manage orders',
         component: loadPage('ManageOrdersPage')
       },
@@ -60,5 +60,6 @@ export const router = createRouter({
   linkActiveClass: 'router-link-active',
   linkExactActiveClass: 'router-link-exact-active',
   history: createWebHashHistory(),
+  // @ts-ignore
   routes
 })

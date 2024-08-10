@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: your-dockerhub-username/menuworks:latest
+    image: porteryoung/menuworks:latest
     restart: unless-stopped
     env_file:
       - menuworks-env

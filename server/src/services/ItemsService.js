@@ -4,7 +4,7 @@ import { restaurantsService } from "./RestaurantsService.js"
 
 class ItemsService {
   async getAllItems() {
-    const data =  {isDeleted: false}
+    const data = { isDeleted: false }
     const items = await dbContext.Items.find(data)
     return items
   }
@@ -26,7 +26,7 @@ class ItemsService {
     foundItem.picture = itemBody.picture || foundItem.picture
     foundItem.price = itemBody.price || foundItem.price
     foundItem.description = itemBody.description || foundItem.description
-    foundItem.isAvailable = itemBody.isAvailable || foundItem.isAvailable
+    foundItem.isAvailable = itemBody.isAvailable ?? foundItem.isAvailable
     foundItem.type = itemBody.type || foundItem.type
     await foundItem.save()
     return foundItem

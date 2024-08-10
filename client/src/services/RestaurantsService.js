@@ -1,18 +1,32 @@
 import { AppState } from "../AppState.js"
 import { Restaurant } from "../models/Restaurant.js"
 import { logger } from "../utils/Logger.js"
+import { accountService } from "./AccountService.js"
 import { api } from "./AxiosService.js"
 
 class RestaurantsService {
+  isPushed() {
+    AppState.isPushed = true
+  }
+  async createRestaurant(Data) {
+    logger.log(Data)
+    const response = await api.post(`api/restaurants`, Data)
+    const restaurant = new Restaurant(response.data)
+    accountService.setToOwner()
+    AppState.restaurants.push(restaurant)
+  }
+
   updateSearch(search) {
     AppState.restaurants = null
     AppState.search = search
     this.searchRestaurants()
   }
+
   async updateRestaurantDetails(editableRestaurantData, restaurantId) {
     const response = await api.put(`api/restaurants/${restaurantId}`, editableRestaurantData)
     logger.log('Updating the restaurant details', response.data)
   }
+
   async searchRestaurants() {
     const response = await api.get(`api/restaurants/search?name=${AppState.search}`)
     const gotem = response.data.map(pojo => new Restaurant(pojo))
