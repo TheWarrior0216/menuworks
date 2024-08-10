@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
 
 export const RestaurantSchema = new Schema({
-    creatorId: { type: Schema.ObjectId, required: true, index: { unique: true } },
+    creatorId: { type: Schema.ObjectId, required: true },
     name: { type: String, minLength: 3, maxLength: 50, required: true },
     description: { type: String, minLength: 15, maxLength: 500, required: true },
     primaryPictureURL: { type: String, required: true },
@@ -26,6 +26,8 @@ export const RestaurantSchema = new Schema({
     yelp: { type: String, required: false },
     isOpen: { type: Boolean, required: true, default: false }
 }, { timestamps: true, toJSON: { virtuals: true } })
+
+RestaurantSchema.index({ creatorId: 1 })
 
 
 
