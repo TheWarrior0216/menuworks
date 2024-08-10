@@ -17,10 +17,6 @@ export class ItemsController extends BaseController {
       .delete('/:itemId', this.deleteItem)
   }
 
-  getAllItemsByRestaurantId(arg0, getAllItemsByRestaurantId) {
-    throw new Error("Method not implemented.");
-  }
-
   async getAllItems(req, res, next) {
     try {
       const items = await itemsService.getAllItems()

@@ -11,5 +11,4 @@ OrderItemsSchema.virtual('item', {
     foreignField: '_id',
     ref: 'Item',
     localField: 'itemId',
-
 })

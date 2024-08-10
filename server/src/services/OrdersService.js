@@ -9,6 +9,7 @@ class OrdersService {
     await order.deleteOne()
     return 'Deleted Order'
   }
+
   async changeOrder(orderId, orderData) {
     const foundOrder = await dbContext.Orders.findById(orderId)
     foundOrder.placed = orderData.placed || foundOrder.placed
@@ -16,18 +17,22 @@ class OrdersService {
     await foundOrder.save()
     return foundOrder
   }
+
   async getAllOrders() {
     const orders = await dbContext.Orders.find().populate('profile restaurant')
     return orders
   }
+
   async getOrdersByAccountId(accountId) {
     const orders = await dbContext.Orders.find({ accountId: accountId }).populate('restaurant')
     return orders
   }
+  
   async getSpecificOrder(orderId) {
     const order = await dbContext.Orders.findById(orderId).populate('profile restaurant')
     return order
   }
+
   async createOrder(orderData) {
     const order = await dbContext.Orders.create(orderData)
     await order.populate('profile restaurant')
