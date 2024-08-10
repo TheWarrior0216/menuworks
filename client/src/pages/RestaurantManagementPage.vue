@@ -15,6 +15,8 @@ const orders = computed(() => AppState.orders)
 
 const restaurant = computed(() => AppState.activeRestaurant)
 
+const account = computed(() => AppState.account)
+
 
 
 
@@ -55,59 +57,63 @@ onMounted(() => {
 
 
 <template>
-
-    <!-- Header Section -->
-    <section class="container-fluid">
-        <div class="row">
-            <div class="col-12 d-flex justify-content-between">
-                <h1>{{ restaurant?.name }}</h1>
-                <h3 v-if="restaurant?.isOpen">Your Restaurant Is Currently Open <i
-                        class="mdi mdi-circle text-success"></i></h3>
-                <h3 v-else>Your Restaurant Is Currently Closed <i class="mdi mdi-circle text-danger"></i></h3>
-            </div>
-        </div>
-    </section>
-
-    <section class="container-fluid">
-        <div class="row">
-            <div v-if="restaurant" class="col-md-2 d-flex flex-column justify-content-around options">
-
-                <RouterLink :to="{ name: 'manage orders', params: { restaurantId: restaurant.id } }">
-                    <button class="btn btn-dark w-100">Manage Orders</button>
-                </RouterLink>
-
-                <RouterLink :to="{ name: 'item availability', params: { restaurantId: restaurant.id } }">
-                    <button class="btn btn-dark w-100">Change Item Availability</button>
-                </RouterLink>
-
-                <RouterLink :to="{ name: 'history', params: { restaurantId: restaurant.id } }">
-                    <button class="btn btn-dark w-100">Order History</button>
-                </RouterLink>
-
-                <RouterLink :to="{ name: 'update info', params: { restaurantId: restaurant.id } }">
-                    <button class="btn btn-dark w-100">Update Restaurant Info</button>
-                </RouterLink>
-
-                <button @click="toggleRestaurantOpen()" class="btn btn-dark w-100">Stop Accepting Orders</button>
-
-                <RouterLink :to="{ name: 'edit menu', params: { restaurantId: restaurant.id } }">
-                    <button class="btn btn-dark w-100">Edit Menu</button>
-                </RouterLink>
-
-            </div>
-            <div class="col-md-10 active-view">
-                <div class="row">
-                    <router-view />
-                    <!-- <div class="col-4" v-for="order in orders" :key="order.id"> -->
-                    <!-- Insert OrdersReceivedCard Component Here -->
-                    <!-- <OrdersReceivedCard :order="order"/> -->
-                    <!-- {{ order }}
-                    </div> -->
+    <div v-if="account?.id == restaurant?.creatorId">
+        <!-- Header Section -->
+        <section class="container-fluid">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-between">
+                    <h1>{{ restaurant?.name }}</h1>
+                    <h3 v-if="restaurant?.isOpen">Your Restaurant Is Currently Open <i
+                            class="mdi mdi-circle text-success"></i></h3>
+                    <h3 v-else>Your Restaurant Is Currently Closed <i class="mdi mdi-circle text-danger"></i></h3>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
+        <section class="container-fluid">
+            <div class="row">
+                <div v-if="restaurant" class="col-md-2 d-flex flex-column justify-content-around options">
+
+                    <RouterLink :to="{ name: 'manage orders', params: { restaurantId: restaurant.id } }">
+                        <button class="btn btn-dark w-100">Manage Orders</button>
+                    </RouterLink>
+
+                    <RouterLink :to="{ name: 'item availability', params: { restaurantId: restaurant.id } }">
+                        <button class="btn btn-dark w-100">Change Item Availability</button>
+                    </RouterLink>
+
+                    <RouterLink :to="{ name: 'history', params: { restaurantId: restaurant.id } }">
+                        <button class="btn btn-dark w-100">Order History</button>
+                    </RouterLink>
+
+                    <RouterLink :to="{ name: 'update info', params: { restaurantId: restaurant.id } }">
+                        <button class="btn btn-dark w-100">Update Restaurant Info</button>
+                    </RouterLink>
+
+                    <button @click="toggleRestaurantOpen()" class="btn btn-dark w-100">Stop Accepting Orders</button>
+
+                    <RouterLink :to="{ name: 'edit menu', params: { restaurantId: restaurant.id } }">
+                        <button class="btn btn-dark w-100">Edit Menu</button>
+                    </RouterLink>
+
+                </div>
+                <div class="col-md-10 active-view">
+                    <div class="row">
+                        <router-view />
+                        <!-- <div class="col-4" v-for="order in orders" :key="order.id"> -->
+                        <!-- Insert OrdersReceivedCard Component Here -->
+                        <!-- <OrdersReceivedCard :order="order"/> -->
+                        <!-- {{ order }}
+                    </div> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div v-else>
+        <H1>Loading <i class="mdi mdi-spin mdi-loading"></i></H1>
+        <p>if you are not the owner of this restaurant it wont load</p>
+    </div>
 </template>
 
 
