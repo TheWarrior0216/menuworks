@@ -95,7 +95,7 @@ function createRestaurant(){
 }
 </script>
 <template>
-  <header v-if="!account?.isOwner" class="sticky-top">
+  <header class="sticky-top">
     <Navbar />
   </header>
   <main>

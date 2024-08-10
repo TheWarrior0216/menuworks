@@ -32,5 +32,6 @@ export const AppState = reactive({
   /** @type Order[] */
   orders: [],
   search: '',
-  center: null
+  center: null,
+  isPushed: false
 })

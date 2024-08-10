@@ -11,7 +11,8 @@ import { RouterLink, useRoute, useRouter } from 'vue-router';
 //test of change origin
 const spotlightRestaurant = computed(() => AppState.spotlightRestaurant)
 const restaurants = computed(() => AppState.restaurants)
-const account = computed(()=> AppState.account)
+const account = computed(() => AppState.account)
+const hasBeenPushed = computed(() => AppState.isPushed)
 
 const route = useRoute()
 const router = useRouter()
@@ -21,10 +22,14 @@ onMounted(() => {
 })
 
 watch(account, () => {
-  if(account.value.isOwner){
-    for(const restaurant of restaurants.value){
-      if(restaurant.creatorId == account.value.id){
-        router.push({name: 'Restaurant Management', params: {restaurantId: restaurant.id}})
+  if (account.value.isOwner) {
+    for (const restaurant of restaurants.value) {
+      if (restaurant.creatorId == account.value.id) {
+        if (!hasBeenPushed.value) {
+          router.push({ name: 'Restaurant Management', params: { restaurantId: restaurant.id } })
+          isPushed()
+        }
+
       }
     }
   }
@@ -40,6 +45,10 @@ async function getAllRestaurants() {
   }
 }
 
+
+function isPushed() {
+  restaurantsService.isPushed()
+}
 </script>
 
 <template>

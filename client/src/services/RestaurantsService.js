@@ -5,6 +5,9 @@ import { accountService } from "./AccountService.js"
 import { api } from "./AxiosService.js"
 
 class RestaurantsService {
+  isPushed() {
+    AppState.isPushed = true
+  }
   async createRestaurant(Data) {
     logger.log(Data)
     const response = await api.post(`api/restaurants`, Data)
