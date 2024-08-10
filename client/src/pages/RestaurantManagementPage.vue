@@ -7,9 +7,11 @@ import Pop from '../utils/Pop.js';
 import { ordersService } from '../services/OrdersService.js';
 import { restaurantsService } from '../services/RestaurantsService.js';
 import { logger } from '../utils/Logger.js';
+import ManageOrdersPage from './ManageOrdersPage.vue';
 
 
 const route = useRoute()
+const router = useRouter()
 
 const orders = computed(() => AppState.orders)
 
@@ -52,7 +54,12 @@ async function toggleRestaurantOpen() {
 onMounted(() => {
     getRestaurantOrders()
     getRestaurant()
+    reroute()
 })
+
+function reroute(){
+    router.push({ name: 'manage orders' })
+}
 </script>
 
 

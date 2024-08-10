@@ -14,20 +14,14 @@ const items = computed(() => AppState.items)
 
 <template>
 
-<div class="container">
-    <div class="row">
-        <div class="col-12 d-flex">
-            <div class="row justify-content-center">
-                <div v-for="item in items" :key="item.id" class="col-3 mx-5 my-1">
-                    <ToggleAvailabilityCard :restaurantProp="restaurant" :itemProp="item" />
-                </div>
+    <div class="container">
+        <div class="row">
+            <div v-for="item in items" :key="item.id" class="col-4 my-1">
+                <ToggleAvailabilityCard :restaurantProp="restaurant" :itemProp="item" />
             </div>
         </div>
     </div>
-</div>
 </template>
 
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

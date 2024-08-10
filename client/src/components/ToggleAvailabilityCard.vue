@@ -19,7 +19,7 @@ async function toggleAvailability(){
 </script>
 
     <template>
-        <div v-if="itemProp" class="card text-center mt-3 pb-1 shadow rounded borderFix">
+        <div v-if="itemProp" class="card text-center mt-3 px-2 pb-1 shadow rounded borderFix">
                 <p v-if="itemProp.isAvailable" class="fs-3 available fw-bold">Available</p>
                 <p v-else class="fs-3 unavailable fw-bold">Unavailable</p>
                 <img :src="itemProp.picture" class="card-img-top" alt="...">
