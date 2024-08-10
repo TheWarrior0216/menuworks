@@ -101,7 +101,7 @@ function createRestaurant(){
   <main>
     <router-view />
   </main>
-  <footer v-if="!account?.isOwner" class="d-flex justify-content-center">
+  <footer v-if="!account?.isOwner && account" class="d-flex justify-content-center">
     <FooterCard />
   </footer>
 
