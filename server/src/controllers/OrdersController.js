@@ -13,7 +13,19 @@ export class OrdersController extends BaseController {
       .put('/:orderId', this.changeOrder)
       .post('', this.createOrder)
       .delete('/:orderId', this.decimateOrder)
+      .delete('/:orderId/delete', this.realDeleteOrder)
 
+  }
+  async realDeleteOrder(req, res, next) {
+    try {
+      const orderId = req.params.orderId
+      const userInfo = req.userInfo
+      await ordersService.realDeleteOrder(userInfo.id, orderId)
+      res.send('deleted')
+    }
+    catch (error){
+      next(error)
+    }
   }
   async getAllOrders(req, res, next) {
     try {
