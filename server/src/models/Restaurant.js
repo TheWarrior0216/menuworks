@@ -1,7 +1,7 @@
 import { Schema } from "mongoose";
 
 export const RestaurantSchema = new Schema({
-    creatorId: { type: Schema.ObjectId, required: true },
+    creatorId: { type: Schema.ObjectId, required: true, unique: true },
     name: { type: String, minLength: 3, maxLength: 50, required: true },
     description: { type: String, minLength: 15, maxLength: 500, required: true },
     primaryPictureURL: { type: String, required: true },
