@@ -29,7 +29,7 @@ class OrderItemsService {
   async createOrderItems(orderData) {
     const order = await ordersService.getSpecificOrder(orderData.orderId)
     const items = await restaurantsService.getItemsByRestaurantId(order.restaurantId)
-    if(items.find((item)=>{item._id != orderData.itemId})){
+    if(!items.find((item)=>{item._id == orderData.itemId})){
       throw new Forbidden('item not on restaurant')
     }
     const response = await dbContext.OrderItems.create(orderData)
